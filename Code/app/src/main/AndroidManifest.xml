@@ -18,7 +18,6 @@
         android:name="android.hardware.microphone"
         android:required="false" />
 
-
     <application
         android:name=".MApplication"
         android:allowBackup="true"
@@ -27,31 +26,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".StartMenuActivity"
+        <activity
+            android:name=".SettingsActivity"
+            android:screenOrientation="sensorLandscape"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".ManageNModsActivity"
+            android:screenOrientation="sensorLandscape"/>
+        <activity
+            android:name=".StartMenuActivity"
             android:screenOrientation="sensorLandscape">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="sensorLandscape"/>
 
-        <!--  RECEIVER for Minecraft -->
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorLandscape" />
+
+
+        <!-- RECEIVER for Minecraft -->
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
                 <category android:name="com.mojang.minecraftpe" />
             </intent-filter>
-        </receiver>
-
-        <!-- SERVICES -->
+        </receiver> <!-- SERVICES -->
         <service
             android:name="com.mojang.minecraftpe.NotificationListenerService"
             android:exported="false">
@@ -65,7 +71,6 @@
         <service
             android:name="com.mojang.minecraftpe.ImportService"
             android:exported="true" />
-
     </application>
 
 </manifest>

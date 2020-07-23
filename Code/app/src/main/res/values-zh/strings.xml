@@ -3,4 +3,7 @@
     <string name="app_title">ModdedPE Pro</string>
     <string name="app_summary">A professional NMod launcher for Minecraft.</string>
     <string name="app_version_name">1.0-[1.16.0]</string>
+    <string name="app_start_game">Start Game</string>
+    <string name="app_settings">Settings</string>
+    <string name="app_manage_nmods">Manage NMods</string>
 </resources>
