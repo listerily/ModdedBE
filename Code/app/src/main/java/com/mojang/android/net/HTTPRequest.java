@@ -2,7 +2,6 @@ package com.mojang.android.net;
 
 import java.io.*;
 import java.net.*;
-import java.nio.charset.*;
 import java.util.*;
 
 import org.apache.http.Header;
@@ -10,7 +9,7 @@ import org.apache.http.message.BasicHeader;
 import org.jetbrains.annotations.NotNull;
 
 import android.text.TextUtils;
-import com.mcal.mcpelauncher.BuildConfig;
+import com.mojang.minecraftpe.BuildConfig;
 
 public class HTTPRequest {
 

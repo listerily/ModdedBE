@@ -61,7 +61,7 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.mcal.mcpelauncher.app.SoundService;
+import com.mojang.minecraftpe.SoundService;
 import com.mojang.minecraftpe.platforms.Platform;
 
 import org.fmod.FMOD;
