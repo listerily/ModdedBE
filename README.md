@@ -1,2 +1,2 @@
 # ModdedPE
-NMod Launcher for Minecraft on Android Devices.
+A frofessional but **FREE** NMod Launcher for Minecraft on Android Devices.
