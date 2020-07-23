@@ -1,13 +1,17 @@
 package net.listerily.moddedpepro;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.view.View;
 
@@ -26,6 +30,8 @@ public class StartMenuActivity extends AppCompatActivity {
                 requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, Settings.ACTION_MANAGE_OVERLAY_PERMISSION}, 1);
             }
         }
+
+        handler.sendEmptyMessageDelayed(START_MAIN,2500);
     }
 
 
@@ -48,4 +54,20 @@ public class StartMenuActivity extends AppCompatActivity {
         bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
         getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
     }
+
+    private MHandler handler = new MHandler();
+    private final int START_MAIN = 0;
+    private class MHandler extends Handler
+    {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == START_MAIN)
+            {
+                startActivity(new Intent(StartMenuActivity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                StartMenuActivity.this.finish();
+            }
+        }
+    }
+
 }
