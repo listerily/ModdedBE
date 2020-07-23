@@ -1,7 +1,11 @@
 package net.listerily.moddedpepro.launcher;
 
 public class ResourceManager {
-    ResourceManager()
-    {}
+    private Launcher launcher;
+
+    public ResourceManager(Launcher launcher)
+    {
+        this.launcher = launcher;
+    }
 
 }

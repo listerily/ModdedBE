@@ -1,8 +1,8 @@
 package net.listerily.moddedpepro.launcher;
 
-public class NModManager {
+public class LauncherOptions {
     private Launcher launcher;
-    public NModManager(Launcher launcher)
+    public LauncherOptions(Launcher launcher)
     {
         this.launcher = launcher;
     }
