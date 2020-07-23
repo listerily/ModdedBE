@@ -10,14 +10,46 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartMenuActivity">
+
+        <activity android:name=".StartMenuActivity"
+            android:screenOrientation="sensorLandscape">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="sensorLandscape"/>
+
+        <!--  RECEIVER for Minecraft -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.mojang.minecraftpe" />
+            </intent-filter>
+        </receiver>
+
+        <!-- SERVICES -->
+        <service
+            android:name="com.mojang.minecraftpe.NotificationListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.microsoft.xbox.idp.model.gcm.RegistrationIntentService"
+            android:exported="false" />
+        <service
+            android:name="com.mojang.minecraftpe.ImportService"
+            android:exported="true" />
+
+
     </application>
 
 </manifest>
