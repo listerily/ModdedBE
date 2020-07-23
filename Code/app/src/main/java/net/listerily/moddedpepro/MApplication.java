@@ -5,11 +5,14 @@ import android.content.res.AssetManager;
 
 import androidx.multidex.MultiDex;
 
+import net.listerily.moddedpepro.launcher.Launcher;
+
 public class MApplication extends Application
 {
     public void onCreate() {
         super.onCreate();
         MultiDex.install(this);
+        Launcher.mInstance.init(this);
     }
 
     @Override
