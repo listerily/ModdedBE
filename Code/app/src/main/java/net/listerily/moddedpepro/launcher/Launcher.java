@@ -3,7 +3,7 @@ package net.listerily.moddedpepro.launcher;
 import android.app.Application;
 
 public class Launcher {
-    public static Launcher mInstance;
+    public static Launcher mInstance = new Launcher();
 
     public NModManager nmodManager;
     public ResourceManager resourceManager;
@@ -19,6 +19,12 @@ public class Launcher {
     public final String DIR_RES = "resources";
 
     private Application context;
+
+    private Launcher()
+    {
+
+    }
+
 
     public void init(Application context)
     {

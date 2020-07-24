@@ -1,15 +1,21 @@
 package com.mojang.android.net;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import android.text.TextUtils;
+
+import com.mojang.minecraftpe.BuildConfig;
 
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 import org.jetbrains.annotations.NotNull;
 
-import android.text.TextUtils;
-import com.mojang.minecraftpe.BuildConfig;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
 
 public class HTTPRequest {
 
