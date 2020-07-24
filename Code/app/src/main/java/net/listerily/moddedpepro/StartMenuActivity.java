@@ -31,6 +31,10 @@ public class StartMenuActivity extends AppCompatActivity {
             }
         }
 
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.activity_background);
+        bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
+        getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
+
         handler.sendEmptyMessageDelayed(START_MAIN,2500);
     }
 
@@ -49,10 +53,6 @@ public class StartMenuActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.activity_background);
-        bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
-        getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
     }
 
     private MHandler handler = new MHandler();

@@ -29,6 +29,10 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.activity_background);
+        bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
+        getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
@@ -36,15 +40,6 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
         }
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.activity_background);
-        bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
-        getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
     }
 
     @Override
