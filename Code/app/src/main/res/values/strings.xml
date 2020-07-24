@@ -25,4 +25,6 @@
     <string name="app_start_game">Start Game</string>
     <string name="app_settings">Settings</string>
     <string name="app_manage_nmods">Manage NMods</string>
+    <string name="app_permission_denied">Permission Denied</string>
+    <string name="app_message_permission_denied">OOps!ModdedPE couldn\'t gain the permission to read your storage.This is vital for launching app.Please go to the Settings to make sure that the permisssion isn\'t denied.</string>
 </resources>

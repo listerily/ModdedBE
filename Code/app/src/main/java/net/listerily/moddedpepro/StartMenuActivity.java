@@ -1,8 +1,11 @@
 package net.listerily.moddedpepro;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialog;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -24,18 +27,11 @@ public class StartMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_menu);
 
-        //TODO: ask denied?
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Settings.ACTION_MANAGE_OVERLAY_PERMISSION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, Settings.ACTION_MANAGE_OVERLAY_PERMISSION}, 1);
-            }
-        }
-
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.activity_background);
         bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
         getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
 
-        handler.sendEmptyMessageDelayed(START_MAIN,2500);
+        handler.sendEmptyMessageDelayed(START_MAIN,3500);
     }
 
 
@@ -64,7 +60,7 @@ public class StartMenuActivity extends AppCompatActivity {
             super.handleMessage(msg);
             if(msg.what == START_MAIN)
             {
-                startActivity(new Intent(StartMenuActivity.this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(StartMenuActivity.this,MainActivity.class));
                 StartMenuActivity.this.finish();
             }
         }

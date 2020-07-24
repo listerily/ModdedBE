@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_title">ModdedPE Pro</string>
-    <string name="app_summary">A professional NMod launcher for Minecraft.</string>
     <string name="app_version_name">1.0-[1.16.0]</string>
-    <string name="app_start_game">Start Game</string>
-    <string name="app_settings">Settings</string>
-    <string name="app_manage_nmods">Manage NMods</string>
+    <string name="app_start_game">开始游戏</string>
+    <string name="app_settings">设置</string>
+    <string name="app_manage_nmods">管理 NMods</string>
+    <string name="app_summary">针对Minecraft设计的专业版NMod启动器</string>
+    <string name="app_permission_denied">权限未获得</string>
+    <string name="app_message_permission_denied">糟糕！ModdedPE无法获取读取存储空间的权限。这对于启动游戏很重要。请在系统设置中确保ModdedPE已获得相关必要权限。</string>
 </resources>
