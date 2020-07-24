@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_title">ModdedPE Pro</string>
-    <string name="app_summary">A professional NMod launcher for Minecraft.</string>
+    <string name="app_summary">针对Minecraft设计的专业版NMod启动器</string>
     <string name="app_version_name">1.0-[1.16.0]</string>
     <string name="app_start_game">开始游戏</string>
     <string name="app_settings">设置</string>
