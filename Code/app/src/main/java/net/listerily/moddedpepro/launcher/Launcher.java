@@ -16,11 +16,11 @@ public class Launcher {
 
     public final String DIR_ROOT = "launcher";
     public final String DIR_NMODS = "nmods";
-    public final String DIR_OPTIONS = "options.json";
-    public final String DIR_NMODS_DATA = "nmods.json";
     public final String DIR_LIBS = "libs";
     public final String DIR_CACHE = "launcher_cache";
     public final String DIR_RES = "resources";
+    public final String FILE_OPTIONS = "options.json";
+    public final String FILE_NMODS_DATA = "nmods.json";
 
     private Application context;
     private LauncherListener listener;
