@@ -58,4 +58,5 @@ dependencies {
     implementation 'org.zeroturnaround:zt-zip:1.13'
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
     implementation 'org.jetbrains:annotations:19.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }

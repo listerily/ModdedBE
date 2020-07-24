@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onStartGameClicked(View view) {
-        startActivity(new Intent(this,com.mojang.minecraftpe.MainActivity.class));
+        startActivity(new Intent(this,LoadingActivity.class));
     }
 
     public void onSettingsClicked(View view) {
