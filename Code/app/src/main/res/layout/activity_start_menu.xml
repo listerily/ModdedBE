@@ -18,7 +18,7 @@
             android:id="@+id/imageView2"
             android:layout_width="139dp"
             android:layout_height="139dp"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/ic_logo" />
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
