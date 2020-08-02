@@ -30,10 +30,12 @@
             android:theme="@style/FullScreenTheme"/>
         <activity
             android:name=".SettingsActivity"
+            android:label="@string/app_settings"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ManageNModsActivity"
+            android:label="@string/app_manage_nmods"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme" />
         <activity
