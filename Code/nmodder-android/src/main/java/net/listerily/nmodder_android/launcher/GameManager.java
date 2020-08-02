@@ -32,6 +32,10 @@ public class GameManager {
         }
     }
 
+    public String getNativeLibraryDir() {
+        return nativeLibraryDir;
+    }
+
     public String getVersionName() {
         return versionName;
     }
