@@ -43,4 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public void onManageNModsClicked(View view) {
         startActivity(new Intent(this,ManageNModsActivity.class));
     }
+
+    public void onInfoClicked(View view) {
+    }
 }

@@ -3,30 +3,79 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    android:layout_marginLeft="70dp"
+    android:layout_marginRight="70dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button_start_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="#00FFFFFF"
         android:onClick="onStartGameClicked"
-        android:text="@string/app_start_game" />
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_start_button" />
 
-    <Button
-        android:id="@+id/button_settings"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_marginLeft="40dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onSettingsClicked"
-        android:text="@string/app_settings" />
+        android:orientation="vertical"
+        android:layout_marginStart="40dp">
 
-    <Button
-        android:id="@+id/button_manage_nmods"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onManageNModsClicked"
-        android:text="@string/app_manage_nmods" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textSize="40sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF000000"
+            android:layout_marginLeft="30dp"
+            android:onClick="onSettingsClicked"
+            android:text="@string/app_settings"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#FFFFFFFF"
+            android:layout_marginStart="30dp" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="@string/app_manage_nmods"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="#FF000000"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:textColor="#FFFFFFFF"
+            android:onClick="onManageNModsClicked"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="@string/app_info"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="#FF000000"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:textColor="#FFFFFFFF"
+            android:onClick="onInfoClicked"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
 </LinearLayout>
