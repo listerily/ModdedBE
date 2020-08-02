@@ -29,4 +29,5 @@
     <string name="app_message_permission_denied">OOps!ModdedPE couldn\'t gain the permission to read your storage.This is vital for launching app.Please go to the Settings to make sure that the permisssion isn\'t denied.</string>
     <string name="app_info">Info</string>
     <string name="app_loading">Loading</string>
+    <string name="app_loading_summary">Loading game,please wait.</string>
 </resources>
