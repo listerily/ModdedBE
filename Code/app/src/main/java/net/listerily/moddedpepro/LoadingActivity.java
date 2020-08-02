@@ -13,7 +13,10 @@ import android.widget.Toast;
 
 import net.listerily.moddedpepro.ui.BitmapRepeater;
 import net.listerily.nmodder_android.launcher.Launcher;
+import net.listerily.nmodder_android.launcher.LauncherException;
 import net.listerily.nmodder_android.nmod.NMod;
+
+import java.io.IOException;
 
 public class LoadingActivity extends AppCompatActivity {
 
@@ -140,7 +143,13 @@ public class LoadingActivity extends AppCompatActivity {
                         handler.sendMessage(errorMessage);
                     }
                 });
-                Launcher.mInstance.launchGame();
+                try {
+                    Launcher.mInstance.launchGame();
+                } catch (LauncherException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }.start();
     }

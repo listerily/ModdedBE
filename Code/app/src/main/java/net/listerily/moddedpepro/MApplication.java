@@ -5,11 +5,17 @@ import android.content.res.AssetManager;
 
 import net.listerily.nmodder_android.launcher.Launcher;
 
+import java.io.IOException;
+
 public class MApplication extends Application
 {
     public void onCreate() {
         super.onCreate();
-        Launcher.mInstance.init(this);
+        try {
+            Launcher.mInstance.init(this);
+        } catch (IOException e) {
+            //todo init failed
+        }
     }
 
     @Override
