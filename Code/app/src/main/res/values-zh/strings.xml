@@ -9,4 +9,5 @@
     <string name="app_permission_denied">权限未获得</string>
     <string name="app_message_permission_denied">糟糕！ModdedPE无法获取读取存储空间的权限。这对于启动游戏很重要。请在系统设置中确保ModdedPE已获得相关必要权限。</string>
     <string name="app_info">Info</string>
+    <string name="app_loading">Loading</string>
 </resources>

@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onStartGameClicked(View view) {
         startActivity(new Intent(this,LoadingActivity.class));
+        finish();
     }
 
     public void onSettingsClicked(View view) {
