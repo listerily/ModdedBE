@@ -3,7 +3,7 @@ package net.listerily.moddedpepro;
 import android.app.Application;
 import android.content.res.AssetManager;
 
-import net.listerily.moddedpepro.launcher.Launcher;
+import net.listerily.nmodder_android.launcher.Launcher;
 
 public class MApplication extends Application
 {

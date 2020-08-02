@@ -1,4 +1,4 @@
-package net.listerily.moddedpepro.launcher;
+package net.listerily.nmodder_android.launcher;
 
 public class NModManager {
     private Launcher launcher;

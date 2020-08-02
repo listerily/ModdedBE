@@ -1,9 +1,9 @@
-package net.listerily.moddedpepro.launcher;
+package net.listerily.nmodder_android.launcher;
 
 import android.app.Application;
 import android.content.Context;
 
-import net.listerily.moddedpepro.launcher.nmod.NMod;
+import net.listerily.nmodder_android.nmod.NMod;
 
 public class Launcher {
     public static Launcher mInstance = new Launcher();

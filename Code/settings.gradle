@@ -1,2 +1,3 @@
+include ':nmodder-android'
 include ':app', ':minecraft'
 rootProject.name = "ModdedPE Pro"
