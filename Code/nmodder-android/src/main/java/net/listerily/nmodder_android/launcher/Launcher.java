@@ -1,18 +1,13 @@
 package net.listerily.nmodder_android.launcher;
 
-import android.app.Application;
 import android.content.Context;
 
 import net.listerily.nmodder_android.nmod.NMod;
 import net.listerily.nmodder_android.utils.Utils;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Launcher {
     public static Launcher mInstance = new Launcher();
@@ -31,7 +26,7 @@ public class Launcher {
     public final static String FILE_OPTIONS = "options.json";
     public final static String FILE_NMODS_DATA = "nmods.json";
 
-    private Application context;
+    private Context context;
     private LauncherListener listener;
 
     private Launcher()
@@ -119,6 +114,11 @@ public class Launcher {
             }
 
             @Override
+            public void onLoadNModJavaLibrary(NMod nmod, String name) {
+
+            }
+
+            @Override
             public void onLoadNModAsset(String name) {
 
             }
@@ -142,10 +142,15 @@ public class Launcher {
             public void onError(Error error) {
 
             }
+
+            @Override
+            public void onException(Exception exception) {
+
+            }
         };
     }
 
-    public void init(Application context) throws IOException
+    public void init(Context context) throws IOException
     {
         this.context = context;
         launcherOptions = new LauncherOptions(this);
@@ -176,39 +181,66 @@ public class Launcher {
         return libraryManager;
     }
 
-    public void launchGame() throws LauncherException,IOException
+    public void launchGame()
     {
-        listener.onStart();
-        // Variants
-        File nativeDir = new File(gameManager.getNativeLibraryDir());
-        File dataDir = context.getDir(DIR_ROOT,0);
-        File libsDir = new File(dataDir,DIR_LIBS);
-        File libMinecraftpe = new File(nativeDir,"libminecraftpe.so");
-        File libFmod = new File(libsDir,"libfmod.so");
-        String archName = libsDir.getName();
-        // Copy Game Files
-        listener.onLoadGameFilesStart();
-        Utils.copy(new File(nativeDir,"libminecraftpe.so"),libMinecraftpe);
-        Utils.copy(new File(nativeDir,"libfmod.so"),libFmod);
-        // Load Native Libs
-        listener.onLoadNativeLibrariesStart();
-        listener.onLoadNativeLibrary("libfmod.so");
-        System.load(libFmod.getAbsolutePath());
-        listener.onLoadNativeLibrary("libminecraftpe.so");
-        System.load(libMinecraftpe.getAbsolutePath());
-        listener.onLoadNativeLibrary("libsubstrate.so");
-        System.loadLibrary("substrate");
-        listener.onLoadNativeLibrary("libnmodder.so");
-        System.loadLibrary("nmodder");
-        listener.onLoadNativeLibrariesFinish();
-        // Load Java libraries
-        listener.onLoadJavaLibrariesStart();
-        // todo java libs
-        listener.onLoadJavaLibrariesFinish();
-        // Load Resources
-        listener.onLoadResourcesStart();
-        // todo load res
-        listener.onLoadResourcesFinish();
+        try
+        {
+            listener.onStart();
+            // Variants
+            File nativeDir = new File(gameManager.getNativeLibraryDir());
+            File dataDir = context.getDir(DIR_ROOT,0);
+            File libsDir = new File(dataDir,DIR_LIBS);
+            File libMinecraftpe = new File(nativeDir,"libminecraftpe.so");
+            File libFmod = new File(libsDir,"libfmod.so");
+            String archName = libsDir.getName();
+            // Copy Game Files
+            listener.onLoadGameFilesStart();
+            Utils.copy(new File(nativeDir,"libminecraftpe.so"),libMinecraftpe);
+            Utils.copy(new File(nativeDir,"libfmod.so"),libFmod);
+            // Load Native Libs
+            listener.onLoadNativeLibrariesStart();
+            listener.onLoadNativeLibrary("libfmod.so");
+            System.load(libFmod.getAbsolutePath());
+            listener.onLoadNativeLibrary("libminecraftpe.so");
+            System.load(libMinecraftpe.getAbsolutePath());
+            listener.onLoadNativeLibrary("libsubstrate.so");
+            System.loadLibrary("substrate");
+            listener.onLoadNativeLibrary("libnmodder.so");
+            System.loadLibrary("nmodder");
+            listener.onLoadNativeLibrariesFinish();
+            // Load Java libraries
+            listener.onLoadJavaLibrariesStart();
+            // todo java libs
+            listener.onLoadJavaLibrariesFinish();
+            // Load Resources
+            listener.onLoadResourcesStart();
+            // todo load res
+            listener.onLoadResourcesFinish();
+            listener.onLoadGameFilesFinish();
+            if(!launcherOptions.isSafeMode())
+            {
+                listener.onLoadNModsStart();
+                //todo load nmods
+                ArrayList<NMod> nmods = null;
+                for(NMod nmod : nmods)
+                {
+                    listener.onLoadNMod(nmod);
+                    //listener.onLoadNModAsset();
+                }
+                listener.onLoadNModsFinish();
+            }
+            listener.onArrange();
+            //todo arrange
+            listener.onFinish();
+        }
+        catch(Error e)
+        {
+            listener.onError(e);
+        }
+        catch(IOException e)
+        {
+            listener.onException(e);
+        }
     }
 
     public Context getContext()
@@ -250,10 +282,12 @@ public class Launcher {
         void onLoadNModsStart();
         void onLoadNMod(NMod nmod);
         void onLoadNModNativeLibrary(NMod nmod,String name);
+        void onLoadNModJavaLibrary(NMod nmod,String name);
         void onLoadNModAsset(String name);
         void onLoadNModsFinish();
         void onArrange();
         void onFinish();
         void onError(Error error);
+        void onException(Exception exception);
     }
 }

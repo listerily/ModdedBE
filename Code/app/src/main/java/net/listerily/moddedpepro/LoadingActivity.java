@@ -116,6 +116,11 @@ public class LoadingActivity extends AppCompatActivity {
                     }
 
                     @Override
+                    public void onLoadNModJavaLibrary(NMod nmod, String name) {
+
+                    }
+
+                    @Override
                     public void onLoadNModAsset(String name) {
 
                     }
@@ -142,14 +147,16 @@ public class LoadingActivity extends AppCompatActivity {
                         errorMessage.obj = error;
                         handler.sendMessage(errorMessage);
                     }
+
+                    @Override
+                    public void onException(Exception exception) {
+                        Message errorMessage = new Message();
+                        errorMessage.what = LAUNCH_EXCEPTION;
+                        errorMessage.obj = exception;
+                        handler.sendMessage(errorMessage);
+                    }
                 });
-                try {
-                    Launcher.mInstance.launchGame();
-                } catch (LauncherException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Launcher.mInstance.launchGame();
             }
         }.start();
     }
@@ -164,6 +171,7 @@ public class LoadingActivity extends AppCompatActivity {
     private LoadingActivity.MHandler handler = new LoadingActivity.MHandler();
     private final int LAUNCH_FINISH = 0;
     private final int LAUNCH_ERROR = 1;
+    private final int LAUNCH_EXCEPTION = 2;
     private class MHandler extends Handler
     {
         @Override
@@ -175,6 +183,9 @@ public class LoadingActivity extends AppCompatActivity {
 
                     break;
                 case LAUNCH_FINISH:
+
+                    break;
+                case LAUNCH_EXCEPTION:
 
                     break;
             }
