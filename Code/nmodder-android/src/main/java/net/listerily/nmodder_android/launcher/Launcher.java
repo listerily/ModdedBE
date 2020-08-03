@@ -183,9 +183,29 @@ public class Launcher {
 
     public void launchGame()
     {
-        try
+        try {
+            __launchGame();
+        } catch (LauncherException e) {
+            listener.onException(e);
+        }
+        catch(Error error)
         {
+            listener.onError(error);
+        }
+    }
+
+    private void __launchGame() throws LauncherException
+    {
             listener.onStart();
+
+
+
+            // Check Availability
+            if(!gameManager.isGameInstalled())
+                throw new LauncherException("Minecraft Game not installed.Please install game.");
+
+
+
             // Variants
             File nativeDir = new File(gameManager.getNativeLibraryDir());
             File dataDir = context.getDir(DIR_ROOT,0);
@@ -193,30 +213,60 @@ public class Launcher {
             File libMinecraftpe = new File(nativeDir,"libminecraftpe.so");
             File libFmod = new File(libsDir,"libfmod.so");
             String archName = libsDir.getName();
+
+
+
             // Copy Game Files
-            listener.onLoadGameFilesStart();
-            Utils.copy(new File(nativeDir,"libminecraftpe.so"),libMinecraftpe);
-            Utils.copy(new File(nativeDir,"libfmod.so"),libFmod);
+            try
+            {
+                listener.onLoadGameFilesStart();
+                Utils.copy(new File(nativeDir,"libminecraftpe.so"),libMinecraftpe);
+                Utils.copy(new File(nativeDir,"libfmod.so"),libFmod);
+            }
+            catch(IOException ioexception)
+            {
+                throw new LauncherException("Copy native libraries failed.",ioexception);
+            }
+
+
+
             // Load Native Libs
-            listener.onLoadNativeLibrariesStart();
-            listener.onLoadNativeLibrary("libfmod.so");
-            System.load(libFmod.getAbsolutePath());
-            listener.onLoadNativeLibrary("libminecraftpe.so");
-            System.load(libMinecraftpe.getAbsolutePath());
-            listener.onLoadNativeLibrary("libsubstrate.so");
-            System.loadLibrary("substrate");
-            listener.onLoadNativeLibrary("libnmodder.so");
-            System.loadLibrary("nmodder");
-            listener.onLoadNativeLibrariesFinish();
+            try
+            {
+                listener.onLoadNativeLibrariesStart();
+                listener.onLoadNativeLibrary("libfmod.so");
+                System.load(libFmod.getAbsolutePath());
+                listener.onLoadNativeLibrary("libminecraftpe.so");
+                System.load(libMinecraftpe.getAbsolutePath());
+                listener.onLoadNativeLibrary("libsubstrate.so");
+                System.loadLibrary("substrate");
+                listener.onLoadNativeLibrary("libnmodder.so");
+                System.loadLibrary("nmodder");
+                listener.onLoadNativeLibrariesFinish();
+            }
+            catch(Error error)
+            {
+                throw new LauncherException("Load game libraries failed.",error);
+            }
+
+
+
             // Load Java libraries
             listener.onLoadJavaLibrariesStart();
             // todo java libs
             listener.onLoadJavaLibrariesFinish();
+
+
+
             // Load Resources
             listener.onLoadResourcesStart();
             // todo load res
             listener.onLoadResourcesFinish();
             listener.onLoadGameFilesFinish();
+
+
+
+            // load NMods
             if(!launcherOptions.isSafeMode())
             {
                 listener.onLoadNModsStart();
@@ -229,18 +279,13 @@ public class Launcher {
                 }
                 listener.onLoadNModsFinish();
             }
+
+
+
+            // Arrange and finish
             listener.onArrange();
             //todo arrange
             listener.onFinish();
-        }
-        catch(Error e)
-        {
-            listener.onError(e);
-        }
-        catch(IOException e)
-        {
-            listener.onException(e);
-        }
     }
 
     public Context getContext()
