@@ -12,7 +12,7 @@ public class MApplication extends Application
     public void onCreate() {
         super.onCreate();
         try {
-            Launcher.mInstance.init(this);
+            Launcher.mInstance.init(this,super.getAssets());
         } catch (IOException e) {
             //todo init failed
         }
@@ -20,6 +20,8 @@ public class MApplication extends Application
 
     @Override
     public AssetManager getAssets() {
+        if(Launcher.mInstance.isInitialized())
+            return Launcher.mInstance.getAssetManager();
         return super.getAssets();
     }
 }

@@ -12,4 +12,8 @@ public class LauncherException extends Exception {
     {
         super(message,cause);
     }
+    public LauncherException(String message,Throwable cause)
+    {
+        super(message,cause);
+    }
 }

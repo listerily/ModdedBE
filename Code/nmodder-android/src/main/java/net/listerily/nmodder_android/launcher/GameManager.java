@@ -51,4 +51,9 @@ public class GameManager {
     public Context getGameContext() {
         return gameContext;
     }
+
+    public String getPackageResourcePath()
+    {
+        return gameContext.getPackageResourcePath();
+    }
 }

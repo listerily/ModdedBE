@@ -178,13 +178,13 @@ public class LoadingActivity extends AppCompatActivity {
             switch(msg.what)
             {
                 case LAUNCH_ERROR:
-
+                    ((Error)msg.obj).printStackTrace();
                     break;
                 case LAUNCH_FINISH:
 
                     break;
                 case LAUNCH_EXCEPTION:
-
+                    ((Exception)msg.obj).printStackTrace();
                     break;
             }
         }

@@ -1,6 +1,8 @@
 package net.listerily.nmodder_android.launcher;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.res.AssetManager;
 
 import net.listerily.nmodder_android.nmod.NMod;
 import net.listerily.nmodder_android.utils.Utils;
@@ -28,10 +30,14 @@ public class Launcher {
 
     private Context context;
     private LauncherListener listener;
+    private AssetManager assetManager;
+    private boolean initialized;
 
     private Launcher()
     {
         context = null;
+        assetManager = null;
+        initialized = false;
         listener = new LauncherListener() {
             @Override
             public void onStart() {
@@ -150,14 +156,16 @@ public class Launcher {
         };
     }
 
-    public void init(Context context) throws IOException
+    public void init(Context context,AssetManager contextAssets) throws IOException
     {
         this.context = context;
+        this.assetManager = contextAssets;
         launcherOptions = new LauncherOptions(this);
         gameManager = new GameManager(this);
         libraryManager = new LibraryManager(this);
         resourceManager = new ResourceManager(this);
         nmodManager = new NModManager(this);
+        initialized = true;
     }
 
     public ResourceManager getResourceManager()
@@ -260,7 +268,15 @@ public class Launcher {
 
             // Load Resources
             listener.onLoadResourcesStart();
-            // todo load res
+            AssetPatcher patcher = new AssetPatcher(context.getAssets());
+            try
+            {
+                patcher.patch(gameManager.getPackageResourcePath());
+            }
+            catch(Throwable throwable)
+            {
+                throw new LauncherException("Patch assets failed.", throwable);
+            }
             listener.onLoadResourcesFinish();
             listener.onLoadGameFilesFinish();
 
@@ -307,6 +323,15 @@ public class Launcher {
     public void onGameActivityFinish()
     {
 
+    }
+
+    public AssetManager getAssetManager()
+    {
+        return assetManager;
+    }
+
+    public boolean isInitialized() {
+        return initialized;
     }
 
     public interface LauncherListener
