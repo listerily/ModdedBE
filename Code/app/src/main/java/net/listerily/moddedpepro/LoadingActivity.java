@@ -163,9 +163,7 @@ public class LoadingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast toast = new Toast(this);
-        toast.setText(R.string.app_loading_summary);
-        toast.show();
+        Toast.makeText(this,R.string.app_loading_summary,Toast.LENGTH_LONG).show();
     }
 
     private LoadingActivity.MHandler handler = new LoadingActivity.MHandler();
