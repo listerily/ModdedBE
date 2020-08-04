@@ -25,9 +25,11 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
+        /*
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.activity_background);
         bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
         getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
+        */
 
         new Thread()
         {

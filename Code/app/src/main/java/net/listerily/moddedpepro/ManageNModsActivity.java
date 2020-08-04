@@ -26,9 +26,11 @@ public class ManageNModsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        /*
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.activity_background);
         bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
         getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
+        */
     }
 
     @Override
