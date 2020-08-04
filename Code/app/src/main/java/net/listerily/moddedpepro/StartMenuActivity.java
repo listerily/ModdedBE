@@ -27,12 +27,6 @@ public class StartMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_menu);
 
-        /*
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.activity_background);
-        bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
-        getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
-        */
-
         handler.sendEmptyMessageDelayed(START_MAIN,3500);
     }
 
