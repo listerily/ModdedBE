@@ -7,8 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/repeat_activity_bg"
     android:gravity="center_vertical"
-    android:layout_marginLeft="70dp"
-    android:layout_marginRight="70dp"
+    android:padding="70dp"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.AppCompatImageButton
