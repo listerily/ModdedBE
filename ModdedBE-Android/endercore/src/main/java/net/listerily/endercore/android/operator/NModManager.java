@@ -25,10 +25,12 @@ public class NModManager {
     {
         try
         {
+            //Copy package to internal dir
             FileManager fileManager = new FileManager(appContext);
             File installationDir = fileManager.getNModDirFor(nModPackage.getUUID());
             FileUtils.copyFile(nModPackage.getPackagePath(),new File(installationDir,"base.zip"));
 
+            //Open manifest
             ZipFile zipFile = new ZipFile(nModPackage.getPackagePath());
             ZipEntry entry = zipFile.getEntry(NMod.MANIFEST_NAME);
             FileUtils.copyFile(zipFile.getInputStream(entry),new File(installationDir,NMod.MANIFEST_NAME));
@@ -43,6 +45,7 @@ public class NModManager {
                 FileUtils.copyFile(zipFile.getInputStream(thisEntry),new File(installationDir,thisEntry.getName()));
             }
 
+            //
 
         }catch(IOException e) {
             throw new NModException("IO failed during installing nmod.",e);
@@ -55,6 +58,12 @@ public class NModManager {
 
     public NMod loadNModFromInstalled(String uuid)
     {
+
         return null;
+    }
+
+    public void uninstallNMod(String UUID)
+    {
+
     }
 }

@@ -37,7 +37,7 @@ public class EnderCore {
             initialized = true;
             destroyed = false;
             FileManager fileManager = new FileManager(context);
-            enderCoreOptions = fileManager.loadOptionsFile();
+            enderCoreOptions = fileManager.loadEnderCoreOptionsFile();
             gamePackageManager = new GamePackageManager(context,this);
             launcher = new Launcher(this);
         } catch(IOException e) {

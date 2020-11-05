@@ -54,4 +54,20 @@ public class FileUtils {
         }
         path.deleteOnExit();
     }
+
+    public static String readJsonToString(File file) throws IOException
+    {
+        return readJsonToString(new FileInputStream(file));
+    }
+
+    public static String readJsonToString(InputStream input) throws IOException
+    {
+        byte[] buffer = new byte[1 << 10];
+        int len;
+        StringBuilder builder = new StringBuilder();
+        while ((len = input.read(buffer)) > 0) {
+            builder.append(new String(buffer,len));
+        }
+        return builder.toString();
+    }
 }

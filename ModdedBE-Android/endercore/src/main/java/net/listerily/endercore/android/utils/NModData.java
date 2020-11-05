@@ -42,7 +42,7 @@ public class NModData {
     {
         public String uuid = null;
         public String url = null;
-        public String[] versions = null;
+        public String versions = null;
     }
 
     public static final class DexLibData
@@ -79,6 +79,8 @@ public class NModData {
         public String author = null;
         public String author_email = null;
         public String change_log = null;
+        public String icon = null;
+        public String banner = null;
         public I18nData[] i18n = null;
     }
 
@@ -86,6 +88,8 @@ public class NModData {
     {
         public NModInfoAndroid android = null;
         public String uuid = null;
-        public int sdk = -1;
+        public int target_sdk_version = -1;
+        public int min_sdk_version = -1;
+        public int manifest_version = 0;
     }
 }

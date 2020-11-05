@@ -2,16 +2,13 @@ package net.listerily.endercore.android.operator;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
-
 import net.listerily.endercore.android.EnderCoreOptions;
+import net.listerily.endercore.android.nmod.NModOptions;
 import net.listerily.endercore.android.utils.FileUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class FileManager {
     public final static String DIR_DATA_ROOT = "endercore_data";
@@ -28,8 +25,8 @@ public class FileManager {
     public final static String ASSETS_NAME_AGENT_DEX = "AgentMainActivity.dex";
     public final static String ASSETS_NAME_CRACKER_DEX = "CrackedLicense.dex";
 
-    public final static String DATA_FILE_OPTIONS = "options.json";
-    public final static String DATA_FILE_NMODS_DATA = "nmods.json";
+    public final static String DATA_FILE_ENDERCORE_OPTIONS = "options.json";
+    public final static String DATA_FILE_NMODS_OPTIONS = "nmods.json";
 
     private Context context;
     public FileManager(Context context)
@@ -37,38 +34,65 @@ public class FileManager {
         this.context = context;
     }
 
-    public void saveOptionsFile(EnderCoreOptions options) throws IOException
+    public void saveEnderCoreOptionsFile(EnderCoreOptions options) throws IOException
     {
         File dataDirRoot = context.getDir(DIR_DATA_ROOT,0);
         if(!dataDirRoot.exists())
             if(!dataDirRoot.mkdirs())
                 throw new IOException("Failed to mkdirs " + dataDirRoot.getAbsolutePath() + ".Please wipe app data.");
-        File optionsFile = new File(dataDirRoot,DATA_FILE_OPTIONS);
+        File optionsFile = new File(dataDirRoot, DATA_FILE_ENDERCORE_OPTIONS);
         optionsFile.createNewFile();
-        new FileOutputStream(optionsFile).write(new Gson().toJson(options.getOptionsData()).getBytes());
+        new FileOutputStream(optionsFile).write(options.toJsonContent().getBytes());
     }
 
-    public EnderCoreOptions loadOptionsFile() throws IOException
+    public EnderCoreOptions loadEnderCoreOptionsFile() throws IOException
     {
         EnderCoreOptions optionsNew = new EnderCoreOptions();
         File dataDirRoot = context.getDir(DIR_DATA_ROOT,0);
-        File optionsFile = new File(dataDirRoot,DATA_FILE_OPTIONS);
+        File optionsFile = new File(dataDirRoot, DATA_FILE_ENDERCORE_OPTIONS);
         if(!optionsFile.exists())
         {
-            optionsFile.createNewFile();
-            optionsNew.setOptionsData(new EnderCoreOptions.OptionsBean());
-            saveOptionsFile(optionsNew);
+            saveEnderCoreOptionsFile(optionsNew);
             return optionsNew;
         }
-        EnderCoreOptions.OptionsBean data = new Gson().fromJson(new InputStreamReader(new FileInputStream(optionsFile)), EnderCoreOptions.OptionsBean.class);
-        if(data == null)
+        boolean result = optionsNew.fromJsonContent(FileUtils.readJsonToString(optionsFile));
+        if(!result)
         {
             optionsFile.createNewFile();
-            optionsNew.setOptionsData(new EnderCoreOptions.OptionsBean());
-            saveOptionsFile(optionsNew);
+            saveEnderCoreOptionsFile(optionsNew);
             return optionsNew;
         }
-        optionsNew.setOptionsData(data);
+        return optionsNew;
+    }
+
+    public void saveNModOptionsFile(NModOptions options) throws IOException
+    {
+        File dataDirRoot = context.getDir(DIR_DATA_ROOT,0);
+        if(!dataDirRoot.exists())
+            if(!dataDirRoot.mkdirs())
+                throw new IOException("Failed to mkdirs " + dataDirRoot.getAbsolutePath() + ".Please wipe app data.");
+        File optionsFile = new File(dataDirRoot, DATA_FILE_NMODS_OPTIONS);
+        optionsFile.createNewFile();
+        new FileOutputStream(optionsFile).write(options.toJsonContent().getBytes());
+    }
+
+    public NModOptions loadNModOptionsFile() throws IOException
+    {
+        NModOptions optionsNew = new NModOptions();
+        File dataDirRoot = context.getDir(DIR_DATA_ROOT,0);
+        File optionsFile = new File(dataDirRoot, DATA_FILE_NMODS_OPTIONS);
+        if(!optionsFile.exists())
+        {
+            saveNModOptionsFile(optionsNew);
+            return optionsNew;
+        }
+        boolean result = optionsNew.fromJsonContent(FileUtils.readJsonToString(optionsFile));
+        if(!result)
+        {
+            optionsFile.createNewFile();
+            saveNModOptionsFile(optionsNew);
+            return optionsNew;
+        }
         return optionsNew;
     }
 

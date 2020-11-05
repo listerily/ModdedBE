@@ -1,18 +1,19 @@
 package net.listerily.endercore.android;
 
+import com.google.gson.Gson;
+
 import net.listerily.endercore.android.operator.GamePackageManager;
 
 public class EnderCoreOptions {
-    private OptionsBean optionsData;
+    private OptionsData optionsData;
 
     public EnderCoreOptions()
     {
-        optionsData = null;
+        optionsData = new OptionsData();
     }
 
-    public EnderCoreOptions(OptionsBean optionsData)
-    {
-        this.optionsData = optionsData;
+    public EnderCoreOptions(String jsonContent) {
+        this.optionsData = new Gson().fromJson(jsonContent, OptionsData.class);
     }
 
     public void setSafeMode(boolean safeMode) {
@@ -21,14 +22,6 @@ public class EnderCoreOptions {
 
     public void setPackageName(String packageName) {
         optionsData.game_package_name = packageName;
-    }
-
-    public OptionsBean getOptionsData() {
-        return optionsData;
-    }
-
-    public void setOptionsData(OptionsBean optionsData) {
-        this.optionsData = optionsData;
     }
 
     public String getPackageName() {
@@ -41,7 +34,22 @@ public class EnderCoreOptions {
         return optionsData.safe_mode;
     }
 
-    public final static class OptionsBean
+    public String toJsonContent(){
+        return new Gson().toJson(optionsData);
+    }
+
+    public boolean fromJsonContent(String jsonContent)
+    {
+        this.optionsData = new Gson().fromJson(jsonContent, OptionsData.class);
+        if(optionsData == null)
+        {
+            optionsData = new OptionsData();
+            return false;
+        }
+        return true;
+    }
+
+    private final static class OptionsData
     {
         public boolean safe_mode = false;
         public String game_package_name = GamePackageManager.PACKAGE_NAME;
