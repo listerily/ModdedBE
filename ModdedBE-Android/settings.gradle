@@ -1,2 +1,2 @@
 include ':app', ':endercore'
-rootProject.name = "ModdedPE Pro"
+rootProject.name = "ModdedBE"
