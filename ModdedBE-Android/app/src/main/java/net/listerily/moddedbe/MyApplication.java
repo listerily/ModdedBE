@@ -10,11 +10,4 @@ public class MyApplication extends Application
         super.onCreate();
         EnderCore.instance.initialize(this);
     }
-
-//    @Override
-//    public AssetManager getAssets() {
-//        if(Launcher.mInstance.isInitialized())
-//            return Launcher.mInstance.getAssets();
-//        return super.getAssets();
-//    }
 }

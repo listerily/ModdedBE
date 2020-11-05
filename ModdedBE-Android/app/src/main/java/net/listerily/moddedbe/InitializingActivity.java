@@ -1,7 +1,6 @@
 package net.listerily.moddedbe;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,7 +16,6 @@ import net.listerily.endercore.android.nmod.NMod;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
 
 public class InitializingActivity extends AppCompatActivity {
 
