@@ -48,7 +48,7 @@ public class FatalActivity extends AppCompatActivity {
             if(abi.equals("armeabi"))
                 text = "arm";
             else if(abi.startsWith("arm") && abi.endsWith("v7a"))
-                text = "v7a";
+                text = "arm32";
             else if(abi.startsWith("arm") && abi.endsWith("v8a"))
                 text = "arm64";
             else if(abi.equals("arm64"))
