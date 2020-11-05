@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="net.listerily.endercore"
+    tools:ignore="MissingClass">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" />
+
+    <application
+        android:extractNativeLibs="false"
+        android:isSplitRequired="true">
+        <activity android:name="com.mojang.minecraftpe.AgentMainActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:label="@string/app_name"
+            android:excludeFromRecents="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
+            android:alwaysRetainTaskState="true">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="minecraftpe" />
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="minecraft" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="xbox_live_game_invite"/>
+                <action android:name="xbox_live_achievement_unlock"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <!-- UNNECESSARY FIELDS AS FOLLOWS. IF THERE IS COMPILE ERRORS,PLEASE REMOVE THEM. -->
+        <activity android:configChanges="orientation" android:exported="true" android:launchMode="singleTask" android:name="com.microsoft.xal.browser.IntentHandler" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:host="auth" android:scheme="ms-xal-0000000048183522"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="orientation" android:exported="false" android:launchMode="singleTask" android:name="com.microsoft.xal.browser.WebView" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:configChanges="orientation" android:exported="false" android:name="com.microsoft.xal.browser.WebKitWebViewController" android:screenOrientation="sensorLandscape" />
+        <meta-data android:name="xperiaplayoptimized_content" android:resource="@string/xperiaplayoptimized_content"/>
+        <meta-data android:name="game_display_name" android:resource="@string/app_name"/>
+        <meta-data android:name="game_icon" android:resource="@drawable/icon"/>
+        <meta-data android:name="appcenter_android_id" android:value="@string/appcenter_android_id"/>
+        <receiver android:exported="true" android:name="com.appsflyer.SingleInstallBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <uses-library android:name="xperiaplaycertified" android:required="false"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <receiver android:name="com.amazon.device.iap.ResponseReceiver" >
+            <intent-filter>
+                <action android:name="com.amazon.inapp.purchasing.NOTIFY" android:permission="com.amazon.inapp.purchasing.Permission.NOTIFY" android:windowSoftInputMode="adjustResize"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:exported="true" android:name="com.google.android.gms.gcm.GcmReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="com.mojang.minecraftpe"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.mojang.minecraftpe.NotificationListenerService" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.microsoft.xbox.idp.model.gcm.NotificationInstanceIDListenerService" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+        <service android:exported="true" android:name="com.mojang.minecraftpe.ImportService" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <service android:name="com.mojang.minecraftpe.packagesource.googleplay.ApkXDownloaderService" />
+        <receiver android:name="com.mojang.minecraftpe.packagesource.googleplay.ApkXDownloaderAlarmReceiver" />
+        <meta-data android:name="com.android.vending.splits.required" android:value="true"/>
+        <meta-data android:name="com.android.vending.splits" android:resource="@xml/splits0"/>
+        <meta-data android:name="com.android.vending.derived.apk.id" android:value="3"/>
+
+        <activity  android:name="com.microsoft.xbox.idp.ui.AuthFlowActivity" android:theme="@style/OnlineidUiTheme" android:windowSoftInputMode="adjustPan|stateUnchanged"/>
+        <activity  android:name="com.microsoft.xbox.idp.ui.ErrorActivity" android:theme="@style/OnlineidUiTheme"/>
+        <activity  android:name="com.microsoft.onlineid.interop.xbox.ui.SignUpActivity" android:theme="@style/OnlineidUiTheme"/>
+        <activity  android:name="com.microsoft.onlineid.interop.xbox.ui.SignInErrorActivity" android:theme="@style/OnlineidUiTheme"/>
+        <activity  android:name="com.microsoft.onlineid.interop.xbox.ui.XUIDCreationErrorActivity" android:theme="@style/OnlineidUiTheme"/>
+        <activity  android:name="com.microsoft.onlineid.interop.xbox.ui.WelcomeActivity" android:theme="@style/OnlineidUiTheme"/>
+        <activity  android:name="com.microsoft.onlineid.interop.singleaccount.SingleAccountActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.interop.singleaccount.SingleAccountActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity  android:exported="false" android:icon="@drawable/msa_ms_logo" android:label="@string/webflow_header" android:name="com.microsoft.onlineid.authenticator.AccountAddPendingActivity" android:theme="@style/Theme.MSA"/>
+        <activity  android:configChanges="orientation|screenSize" android:exported="false" android:name="com.microsoft.onlineid.internal.ui.WebFlowActivity" android:theme="@style/Theme.MSA" android:windowSoftInputMode="adjustResize"/>
+        <activity  android:configChanges="orientation|screenSize" android:exported="false" android:icon="@drawable/msa_ms_logo" android:label="@string/webflow_header" android:name="com.microsoft.onlineid.ui.AddAccountActivity" android:theme="@style/Theme.MSA" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.internal.ADD_ACCOUNT"/>
+                <action android:name="com.microsoft.onlineid.internal.SIGN_UP_ACCOUNT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity  android:configChanges="orientation|screenSize" android:exported="false" android:name="com.microsoft.onlineid.ui.SignOutActivity" android:theme="@style/Theme.MSA.Transparent"/>
+        <activity  android:exported="false" android:icon="@drawable/msa_ms_logo" android:label="@string/webflow_header" android:name="com.microsoft.onlineid.internal.ui.AccountPickerActivity" android:theme="@style/Theme.MSA.Dialog">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.internal.PICK_ACCOUNT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity  android:exported="false" android:icon="@drawable/msa_ms_logo" android:label="@string/webflow_header" android:name="com.microsoft.onlineid.internal.ui.InterruptResolutionActivity" android:theme="@style/Theme.MSA"/>
+        <activity  android:configChanges="keyboard|keyboardHidden|screenLayout" android:name="com.facebook.FacebookActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity  android:configChanges="orientation|screenSize" android:name="com.microsoft.xboxtcui.FbLoginShimActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity  android:configChanges="orientation|screenSize" android:name="com.microsoft.xboxtcui.FbShareShimActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <meta-data android:name="xperiaplayoptimized_content" android:resource="@string/xperiaplayoptimized_content"/>
+        <meta-data android:name="game_display_name" android:resource="@string/app_name"/>
+        <meta-data android:name="game_icon" android:resource="@drawable/icon"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="appcenter_android_id" android:value="@string/appcenter_android_id"/>
+        <receiver  android:exported="true" android:name="com.appsflyer.SingleInstallBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <uses-library android:name="xperiaplaycertified" android:required="false"/>
+        <receiver android:name="com.amazon.device.iap.ResponseReceiver">
+            <intent-filter>
+                <action android:name="com.amazon.inapp.purchasing.NOTIFY" android:permission="com.amazon.inapp.purchasing.Permission.NOTIFY" android:windowSoftInputMode="adjustResize"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.microsoft.onlineid.internal.sso.client.BackupService">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.internal.sso.client.PUSH_BACKUP"/>
+                <action android:name="com.microsoft.onlineid.internal.sso.client.PUSH_BACKUP_IF_NEEDED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <service android:exported="false" android:name="com.microsoft.onlineid.internal.MsaService">
+            <intent-filter>
+                <action android:name="com.microsoft.onlineid.internal.GET_TICKET"/>
+                <action android:name="com.microsoft.onlineid.internal.UPDATE_PROFILE"/>
+                <action android:name="com.microsoft.onlineid.internal.SIGN_OUT"/>
+                <action android:name="com.microsoft.onlineid.internal.SIGN_OUT_ALL_APPS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <service android:enabled="true" android:exported="true" android:name="com.microsoft.onlineid.internal.sso.service.MsaSsoService">
+            <intent-filter>
+                <action android:name="com.microsoft.msa.action.SSO_SERVICE"/>
+            </intent-filter>
+            <meta-data android:name="com.microsoft.msa.service.sso_version" android:value="2"/>
+            <meta-data android:name="com.microsoft.msa.service.sdk_version" android:value="@string/sdk_version_name"/>
+        </service>
+    </application>
+
+</manifest>

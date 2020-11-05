@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">ModdedBE</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+    <string name="app_title">ModdedBE</string>
+    <string name="app_summary">A professional NMod launcher for Minecraft.</string>
+    <string name="app_version_name">1.0</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header" translatable="false">Messages</string>
+    <string name="sync_header" translatable="false">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title" translatable="false">Your signature</string>
+    <string name="reply_title" translatable="false">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title" translatable="false">Sync email periodically</string>
+    <string name="attachment_title" translatable="false">Download incoming attachments</string>
+    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails</string>
+    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
+    <string name="app_start_game">Start Game</string>
+    <string name="app_settings">Settings</string>
+    <string name="app_manage_nmods">Manage NMods</string>
+    <string name="app_permission_denied">Permission Denied</string>
+    <string name="app_message_permission_denied">OOps!ModdedBE couldn\'t gain the permission to read your storage.This is vital for launching app.Please go to the Settings to make sure that the permisssion isn\'t denied.</string>
+    <string name="app_info">Info</string>
+    <string name="app_loading">Loading</string>
+    <string name="app_loading_summary">Loading game,please wait.</string>
+    <string name="app_exit">Exit</string>
+    <string name="app_text_divider">|</string>
+    <string name="app_menu">Menu</string>
+    <string name="app_fatal_message_title">Fatal Error</string>
+    <string name="app_fatal_message_summary">An unexpected fatal error has occurred while initializing game.Please analyse this error or send it to developers.If this occurred again,consider clearing app data.</string>
+    <string name="app_app_data_cleared">Cleared</string>
+    <string name="app_clear_data">Clear Data</string>
+    <string name="app_copy">Copy</string>
+    <string name="app_copied">Copied</string>
+    <string name="app_fatal_version_name">Version: %1$s</string>
+    <string name="app_fatal_game_version">Game Version: %1$s</string>
+    <string name="app_fatal_endercore_sdk">EnderCore SDK: %1$d</string>
+    <string name="app_fatal_os_sdk">OS SDK: %1$d</string>
+    <string name="app_fatal_brand">Brand: %1$s</string>
+    <string name="app_fatal_model">Model: %1$s</string>
+    <string name="app_fatal_safe_mode">Safe Mode: %1$d</string>
+    <string name="app_fatal_abi">ABI: %1$s</string>
+</resources>

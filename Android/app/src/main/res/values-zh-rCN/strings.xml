@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_title">ModdedBE</string>
+    <string name="app_summary">针对Minecraft设计的专业版NMod启动器</string>
+    <string name="app_version_name">1.0</string>
+    <string name="app_start_game">开始游戏</string>
+    <string name="app_settings">设置</string>
+    <string name="app_manage_nmods">管理 NMod</string>
+    <string name="app_permission_denied">权限未获得</string>
+    <string name="app_message_permission_denied">糟糕！ModdedBE无法获取读取存储空间的权限。这对于启动游戏很重要。请在系统设置中确保ModdedPE已获得相关必要权限。</string>
+    <string name="app_info">关于</string>
+    <string name="app_loading">加载中……</string>
+    <string name="app_loading_summary">正在初始化游戏，请稍后。</string>
+    <string name="app_exit">退出</string>
+    <string name="app_menu">选项</string>
+    <string name="app_fatal_message_title">严重错误</string>
+    <string name="app_fatal_message_summary">发生了一个致命错误。请查看下面的错误报告，或者将它发送给开发者。如果这条消息再次出现，请尝试清除应用数据。</string>
+    <string name="app_text_divider">|</string>
+    <string name="app_name">ModdedBE</string>
+    <string name="app_app_data_cleared">已清除</string>
+    <string name="app_clear_data">清除数据</string>
+    <string name="app_copy">复制</string>
+    <string name="app_copied">已复制</string>
+    <string name="app_fatal_version_name">版本： %1$s</string>
+    <string name="app_fatal_game_version">游戏版本： %1$s</string>
+    <string name="app_fatal_endercore_sdk">EnderCore SDK: %1$d</string>
+    <string name="app_fatal_os_sdk">OS SDK: %1$d</string>
+    <string name="app_fatal_brand">品牌： %1$s</string>
+    <string name="app_fatal_model">机型： %1$s</string>
+    <string name="title_activity_settings">设置</string>
+    <string name="app_fatal_safe_mode">安全模式： %1$d</string>
+    <string name="app_fatal_abi">ABI: %1$s</string>
+</resources>
