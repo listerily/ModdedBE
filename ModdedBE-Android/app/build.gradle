@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        applicationId "net.listerily.moddedpepro"
+        applicationId "net.listerily.moddedbe"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
