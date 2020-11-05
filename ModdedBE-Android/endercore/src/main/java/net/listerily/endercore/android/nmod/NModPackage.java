@@ -65,7 +65,7 @@ public class NModPackage {
             if(info.version_name == null)
                 detectedWarnings.add(new NModWarning("NMod version name not found.Please assign it a version name."));
             if(info.version_code == -1)
-                detectedWarnings.add(new NModWarning(""));
+                detectedWarnings.add(new NModWarning("NMod version code unassigned.Please assign it a version code for package updates."));
             if(info.author == null)
                 detectedWarnings.add(new NModWarning("NMod author not found in the manifest."));
             if(info.author_email == null)
@@ -123,10 +123,5 @@ public class NModPackage {
     public File getPackagePath()
     {
         return packagePath;
-    }
-
-    public static void checkPackage(NModPackage nmodPackage) throws NModException
-    {
-
     }
 }
