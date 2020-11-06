@@ -151,7 +151,7 @@ public class Launcher {
         {
             // Check Availability
             if(!core.getGamePackageManager().isGameInstalled())
-                throw new LauncherException("Minecraft Game not installed.Please install game.");
+                throw new LauncherException("Minecraft Game is not installed.Please install game.");
 
             // Set Variants
             FileManager fileManager = new FileManager(context);
