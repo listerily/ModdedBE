@@ -169,6 +169,15 @@ public class FileManager {
         return result;
     }
 
+    public File getNModCertificateFile(String uuid) throws IOException
+    {
+        File nmodDir = getNModDir();
+        File result = new File(nmodDir,uuid + ".json");
+        result.createNewFile();
+        return result;
+    }
+
+
     public void removeEnderCoreData()
     {
         FileUtils.removeFiles(context.getCodeCacheDir());

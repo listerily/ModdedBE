@@ -92,4 +92,10 @@ public class NModData {
         public int min_sdk_version = -1;
         public int manifest_version = 0;
     }
+
+    public static class NModInstallationCertificate
+    {
+        public String sha = null;
+        public String md5 = null;
+    }
 }

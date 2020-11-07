@@ -57,6 +57,10 @@ public class NMod
         return info.version_name;
     }
 
+    public final int getVersionCode(){
+        return info.version_code;
+    }
+
     public String getChangeLog()
     {
         return info.change_log;
