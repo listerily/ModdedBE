@@ -52,7 +52,7 @@ public class NModPackage {
                     throw new NModException("UUID isn't allocated.Please allocate an UUID for this NMod in manifest.");
                 UUID uuid = UUID.fromString(manifest.uuid);
                 if(uuid == null)
-                    throw new NModException("Invalid uuid " + manifest.uuid + ".");
+                    throw new NModException("Invalid uuid [=" + manifest.uuid + "].");
                 if(manifest.min_sdk_version == -1)
                     throw new NModException("Min sdk version [tag=min_sdk_version] isn't assigned in manifest.");
                 if(manifest.min_sdk_version > EnderCore.SDK_VERSION)
@@ -94,7 +94,7 @@ public class NModPackage {
                     }
 
                     if(gameSupportData.dependencies != null)
-                        detectedWarnings.add(new NModWarning("Dependencies isn't supported in this EnderCore SDK"));
+                        detectedWarnings.add(new NModWarning("Dependencies isn't supported on this EnderCore SDK"));
 
                     if(gameSupportData.native_libs != null)
                     {
@@ -140,7 +140,7 @@ public class NModPackage {
                         }
                     }
 
-                    //TODO file overrides;icons;banners;cpu arches
+                    //TODO file overrides;icons;banners;cpu arches;i18n
                 }
             } catch (IOException e) {
                 throw new NModException("Zip read failed.Please ensure that the NMod package is zip-encoded.",e);
