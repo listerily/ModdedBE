@@ -61,8 +61,20 @@ public class NMod
         return info.version_code;
     }
 
+    public NModData.NModManifest getManifest() {
+        return manifest;
+    }
+
+    public NModData.NModInfoAndroid getInfo() {
+        return info;
+    }
+
     public String getChangeLog()
     {
         return info.change_log;
+    }
+
+    public File getInstallationPath() {
+        return installationPath;
     }
 }

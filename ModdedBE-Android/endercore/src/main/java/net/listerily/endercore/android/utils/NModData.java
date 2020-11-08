@@ -1,7 +1,7 @@
 package net.listerily.endercore.android.utils;
 
 public class NModData {
-    private static final class TextOverrideData
+    public static final class TextOverrideData
     {
         public String path = null;
         public String mode = MODE_REPLACE;
@@ -11,7 +11,7 @@ public class NModData {
         public static final String MODE_PREPEND = "prepend";
     }
 
-    private static final class FileOverrideData
+    public static final class FileOverrideData
     {
         public String path = null;
         public String mode = MODE_REPLACE;
@@ -42,7 +42,7 @@ public class NModData {
     {
         public String uuid = null;
         public String url = null;
-        public String versions = null;
+        public String[] versions = null;
     }
 
     public static final class DexLibData

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import net.listerily.endercore.android.EnderCore;
 import net.listerily.endercore.android.nmod.NMod;
 import net.listerily.endercore.android.exception.NModException;
 import net.listerily.endercore.android.nmod.NModOptions;
@@ -31,6 +32,8 @@ public class NModManager {
         try
         {
             //Check installation availability
+            if(!isSDKSupported(nmodPackage))
+                throw new NModException("NMod package sdk version is higher than EnderCore sdk version.Please update EnderCore.");
             if(hasNewerVersionInstalled(context,nmodPackage))
                 throw new NModException("A newer version has already been installed.");
 
@@ -124,8 +127,21 @@ public class NModManager {
     public boolean hasNewerVersionInstalled(Context context,NModPackage newPackage) throws NModException
     {
         NMod nmod = loadNModFromInstalled(context,newPackage.getUUID());
-        if(nmod.getVersionCode() > newPackage.getVersionCode())
-            return true;
-        return false;
+        return nmod.getVersionCode() > newPackage.getVersionCode();
+    }
+
+    public boolean isSDKSupported(NModPackage nmodPackage)
+    {
+        return EnderCore.SDK_VERSION >= nmodPackage.getManifest().min_sdk_version;
+    }
+
+    public boolean isValidPackage(Context context,NModPackage nmodPackage)
+    {
+        try {
+            return isSDKSupported(nmodPackage) && !hasNewerVersionInstalled(context,nmodPackage);
+        } catch (NModException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
