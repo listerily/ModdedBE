@@ -59,17 +59,17 @@ public class NModPackage {
                 throw new NModException("Invalid uuid " + manifest.uuid + ".");
 
             if(info.name == null)
-                detectedWarnings.add(new NModWarning("NMod name not found.Please assign it a name."));
+                detectedWarnings.add(new NModWarning("NMod name is not found.Please assign it a name."));
             if(info.game_supports == null)
                 detectedWarnings.add(new NModWarning("This NMod patches any code."));
             if(info.version_name == null)
-                detectedWarnings.add(new NModWarning("NMod version name not found.Please assign it a version name."));
+                detectedWarnings.add(new NModWarning("NMod version name is not found.Please assign it a version name."));
             if(info.version_code == -1)
-                detectedWarnings.add(new NModWarning("NMod version code unassigned.Please assign it a version code for package updates."));
+                detectedWarnings.add(new NModWarning("NMod version code isn't assigned.Please assign it a version code for package updates."));
             if(info.author == null)
-                detectedWarnings.add(new NModWarning("NMod author not found in the manifest."));
+                detectedWarnings.add(new NModWarning("NMod author is not found in the manifest."));
             if(info.author_email == null)
-                detectedWarnings.add(new NModWarning("NMod author not found in the manifest."));
+                detectedWarnings.add(new NModWarning("NMod author is not found in the manifest."));
         }
         catch(Throwable t)
         {
