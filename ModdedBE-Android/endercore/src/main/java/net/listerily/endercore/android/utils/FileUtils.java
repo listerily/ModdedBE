@@ -1,8 +1,11 @@
 package net.listerily.endercore.android.utils;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -67,17 +70,24 @@ public class FileUtils {
 
     public static String readJsonToString(File file) throws IOException
     {
-        return readJsonToString(new FileInputStream(file));
+        return readJsonToString(new FileReader(file));
     }
 
-    public static String readJsonToString(InputStream input) throws IOException
+    public static String readJsonToString(FileReader input) throws IOException
     {
-        byte[] buffer = new byte[1 << 10];
+        /*  FileReader is CHARACTER STREAM
+         *  InputStream is BYTE STREAM
+         */
+        char[] buffer = new char[1024];
         int len;
         StringBuilder builder = new StringBuilder();
         while ((len = input.read(buffer)) > 0) {
-            builder.append(new String(buffer,len));
+            /*  '\u0000' at the end of JSON string will cause
+             *  com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException
+             */
+            builder.append(buffer, 0, len);
         }
+        Log.i("ModdedBE", builder.toString());
         return builder.toString();
     }
 
