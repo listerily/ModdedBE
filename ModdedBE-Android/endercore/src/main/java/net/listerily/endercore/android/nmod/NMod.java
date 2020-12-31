@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class NMod
 {
-    private NModData.NModManifest manifest;
-    private NModData.NModInfoAndroid info;
-    private File installationPath;
+    private final NModData.NModManifest manifest;
+    private final NModData.NModInfoAndroid info;
+    private final File installationPath;
 
     public static final String MANIFEST_NAME = "nmod_manifest.json";
     public static final String NMOD_PLATFORM = "android";

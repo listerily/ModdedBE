@@ -150,7 +150,7 @@ public class InitializingActivity extends AppCompatActivity {
                     handler.sendMessage(finishMessage);
                 } catch (LauncherException e) {
                     Message errorMessage = new Message();
-                    errorMessage.what = LAUNCH_EXCEPTION;
+                    errorMessage.what = LAUNCH_SUSPEND;
                     errorMessage.obj = e;
                     handler.sendMessage(errorMessage);
                 }
@@ -186,13 +186,12 @@ public class InitializingActivity extends AppCompatActivity {
     }
 
 
-    private InitializingActivity.MHandler handler = new InitializingActivity.MHandler(this);
+    private final InitializingActivity.MHandler handler = new InitializingActivity.MHandler(this);
     private final static int LAUNCH_FINISH = 0;
     private final static int LAUNCH_SUSPEND = 1;
-    private final static int LAUNCH_EXCEPTION = 2;
     private static  class MHandler extends Handler
     {
-        private InitializingActivity context;
+        private final InitializingActivity context;
         MHandler(InitializingActivity context)
         {
             super();
@@ -206,7 +205,7 @@ public class InitializingActivity extends AppCompatActivity {
                 case LAUNCH_FINISH:
                     context.startGameActivity();
                     break;
-                case LAUNCH_EXCEPTION:
+                case LAUNCH_SUSPEND:
                     context.startFatalActivity((LauncherException)msg.obj);
                     break;
             }

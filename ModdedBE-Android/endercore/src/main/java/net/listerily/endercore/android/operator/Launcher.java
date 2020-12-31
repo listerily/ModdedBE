@@ -21,7 +21,7 @@ import java.util.zip.ZipFile;
 import dalvik.system.DexClassLoader;
 
 public class Launcher {
-    private EnderCore core;
+    private final EnderCore core;
     private GameInitializationListener listener;
     private ArrayList<String> patchAssetPath;
     private boolean initializedGame;
@@ -183,8 +183,8 @@ public class Launcher {
                                 if(!apk.isFile())
                                     continue;
 
-                                ZipEntry targetEntry = null;
-                                ZipFile apkFile = null;
+                                ZipEntry targetEntry;
+                                ZipFile apkFile;
                                 try {
                                     apkFile = new ZipFile(apk);
                                     targetEntry = apkFile.getEntry("lib/" + thisAbi + "/" + libName);
@@ -211,8 +211,8 @@ public class Launcher {
                         if(!apk.isFile())
                             continue;
 
-                        ZipEntry targetEntry = null;
-                        ZipFile apkFile = null;
+                        ZipEntry targetEntry;
+                        ZipFile apkFile;
                         try {
                             apkFile = new ZipFile(apk);
                             targetEntry = apkFile.getEntry(libName);

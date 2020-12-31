@@ -28,7 +28,7 @@ public class FileManager {
     public final static String DATA_FILE_ENDERCORE_OPTIONS = "options.json";
     public final static String DATA_FILE_NMODS_OPTIONS = "nmods.json";
 
-    private Context context;
+    private final Context context;
     public FileManager(Context context)
     {
         this.context = context;

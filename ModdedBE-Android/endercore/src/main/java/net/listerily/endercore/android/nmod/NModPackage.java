@@ -19,10 +19,10 @@ import java.util.zip.ZipFile;
 
 public class NModPackage {
 
-    private File packagePath;
-    private ArrayList<NModWarning> detectedWarnings;
-    private NModData.NModInfoAndroid info;
-    private NModData.NModManifest manifest;
+    private final File packagePath;
+    private final ArrayList<NModWarning> detectedWarnings;
+    private final NModData.NModInfoAndroid info;
+    private final NModData.NModManifest manifest;
 
     public NModPackage(File path) throws NModException
     {
@@ -30,7 +30,6 @@ public class NModPackage {
         {
             packagePath = path;
             detectedWarnings = new ArrayList<>();
-            info = null;
 
             if(!path.exists())
                 throw new NModException("This package file does not exist.");
