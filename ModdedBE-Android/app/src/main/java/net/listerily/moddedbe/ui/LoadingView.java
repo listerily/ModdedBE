@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 
 public class LoadingView extends ProgressBar
 {
-    private Paint mPaint;
+    private final Paint mPaint;
 
     public LoadingView(android.content.Context context)
     {
@@ -85,24 +85,24 @@ public class LoadingView extends ProgressBar
             }
             case 2:
             {
-                canvas.drawRect(0, mHeight / 2, mWidth / 2, mHeight , mPaint);
+                canvas.drawRect(0, mHeight / 2f, mWidth / 2f, mHeight , mPaint);
                 int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
-                canvas.drawRect(mWidth / 2 , blockDrawHeight, mWidth, blockDrawHeight + mHeight / 2, mPaint);
+                canvas.drawRect(mWidth / 2f , blockDrawHeight, mWidth, blockDrawHeight + mHeight / 2f, mPaint);
                 break;
             }
             case 3:
             {
-                canvas.drawRect(0, mHeight / 2, mWidth , mHeight , mPaint);
+                canvas.drawRect(0, mHeight / 2f, mWidth , mHeight , mPaint);
                 int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
-                canvas.drawRect(0, 0 , mWidth / 2, blockDrawHeight + 1 , mPaint);
+                canvas.drawRect(0, 0 , mWidth / 2f, blockDrawHeight + 1 , mPaint);
                 break;
             }
             case 4:
             {
-                canvas.drawRect(0, mHeight / 2, mWidth , mHeight , mPaint);
-                canvas.drawRect(0, 0, mWidth / 2 , mHeight / 2, mPaint);
+                canvas.drawRect(0, mHeight / 2f, mWidth , mHeight , mPaint);
+                canvas.drawRect(0, 0, mWidth / 2f , mHeight / 2f, mPaint);
                 int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
-                canvas.drawRect(mWidth / 2, 0 , mWidth , blockDrawHeight + 1 , mPaint);
+                canvas.drawRect(mWidth / 2f, 0 , mWidth , blockDrawHeight + 1 , mPaint);
                 break;
             }
         }
