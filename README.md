@@ -5,6 +5,11 @@ A professional but **FREE** NMod Launcher for Minecraft Bedrock Editions (Androi
 This ModdedBE project is a completely new NMod launcher compared to the last one "ModdedPE".It is designed to support multi-versions of Minecraft, and there're possibilities for it to become a cross-platform Minecraft Launcher.
 **ATTENTION:** Former NMods for ModdedPE could not be loaded with ModdedBE.
 
+## Run the code
+ Download Android Studio, android sdk and android ndk.
+ Build,install and run the app.
+ **ATTENTION:** Please install Mincraft first.Running on physical devices is recommended, as there are quite a lot opengl problems on android virtual devices on which you cannot open Minecraft even though you don't use ModdedBE.
+
 ## Repository Structure
  + *ModdedBE-Android*  
  Source code for ModdedBE app.
