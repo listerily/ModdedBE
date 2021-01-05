@@ -22,9 +22,9 @@ This ModdedBE project is a completely new NMod launcher compared to the last one
  + Manage NMods.
  + Support for lower Android versions.
  + Support for lower Minecraft versions.
+ + Create documents and development tools for NMods.
 
 ## Support us
  + Read our code and helps us to improve it.
  + Join us as a contributor.
  + Help us solve the issues.
- + Create documents and development tools for NMods.
