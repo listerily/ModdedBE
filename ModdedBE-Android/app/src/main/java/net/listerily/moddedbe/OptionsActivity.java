@@ -6,29 +6,49 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-public class SettingsActivity extends AppCompatActivity {
+public class OptionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_options);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.settings, new SettingsFragment())
+                .replace(R.id.viewOptions, new OptionsFragment())
                 .commit();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public void onManageNModsClicked()
+    {
 
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat {
+    public void onInstallNModsClicked()
+    {
+
+    }
+
+    public static class OptionsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
+
+            findPreference("manage").setOnPreferenceClickListener(preference -> {
+                ((OptionsActivity)getActivity()).onManageNModsClicked();
+                return false;
+            });
+
+            findPreference("install").setOnPreferenceClickListener(preference -> {
+                ((OptionsActivity)getActivity()).onInstallNModsClicked();
+                return false;
+            });
         }
     }
 

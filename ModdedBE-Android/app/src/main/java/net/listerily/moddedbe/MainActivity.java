@@ -20,5 +20,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMenuClicked(View view) {
+        startActivity(new Intent(this, OptionsActivity.class));
     }
 }

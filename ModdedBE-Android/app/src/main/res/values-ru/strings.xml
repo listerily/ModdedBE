@@ -4,12 +4,11 @@
     <string name="app_summary">A professional NMod launcher for Minecraft.</string>
     <string name="app_version_name">1.0</string>
     <string name="app_start_game">Start Game</string>
-    <string name="app_settings">Settings</string>
     <string name="app_manage_nmods">Manage NMods</string>
     <string name="app_info">Info</string>
     <string name="app_loading">Loading</string>
     <string name="app_loading_summary">Loading game,please wait.</string>
-    <string name="app_menu">Menu</string>
+    <string name="app_options">Options</string>
     <string name="app_fatal_message_title">Fatal Error</string>
     <string name="app_fatal_message_summary">An unexpected fatal error has occurred while initializing game.Please analyse this error or send it to developers.If this occurred again,consider clearing app data.</string>
     <string name="app_text_divider">|</string>
@@ -30,4 +29,11 @@
     <string name="title_activity_settings">Settings</string>
     <string name="app_fatal_safe_mode">SafeMode: %1$d</string>
     <string name="app_fatal_abi">ABI: %1$s</string>
+    <string name="app_options_title_launcher">Launcher</string>
+    <string name="app_options_title_nmods">NMods</string>
+    <string name="app_options_use_nmods">Use NMods</string>
+    <string name="app_options_auto_license">License the game automatically</string>
+    <string name="app_options_redirect_game_directory">Redirect game directory</string>
+    <string name="app_options_manage_nmods">Manage NMods</string>
+    <string name="app_options_install_new_nmods">Install NMods</string>
 </resources>

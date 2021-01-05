@@ -6,10 +6,10 @@
 
     <application
         android:name=".MyApplication"
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:allowBackup="false"
         android:supportsRtl="true">
         <activity android:name=".FatalActivity"
             android:screenOrientation="sensorLandscape"
@@ -19,8 +19,8 @@
             android:screenOrientation="sensorLandscape"
             android:theme="@style/FullScreenTheme" />
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/app_settings"
+            android:name=".OptionsActivity"
+            android:label="@string/app_options"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme" />
         <activity

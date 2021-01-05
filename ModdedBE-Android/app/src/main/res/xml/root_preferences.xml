@@ -1,34 +1,37 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory app:title="@string/app_options_title_launcher">
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:key="auto_license"
+            app:title="@string/app_options_auto_license"
+            app:defaultValue="true"/>
 
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:key="redirect_directory"
+            app:title="@string/app_options_redirect_game_directory"
+            app:defaultValue="true"/>
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
+    <PreferenceCategory app:title="@string/app_options_title_nmods">
 
         <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
+            app:key="use_nmods"
+            app:title="@string/app_options_use_nmods"
+            app:defaultValue="false"/>
 
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+        <Preference
+            android:key="manage"
+            android:dependency="use_nmods"
+            android:title="@string/app_options_manage_nmods" />
+
+        <Preference
+            android:key="install"
+            android:dependency="use_nmods"
+            android:title="@string/app_options_install_new_nmods" />
+
 
     </PreferenceCategory>
 

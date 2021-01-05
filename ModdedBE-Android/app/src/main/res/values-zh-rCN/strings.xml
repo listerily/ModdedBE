@@ -4,7 +4,6 @@
     <string name="app_summary">针对Minecraft设计的专业版NMod启动器</string>
     <string name="app_version_name">1.0</string>
     <string name="app_start_game">开始游戏</string>
-    <string name="app_settings">设置</string>
     <string name="app_manage_nmods">管理 NMod</string>
     <string name="app_permission_denied">权限未获得</string>
     <string name="app_message_permission_denied">糟糕！ModdedBE无法获取读取存储空间的权限。这对于启动游戏很重要。请在系统设置中确保ModdedPE已获得相关必要权限。</string>
@@ -12,7 +11,7 @@
     <string name="app_loading">加载中……</string>
     <string name="app_loading_summary">正在初始化游戏，请稍后。</string>
     <string name="app_exit">退出</string>
-    <string name="app_menu">选项</string>
+    <string name="app_options">选项</string>
     <string name="app_fatal_message_title">严重错误</string>
     <string name="app_fatal_message_summary">发生了一个致命错误。请查看下面的错误报告，或者将它发送给开发者。如果这条消息再次出现，请尝试清除应用数据。</string>
     <string name="app_text_divider">|</string>
@@ -30,4 +29,11 @@
     <string name="title_activity_settings">设置</string>
     <string name="app_fatal_safe_mode">安全模式： %1$d</string>
     <string name="app_fatal_abi">ABI: %1$s</string>
+    <string name="app_options_title_nmods">NMods</string>
+    <string name="app_options_title_launcher">启动器</string>
+    <string name="app_options_use_nmods">使用NMods</string>
+    <string name="app_options_auto_license">自动授权购买许可</string>
+    <string name="app_options_redirect_game_directory">重定向游戏内部文件夹</string>
+    <string name="app_options_manage_nmods">管理NMod</string>
+    <string name="app_options_install_new_nmods">安装NMod</string>
 </resources>
