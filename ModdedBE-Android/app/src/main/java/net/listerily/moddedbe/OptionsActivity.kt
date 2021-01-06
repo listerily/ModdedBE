@@ -1,63 +1,42 @@
-package net.listerily.moddedbe;
+package net.listerily.moddedbe
 
-import android.os.Bundle;
-import android.view.MenuItem;
+import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
-
-public class OptionsActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_options);
-        getSupportFragmentManager()
+class OptionsActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_options)
+        supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.viewOptions, new OptionsFragment())
-                .commit();
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+                .replace(R.id.viewOptions, OptionsFragment())
+                .commit()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun onManageNModsClicked() {}
+    fun onInstallNModsClicked() {}
+    class OptionsFragment : PreferenceFragmentCompat() {
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            setPreferencesFromResource(R.xml.root_preferences, rootKey)
+            findPreference<Preference>("manage")!!.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                (activity as OptionsActivity?)!!.onManageNModsClicked()
+                false
+            }
+            findPreference<Preference>("install")!!.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                (activity as OptionsActivity?)!!.onInstallNModsClicked()
+                false
+            }
         }
     }
 
-    public void onManageNModsClicked()
-    {
-
-    }
-
-    public void onInstallNModsClicked()
-    {
-
-    }
-
-    public static class OptionsFragment extends PreferenceFragmentCompat {
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.root_preferences, rootKey);
-
-            findPreference("manage").setOnPreferenceClickListener(preference -> {
-                ((OptionsActivity)getActivity()).onManageNModsClicked();
-                return false;
-            });
-
-            findPreference("install").setOnPreferenceClickListener(preference -> {
-                ((OptionsActivity)getActivity()).onInstallNModsClicked();
-                return false;
-            });
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
         }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if(item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item)
     }
 }

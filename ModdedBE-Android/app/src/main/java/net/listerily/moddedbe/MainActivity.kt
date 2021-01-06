@@ -1,25 +1,21 @@
-package net.listerily.moddedbe;
+package net.listerily.moddedbe
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
     }
 
-    public void onStartGameClicked(View view) {
-        startActivity(new Intent(this, InitializingActivity.class));
-        finish();
+    fun onStartGameClicked() {
+        startActivity(Intent(this, InitializingActivity::class.java))
+        finish()
     }
 
-    public void onMenuClicked(View view) {
-        startActivity(new Intent(this, OptionsActivity.class));
+    fun onMenuClicked() {
+        startActivity(Intent(this, OptionsActivity::class.java))
     }
 }

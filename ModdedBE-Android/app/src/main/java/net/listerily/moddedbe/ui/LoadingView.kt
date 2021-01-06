@@ -1,111 +1,85 @@
-package net.listerily.moddedbe.ui;
+package net.listerily.moddedbe.ui
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.widget.ProgressBar;
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.util.AttributeSet
+import android.widget.ProgressBar
 
-public class LoadingView extends ProgressBar
-{
-    private final Paint mPaint;
+class LoadingView : ProgressBar {
+    private val mPaint: Paint
 
-    public LoadingView(android.content.Context context)
-    {
-        super(context);
-        mPaint = new Paint();
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.parseColor("#66BA44"));
+    constructor(context: Context?) : super(context) {
+        mPaint = Paint()
+        mPaint.style = Paint.Style.FILL
+        mPaint.color = Color.parseColor("#66BA44")
     }
 
-    public LoadingView(android.content.Context context, android.util.AttributeSet attrs)
-    {
-        super(context, attrs);
-        mPaint = new Paint();
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.parseColor("#66BA44"));
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        mPaint = Paint()
+        mPaint.style = Paint.Style.FILL
+        mPaint.color = Color.parseColor("#66BA44")
     }
 
-    public LoadingView(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr)
-    {
-        super(context, attrs, defStyleAttr);
-        mPaint = new Paint();
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.parseColor("#66BA44"));
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        mPaint = Paint()
+        mPaint.style = Paint.Style.FILL
+        mPaint.color = Color.parseColor("#66BA44")
     }
 
-    private int mWidth = 0;
-    private int mHeight = 0;
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh)
-    {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mWidth = w;
-        mHeight = h;
+    private var mWidth = 0
+    private var mHeight = 0
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        mWidth = w
+        mHeight = h
     }
 
-    private static final float mDefaultSpeed = 0.075F;
-
-    private float mBlockDrawingProgress =  0;
-    private int mShowedBlocks = 1;
-    private boolean mIsScaling = true;
-
-    @Override
-    protected void onDraw(Canvas canvas)
-    {
-        if (mIsScaling)
-            mBlockDrawingProgress += (mDefaultSpeed / 2);
-        else
-            mBlockDrawingProgress += mDefaultSpeed;
-        if (mBlockDrawingProgress >= 1 && !mIsScaling)
-        {
-            mBlockDrawingProgress = 0;
-            ++mShowedBlocks;
-            if (mShowedBlocks > 4)
-            {
-                mShowedBlocks = 1;
-                mIsScaling = true;
+    private var mBlockDrawingProgress = 0f
+    private var mShowedBlocks = 1
+    private var mIsScaling = true
+    override fun onDraw(canvas: Canvas) {
+        mBlockDrawingProgress += if (mIsScaling) mDefaultSpeed / 2 else mDefaultSpeed
+        if (mBlockDrawingProgress >= 1 && !mIsScaling) {
+            mBlockDrawingProgress = 0f
+            ++mShowedBlocks
+            if (mShowedBlocks > 4) {
+                mShowedBlocks = 1
+                mIsScaling = true
+            }
+        } else if (mBlockDrawingProgress >= 0.5 && mIsScaling) {
+            mIsScaling = false
+            mBlockDrawingProgress = 0f
+            mShowedBlocks = 2
+        }
+        when (mShowedBlocks) {
+            1 -> {
+                val drawWidth = (mWidth.toFloat() * mBlockDrawingProgress).toInt()
+                val drawHeight = (mHeight.toFloat() * mBlockDrawingProgress).toInt()
+                canvas.drawRect(0f, drawHeight.toFloat(), (mWidth - drawWidth).toFloat(), mHeight.toFloat(), mPaint)
+            }
+            2 -> {
+                canvas.drawRect(0f, mHeight / 2f, mWidth / 2f, mHeight.toFloat(), mPaint)
+                val blockDrawHeight = (mHeight.toFloat() / 2 * mBlockDrawingProgress).toInt()
+                canvas.drawRect(mWidth / 2f, blockDrawHeight.toFloat(), mWidth.toFloat(), blockDrawHeight + mHeight / 2f, mPaint)
+            }
+            3 -> {
+                canvas.drawRect(0f, mHeight / 2f, mWidth.toFloat(), mHeight.toFloat(), mPaint)
+                val blockDrawHeight = (mHeight.toFloat() / 2 * mBlockDrawingProgress).toInt()
+                canvas.drawRect(0f, 0f, mWidth / 2f, (blockDrawHeight + 1).toFloat(), mPaint)
+            }
+            4 -> {
+                canvas.drawRect(0f, mHeight / 2f, mWidth.toFloat(), mHeight.toFloat(), mPaint)
+                canvas.drawRect(0f, 0f, mWidth / 2f, mHeight / 2f, mPaint)
+                val blockDrawHeight = (mHeight.toFloat() / 2 * mBlockDrawingProgress).toInt()
+                canvas.drawRect(mWidth / 2f, 0f, mWidth.toFloat(), (blockDrawHeight + 1).toFloat(), mPaint)
             }
         }
-        else if (mBlockDrawingProgress >= 0.5 && mIsScaling)
-        {
-            mIsScaling = false;
-            mBlockDrawingProgress = 0;
-            mShowedBlocks = 2;
-        }
+        invalidate()
+    }
 
-        switch (mShowedBlocks)
-        {
-            case 1:
-            {
-                int drawWidth = (int) (((float)mWidth) * mBlockDrawingProgress);
-                int drawHeight = (int) (((float)mHeight) * mBlockDrawingProgress);
-                canvas.drawRect(0, drawHeight, mWidth - drawWidth, mHeight, mPaint);
-                break;
-            }
-            case 2:
-            {
-                canvas.drawRect(0, mHeight / 2f, mWidth / 2f, mHeight , mPaint);
-                int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
-                canvas.drawRect(mWidth / 2f , blockDrawHeight, mWidth, blockDrawHeight + mHeight / 2f, mPaint);
-                break;
-            }
-            case 3:
-            {
-                canvas.drawRect(0, mHeight / 2f, mWidth , mHeight , mPaint);
-                int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
-                canvas.drawRect(0, 0 , mWidth / 2f, blockDrawHeight + 1 , mPaint);
-                break;
-            }
-            case 4:
-            {
-                canvas.drawRect(0, mHeight / 2f, mWidth , mHeight , mPaint);
-                canvas.drawRect(0, 0, mWidth / 2f , mHeight / 2f, mPaint);
-                int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
-                canvas.drawRect(mWidth / 2f, 0 , mWidth , blockDrawHeight + 1 , mPaint);
-                break;
-            }
-        }
-        invalidate();
+    companion object {
+        private const val mDefaultSpeed = 0.075f
     }
 }

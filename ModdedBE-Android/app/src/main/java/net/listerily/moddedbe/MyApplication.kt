@@ -1,13 +1,11 @@
-package net.listerily.moddedbe;
+package net.listerily.moddedbe
 
-import android.app.Application;
+import android.app.Application
+import net.listerily.endercore.android.EnderCore
 
-import net.listerily.endercore.android.EnderCore;
-
-public class MyApplication extends Application
-{
-    public void onCreate() {
-        super.onCreate();
-        EnderCore.instance.initialize(this);
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        EnderCore.instance.initialize(this)
     }
 }

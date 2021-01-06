@@ -1,214 +1,109 @@
-package net.listerily.moddedbe;
+package net.listerily.moddedbe
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
+import android.os.Message
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.HandlerCompat
+import net.listerily.endercore.android.EnderCore
+import net.listerily.endercore.android.exception.LauncherException
+import net.listerily.endercore.android.nmod.NMod
+import net.listerily.endercore.android.operator.Launcher.GameInitializationListener
+import net.listerily.moddedbe.InitializingActivity
+import java.io.PrintWriter
+import java.io.StringWriter
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.widget.Toast;
-
-import net.listerily.endercore.android.EnderCore;
-import net.listerily.endercore.android.operator.Launcher;
-import net.listerily.endercore.android.exception.LauncherException;
-import net.listerily.endercore.android.nmod.NMod;
-
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-public class InitializingActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_initializing);
-
-        new Thread()
-        {
-            @Override
-            public void run() {
-                super.run();
-                EnderCore.instance.getLauncher().setGameInitializationListener(new Launcher.GameInitializationListener() {
-                    @Override
-                    public void onStart() {
-
+class InitializingActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_initializing)
+        object : Thread() {
+            override fun run() {
+                super.run()
+                EnderCore.instance.launcher.setGameInitializationListener(object : GameInitializationListener {
+                    override fun onStart() {}
+                    override fun onLoadGameFilesStart() {}
+                    override fun onLoadNativeLibrariesStart() {}
+                    override fun onLoadNativeLibrary(name: String) {}
+                    override fun onLoadNativeLibrariesFinish() {}
+                    override fun onLoadJavaLibrariesStart() {}
+                    override fun onLoadJavaLibrary(name: String) {}
+                    override fun onLoadJavaLibrariesFinish() {}
+                    override fun onLoadResourcesStart() {}
+                    override fun onLoadAppAsset(name: String) {}
+                    override fun onLoadAppResource(name: String) {}
+                    override fun onLoadResourcesFinish() {}
+                    override fun onLoadGameFilesFinish() {}
+                    override fun onLoadNModsStart() {}
+                    override fun onLoadNMod(nmod: NMod) {}
+                    override fun onLoadNModNativeLibrary(nmod: NMod, name: String) {}
+                    override fun onLoadNModJavaLibrary(nmod: NMod, name: String) {}
+                    override fun onLoadNModAsset(name: String) {}
+                    override fun onLoadNModsFinish() {}
+                    override fun onArrange() {}
+                    override fun onFinish() {
+                        val finishMessage = Message()
+                        finishMessage.what = LAUNCH_FINISH
+                        handler.sendMessage(finishMessage)
                     }
 
-                    @Override
-                    public void onLoadGameFilesStart() {
-
-                    }
-
-                    @Override
-                    public void onLoadNativeLibrariesStart() {
-
-                    }
-
-                    @Override
-                    public void onLoadNativeLibrary(String name) {
-
-                    }
-
-                    @Override
-                    public void onLoadNativeLibrariesFinish() {
-
-                    }
-
-                    @Override
-                    public void onLoadJavaLibrariesStart() {
-
-                    }
-
-                    @Override
-                    public void onLoadJavaLibrary(String name) {
-
-                    }
-
-                    @Override
-                    public void onLoadJavaLibrariesFinish() {
-
-                    }
-
-                    @Override
-                    public void onLoadResourcesStart() {
-
-                    }
-
-                    @Override
-                    public void onLoadAppAsset(String name) {
-
-                    }
-
-                    @Override
-                    public void onLoadAppResource(String name) {
-
-                    }
-
-                    @Override
-                    public void onLoadResourcesFinish() {
-
-                    }
-
-                    @Override
-                    public void onLoadGameFilesFinish() {
-
-                    }
-
-                    @Override
-                    public void onLoadNModsStart() {
-
-                    }
-
-                    @Override
-                    public void onLoadNMod(NMod nmod) {
-
-                    }
-
-                    @Override
-                    public void onLoadNModNativeLibrary(NMod nmod, String name) {
-
-                    }
-
-                    @Override
-                    public void onLoadNModJavaLibrary(NMod nmod, String name) {
-
-                    }
-
-                    @Override
-                    public void onLoadNModAsset(String name) {
-
-                    }
-
-                    @Override
-                    public void onLoadNModsFinish() {
-
-                    }
-
-                    @Override
-                    public void onArrange() {
-
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        Message finishMessage = new Message();
-                        finishMessage.what = LAUNCH_FINISH;
-                        handler.sendMessage(finishMessage);
-                    }
-
-                    @Override
-                    public void onSuspend() {
-
-                    }
-                });
-
+                    override fun onSuspend() {}
+                })
                 try {
-                    EnderCore.instance.getLauncher().initializeGame(InitializingActivity.this);
-                    Message finishMessage = new Message();
-                    finishMessage.what = LAUNCH_FINISH;
-                    handler.sendMessage(finishMessage);
-                } catch (LauncherException e) {
-                    Message errorMessage = new Message();
-                    errorMessage.what = LAUNCH_SUSPEND;
-                    errorMessage.obj = e;
-                    handler.sendMessage(errorMessage);
+                    EnderCore.instance.launcher.initializeGame(this@InitializingActivity)
+                    val finishMessage = Message()
+                    finishMessage.what = LAUNCH_FINISH
+                    handler.sendMessage(finishMessage)
+                } catch (e: LauncherException) {
+                    val errorMessage = Message()
+                    errorMessage.what = LAUNCH_SUSPEND
+                    errorMessage.obj = e
+                    handler.sendMessage(errorMessage)
                 }
             }
-        }.start();
+        }.start()
     }
 
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this,R.string.app_loading_summary,Toast.LENGTH_LONG).show();
+    override fun onBackPressed() {
+        Toast.makeText(this, R.string.app_loading_summary, Toast.LENGTH_LONG).show()
     }
 
-    public void startGameActivity()
-    {
+    fun startGameActivity() {
         try {
-            EnderCore.instance.getLauncher().startGame(this);
-            finish();
-        } catch (LauncherException e) {
-            startFatalActivity(e);
+            EnderCore.instance.launcher.startGame(this)
+            finish()
+        } catch (e: LauncherException) {
+            startFatalActivity(e)
         }
     }
 
-    public void startFatalActivity(LauncherException exception)
-    {
-        StringWriter writer = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(writer);
-        exception.printStackTrace(printWriter);
-        Intent activityIntent = new Intent(this,FatalActivity.class);
-        activityIntent.putExtra(FatalActivity.TAG_FATAL_MESSAGES,writer.toString());
-        startActivity(activityIntent);
-        exception.printStackTrace();
-        finish();
+    fun startFatalActivity(exception: LauncherException) {
+        val writer = StringWriter()
+        val printWriter = PrintWriter(writer)
+        exception.printStackTrace(printWriter)
+        val activityIntent = Intent(this, FatalActivity::class.java)
+        activityIntent.putExtra(FatalActivity.TAG_FATAL_MESSAGES, writer.toString())
+        startActivity(activityIntent)
+        exception.printStackTrace()
+        finish()
     }
 
+    private val handler = MHandler(this)
 
-    private final InitializingActivity.MHandler handler = new InitializingActivity.MHandler(this);
-    private final static int LAUNCH_FINISH = 0;
-    private final static int LAUNCH_SUSPEND = 1;
-    private static  class MHandler extends Handler
-    {
-        private final InitializingActivity context;
-        MHandler(InitializingActivity context)
-        {
-            super();
-            this.context = context;
-        }
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-            switch(msg.what)
-            {
-                case LAUNCH_FINISH:
-                    context.startGameActivity();
-                    break;
-                case LAUNCH_SUSPEND:
-                    context.startFatalActivity((LauncherException)msg.obj);
-                    break;
+    private class MHandler(private val context: InitializingActivity) : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            when (msg.what) {
+                LAUNCH_FINISH -> context.startGameActivity()
+                LAUNCH_SUSPEND -> context.startFatalActivity(msg.obj as LauncherException)
             }
         }
+    }
+
+    companion object {
+        private const val LAUNCH_FINISH = 0
+        private const val LAUNCH_SUSPEND = 1
     }
 }
