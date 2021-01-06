@@ -6,12 +6,10 @@ import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.HandlerCompat
 import net.listerily.endercore.android.EnderCore
 import net.listerily.endercore.android.exception.LauncherException
 import net.listerily.endercore.android.nmod.NMod
 import net.listerily.endercore.android.operator.Launcher.GameInitializationListener
-import net.listerily.moddedbe.InitializingActivity
 import java.io.PrintWriter
 import java.io.StringWriter
 
