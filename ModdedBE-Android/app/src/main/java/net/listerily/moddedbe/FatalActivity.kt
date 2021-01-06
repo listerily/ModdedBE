@@ -42,7 +42,7 @@ class FatalActivity : AppCompatActivity() {
         (findViewById<View>(R.id.textViewFatalMessage) as TextView).text = message
         (findViewById<View>(R.id.textViewAppVersion) as TextView).text = getString(R.string.app_fatal_version_name, getString(R.string.app_version_name))
         (findViewById<View>(R.id.textViewGameVersion) as TextView).text = getString(R.string.app_fatal_game_version, gamePackageManager.versionName)
-        (findViewById<View>(R.id.textViewEnderCoreSdk) as TextView).text = getString(R.string.app_fatal_endercore_sdk, EnderCore.SDK_VERSION)
+        (findViewById<View>(R.id.textViewEnderCoreSdk) as TextView).text = getString(R.string.app_fatal_endercore_sdk, EnderCore.SDK_INT)
         (findViewById<View>(R.id.textViewOSSdk) as TextView).text = getString(R.string.app_fatal_os_sdk, Build.VERSION.SDK_INT)
         (findViewById<View>(R.id.textViewBrand) as TextView).text = getString(R.string.app_fatal_brand, Build.BRAND)
         (findViewById<View>(R.id.textViewModel) as TextView).text = getString(R.string.app_fatal_model, Build.MODEL)
@@ -60,7 +60,7 @@ class FatalActivity : AppCompatActivity() {
                A fatal error occurred in ModdedBE game initializing.
                Version Name: $appVersionName
                Game Version: $gameVersionName
-               EnderCore SDK: ${EnderCore.SDK_VERSION}
+               EnderCore SDK: ${EnderCore.SDK_INT}
                OS SDK: ${Build.VERSION.SDK_INT}
                Brand: ${Build.BRAND}
                Model: ${Build.MODEL}

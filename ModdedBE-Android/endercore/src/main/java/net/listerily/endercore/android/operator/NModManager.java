@@ -132,7 +132,7 @@ public class NModManager {
 
     public boolean isSDKSupported(NModPackage nmodPackage)
     {
-        return EnderCore.SDK_VERSION >= nmodPackage.getManifest().min_sdk_version;
+        return EnderCore.SDK_INT >= nmodPackage.getManifest().min_sdk_version;
     }
 
     public boolean isValidPackage(Context context,NModPackage nmodPackage)

@@ -54,7 +54,7 @@ public class NModPackage {
                     throw new NModException("Invalid uuid [=" + manifest.uuid + "].");
                 if(manifest.min_sdk_version == -1)
                     throw new NModException("Min sdk version [tag=min_sdk_version] isn't assigned in manifest.");
-                if(manifest.min_sdk_version > EnderCore.SDK_VERSION)
+                if(manifest.min_sdk_version > EnderCore.SDK_INT)
                     throw new NModException("Package min sdk version is higher than EnderCore sdk version.Please update EnderCore or minimize min sdk version in manifest.");
                 if(manifest.target_sdk_version == -1)
                     throw new NModException("Target sdk version [tag=target_sdk_version] isn't assigned in manifest.");
