@@ -78,7 +78,7 @@ public class EnderCore {
     public void destroy()
     {
         if(!initialized)
-            throw new RuntimeException("EnderCore hasn't been initialized.");
+            throw new RuntimeException("EnderCore hasn't been initialized and there's no need for destruction.");
         if(destroyed)
             throw new RuntimeException("EnderCore has already been destroyed");
         destroyed = true;
