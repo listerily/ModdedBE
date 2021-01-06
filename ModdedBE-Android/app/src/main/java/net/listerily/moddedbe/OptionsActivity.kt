@@ -20,6 +20,7 @@ class OptionsActivity : AppCompatActivity() {
 
     fun onManageNModsClicked() {}
     fun onInstallNModsClicked() {}
+    fun onExtractClicked() {}
     class OptionsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -29,6 +30,10 @@ class OptionsActivity : AppCompatActivity() {
             }
             findPreference<Preference>("install")!!.onPreferenceClickListener = Preference.OnPreferenceClickListener {
                 (activity as OptionsActivity?)!!.onInstallNModsClicked()
+                false
+            }
+            findPreference<Preference>("extract")!!.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                (activity as OptionsActivity?)!!.onExtractClicked()
                 false
             }
         }

@@ -15,6 +15,13 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/app_options_title_storage">
+        <Preference
+            android:key="extract"
+            android:title="@string/app_options_extract_storage" />
+
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="@string/app_options_title_nmods">
 
         <SwitchPreferenceCompat
