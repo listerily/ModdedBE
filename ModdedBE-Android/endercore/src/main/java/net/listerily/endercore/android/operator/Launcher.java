@@ -20,7 +20,7 @@ import java.util.zip.ZipFile;
 
 import dalvik.system.DexClassLoader;
 
-public class Launcher {
+public final class Launcher {
     private final EnderCore core;
     private GameInitializationListener listener;
     private ArrayList<String> patchAssetPath;

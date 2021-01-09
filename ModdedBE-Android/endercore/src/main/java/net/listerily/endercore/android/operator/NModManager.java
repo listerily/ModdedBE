@@ -21,7 +21,7 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class NModManager {
+public final class NModManager {
     private final NModOptions nmodOptions;
     public NModManager(Context context) throws IOException {
         nmodOptions = new FileManager(context).loadNModOptionsFile();

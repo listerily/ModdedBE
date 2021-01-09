@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class FileManager {
+public final class FileManager {
     public final static String DIR_DATA_ROOT = "endercore_data";
 
     public final static String DIR_NMODS = "nmods";

@@ -10,7 +10,7 @@ import net.listerily.endercore.android.operator.NModManager;
 
 import java.io.IOException;
 
-public class EnderCore {
+public final class EnderCore {
 
     private Launcher launcher;
     private NModManager nmodManager;

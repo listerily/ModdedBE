@@ -5,7 +5,7 @@ import android.content.pm.PackageManager;
 
 import net.listerily.endercore.android.EnderCore;
 
-public class GamePackageManager {
+public final class GamePackageManager {
     public static final String PACKAGE_NAME = "com.mojang.minecraftpe";
 
     private String packageName;
