@@ -15,13 +15,6 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/app_options_title_storage">
-        <Preference
-            android:key="extract"
-            android:title="@string/app_options_extract_storage" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory app:title="@string/app_options_title_nmods">
 
         <SwitchPreferenceCompat
@@ -38,7 +31,19 @@
             android:key="install"
             android:dependency="use_nmods"
             android:title="@string/app_options_install_new_nmods" />
+    </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/app_options_title_storage">
+        <Preference
+            android:key="extract"
+            android:title="@string/app_options_extract_storage" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/app_options_title_info">
+        <Preference
+            android:key="info"
+            android:title="@string/app_options_about_us" />
 
     </PreferenceCategory>
 
