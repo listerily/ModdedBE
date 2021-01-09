@@ -5,15 +5,12 @@ import android.content.Context;
 import com.google.gson.Gson;
 
 import net.listerily.endercore.android.exception.NModException;
-import net.listerily.endercore.android.exception.NModWarning;
 import net.listerily.endercore.android.operator.FileManager;
 import net.listerily.endercore.android.utils.NModData;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class NMod
 {
