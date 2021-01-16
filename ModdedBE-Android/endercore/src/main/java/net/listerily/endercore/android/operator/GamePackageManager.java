@@ -18,8 +18,8 @@ public final class GamePackageManager {
     {
         packageName = PACKAGE_NAME;
         gameInstalled = true;
-        if (!enderCore.getEnderCoreOptions().getPackageName().equals(PACKAGE_NAME))
-            packageName = enderCore.getEnderCoreOptions().getPackageName();
+        if (!enderCore.getOptionsManager().getPackageName().equals(PACKAGE_NAME))
+            packageName = enderCore.getOptionsManager().getPackageName();
         try {
             Context gameContext = context.createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
             versionName = context.getPackageManager().getPackageInfo(gameContext.getPackageName(), PackageManager.GET_CONFIGURATIONS).versionName;

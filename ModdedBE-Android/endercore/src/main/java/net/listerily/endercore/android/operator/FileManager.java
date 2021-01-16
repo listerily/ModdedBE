@@ -1,17 +1,7 @@
 package net.listerily.endercore.android.operator;
 
-import android.content.Context;
-
-import net.listerily.endercore.android.EnderCoreOptions;
-import net.listerily.endercore.android.nmod.NModOptions;
-import net.listerily.endercore.android.utils.FileUtils;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 public final class FileManager {
-    public final static String DIR_DATA_ROOT = "endercore_data";
+    /*public final static String DIR_DATA_ROOT = "endercore_data";
 
     public final static String DIR_NMODS = "nmods";
     public final static String DIR_LAUNCHER = "endercore_launcher";
@@ -55,7 +45,7 @@ public final class FileManager {
             saveEnderCoreOptionsFile(optionsNew);
             return optionsNew;
         }
-        boolean result = optionsNew.fromJsonContent(FileUtils.readJsonToString(optionsFile));
+        boolean result = optionsNew.fromJsonContent(FileUtils.readFileAsString(optionsFile));
         if(!result)
         {
             optionsFile.createNewFile();
@@ -86,7 +76,7 @@ public final class FileManager {
             saveNModOptionsFile(optionsNew);
             return optionsNew;
         }
-        boolean result = optionsNew.fromJsonContent(FileUtils.readJsonToString(optionsFile));
+        boolean result = optionsNew.fromJsonContent(FileUtils.readFileAsString(optionsFile));
         if(!result)
         {
             optionsFile.createNewFile();
@@ -183,4 +173,5 @@ public final class FileManager {
         FileUtils.removeFiles(context.getCodeCacheDir());
         FileUtils.removeFiles(context.getDir(DIR_DATA_ROOT,0));
     }
+    */
 }

@@ -1,6 +1,6 @@
 package net.listerily.endercore.android.utils;
 
-public class NModData {
+public class NModJsonBean {
     public static final class TextOverrideData
     {
         public String path = null;
@@ -91,11 +91,5 @@ public class NModData {
         public int target_sdk_version = -1;
         public int min_sdk_version = -1;
         public int manifest_version = 0;
-    }
-
-    public static final class NModInstallationCertificate
-    {
-        public String sha = null;
-        public String md5 = null;
     }
 }

@@ -1,7 +1,5 @@
 package net.listerily.endercore.android.utils;
 
-import android.util.Log;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,39 +8,48 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.channels.FileChannel;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class FileUtils {
-    public static void copyFile(File from, File to) throws IOException
+    public static void copy(File from, File to) throws IOException
     {
-        FileChannel input = null;
-        FileChannel output = null;
-
-        to.getParentFile().mkdirs();
-        to.createNewFile();
-        input = new FileInputStream(from).getChannel();
-        output = new FileOutputStream(to).getChannel();
+        if(!from.exists())
+            throw new IOException("File " + from.getAbsolutePath() + " does not exists.");
+        if(!to.exists()){
+            if(to.getParentFile() != null && !to.getParentFile().exists()){
+                boolean mkdirsResult = to.getParentFile().mkdirs();
+                if(!mkdirsResult)
+                    throw new IOException("Failed to mkdirs: " + to.getParentFile().getAbsolutePath() + ".");
+            }
+            boolean createdNewFile = to.createNewFile();
+            if(!createdNewFile)
+                throw new IOException("Failed to create new file at: " + to.getAbsolutePath() + ".");
+        }
+        FileChannel input = new FileInputStream(from).getChannel();
+        FileChannel output = new FileOutputStream(to).getChannel();
         output.transferFrom(input, 0, input.size());
     }
 
-    public static void copyFile(InputStream from, File to) throws IOException
+    public static void copy(InputStream from, File to) throws IOException
     {
-        to.getParentFile().mkdirs();
-        to.createNewFile();
-        copyFile(from,new FileOutputStream(to));
+        if(!to.exists()){
+            if(to.getParentFile() != null && !to.getParentFile().exists()){
+                boolean mkdirsResult = to.getParentFile().mkdirs();
+                if(!mkdirsResult)
+                    throw new IOException("Failed to mkdirs: " + to.getParentFile().getAbsolutePath() + ".");
+            }
+            boolean createdNewFile = to.createNewFile();
+            if(!createdNewFile)
+                throw new IOException("Failed to create new file at: " + to.getAbsolutePath() + ".");
+        }
+        copy(from,new FileOutputStream(to));
     }
 
-    public static void copyFile(File from, OutputStream to) throws IOException
+    public static void copy(File from, OutputStream to) throws IOException
     {
-        copyFile(new FileInputStream(from),to);
+        copy(new FileInputStream(from),to);
     }
 
-    public static void copyFile(InputStream from, OutputStream to) throws IOException
+    public static void copy(InputStream from, OutputStream to) throws IOException
     {
         byte[] buffer = new byte[1 << 10];
         int len;
@@ -66,102 +73,21 @@ public class FileUtils {
         path.deleteOnExit();
     }
 
-    public static String readJsonToString(File file) throws IOException
+    public static String readFileAsString(File file) throws IOException
     {
-        return readJsonToString(new FileReader(file));
+        if(!file.exists())
+            throw new IOException("File " + file.getAbsolutePath() + " dose not exists.");
+        return readFileAsString(new FileReader(file));
     }
 
-    public static String readJsonToString(FileReader input) throws IOException
+    public static String readFileAsString(FileReader input) throws IOException
     {
-        /*  FileReader is CHARACTER STREAM
-         *  InputStream is BYTE STREAM
-         */
         char[] buffer = new char[1024];
         int len;
         StringBuilder builder = new StringBuilder();
         while ((len = input.read(buffer)) > 0) {
-            /*  '\u0000' at the end of JSON string will cause
-             *  com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException
-             */
             builder.append(buffer, 0, len);
         }
-        Log.i("ModdedBE", builder.toString());
         return builder.toString();
-    }
-
-    public static String getDigestMD5(File path) throws IOException, NoSuchAlgorithmException {
-        MessageDigest digest = MessageDigest.getInstance("MD5");
-        ArrayList<File> existedFiles = new ArrayList<>();
-        Queue<File> directories = new LinkedList<>();
-        if(path.isDirectory())
-            directories.add(path);
-        else
-            existedFiles.add(path);
-        while(!directories.isEmpty())
-        {
-            File front = directories.poll();
-            if(front == null)
-                break;
-            if(front.isDirectory())
-            {
-                File[] listFiles = front.listFiles();
-                if(listFiles != null){
-                    directories.addAll(Arrays.asList(listFiles));
-                }
-            }
-            else
-                existedFiles.add(front);
-        }
-        int i = 0;
-        while(!existedFiles.isEmpty())
-        {
-            digest.update(existedFiles.get(i).getAbsolutePath().getBytes());
-            InputStream input = new FileInputStream(existedFiles.get(i));
-            byte[] buffer = new byte[1 << 10];
-            int len;
-            while ((len = input.read(buffer)) > 0) {
-                digest.update(buffer,0,len);
-            }
-            i++;
-        }
-        return digest.toString();
-    }
-
-    public static String getDigestSHA(File path) throws IOException, NoSuchAlgorithmException {
-        MessageDigest digest = MessageDigest.getInstance("SHA");
-        ArrayList<File> existedFiles = new ArrayList<>();
-        Queue<File> directories = new LinkedList<>();
-        if(path.isDirectory())
-            directories.add(path);
-        else
-            existedFiles.add(path);
-        while(!directories.isEmpty())
-        {
-            File front = directories.poll();
-            if(front == null)
-                break;
-            if(front.isDirectory())
-            {
-                File[] listFiles = front.listFiles();
-                if(listFiles != null){
-                    directories.addAll(Arrays.asList(listFiles));
-                }
-            }
-            else
-                existedFiles.add(front);
-        }
-        int i = 0;
-        while(!existedFiles.isEmpty())
-        {
-            digest.update(existedFiles.get(i).getAbsolutePath().getBytes());
-            InputStream input = new FileInputStream(existedFiles.get(i));
-            byte[] buffer = new byte[1 << 10];
-            int len;
-            while ((len = input.read(buffer)) > 0) {
-                digest.update(buffer,0,len);
-            }
-            i++;
-        }
-        return digest.toString();
     }
 }

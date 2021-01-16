@@ -9,14 +9,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import net.listerily.endercore.android.EnderCore
-import net.listerily.endercore.android.operator.FileManager
 import net.listerily.endercore.android.utils.CPUArch
+import net.listerily.endercore.android.utils.FileUtils
 
 class FatalActivity : AppCompatActivity() {
     private var message: String? = null
     private var appVersionName: String? = null
     private var gameVersionName: String? = null
-    private var safeMode = 0
+    private var useNMods = 0
     private var abisFull: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +24,10 @@ class FatalActivity : AppCompatActivity() {
         message = intent.getStringExtra(TAG_FATAL_MESSAGES)
         if (message == null) return
         val gamePackageManager = EnderCore.instance.gamePackageManager
-        val options = EnderCore.instance.enderCoreOptions
+        val options = EnderCore.instance.optionsManager
         appVersionName = getString(R.string.app_version_name)
         gameVersionName = gamePackageManager.versionName
-        safeMode = if (options.isSafeMode) 1 else 0
+        useNMods = if (options.useNMods) 1 else 0
         val abis: String
         val builder = StringBuilder()
         val builderFull = StringBuilder()
@@ -46,7 +46,7 @@ class FatalActivity : AppCompatActivity() {
         (findViewById<View>(R.id.textViewOSSdk) as TextView).text = getString(R.string.app_fatal_os_sdk, Build.VERSION.SDK_INT)
         (findViewById<View>(R.id.textViewBrand) as TextView).text = getString(R.string.app_fatal_brand, Build.BRAND)
         (findViewById<View>(R.id.textViewModel) as TextView).text = getString(R.string.app_fatal_model, Build.MODEL)
-        (findViewById<View>(R.id.textViewSafeMode) as TextView).text = getString(R.string.app_fatal_safe_mode, if (options.isSafeMode) 1 else 0)
+        (findViewById<View>(R.id.textViewSafeMode) as TextView).text = getString(R.string.app_fatal_use_nmods, if (options.useNMods) 1 else 0)
         (findViewById<View>(R.id.textViewSupportedABIS) as TextView).text = getString(R.string.app_fatal_abi, abis)
     }
 
@@ -64,7 +64,7 @@ class FatalActivity : AppCompatActivity() {
                OS SDK: ${Build.VERSION.SDK_INT}
                Brand: ${Build.BRAND}
                Model: ${Build.MODEL}
-               Safe Mode: $safeMode
+               Safe Mode: $useNMods
                ABI:$abisFull
                -----------------------
                
@@ -76,9 +76,8 @@ class FatalActivity : AppCompatActivity() {
     }
 
     fun onClearClicked() {
-        EnderCore.instance.destroy()
-        val fileManager = FileManager(this)
-        fileManager.removeEnderCoreData()
+        EnderCore.getInstance().destroy()
+        FileUtils.removeFiles(filesDir)
         Toast.makeText(this, R.string.app_app_data_cleared, Toast.LENGTH_LONG).show()
     }
 

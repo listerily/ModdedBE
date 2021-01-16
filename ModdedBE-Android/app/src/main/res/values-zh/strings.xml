@@ -27,7 +27,7 @@
     <string name="app_fatal_brand">品牌： %1$s</string>
     <string name="app_fatal_model">机型： %1$s</string>
     <string name="title_activity_settings">设置</string>
-    <string name="app_fatal_safe_mode">安全模式： %1$d</string>
+    <string name="app_fatal_use_nmods">使用NMods： %1$d</string>
     <string name="app_fatal_abi">ABI: %1$s</string>
     <string name="app_options_title_launcher">启动器</string>
     <string name="app_options_title_nmods">NMods</string>

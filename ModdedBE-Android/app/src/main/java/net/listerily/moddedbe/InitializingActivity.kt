@@ -8,8 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import net.listerily.endercore.android.EnderCore
 import net.listerily.endercore.android.exception.LauncherException
-import net.listerily.endercore.android.nmod.NMod
-import net.listerily.endercore.android.operator.Launcher.GameInitializationListener
+import net.listerily.endercore.android.interf.implemented.InitializationListener
 import java.io.PrintWriter
 import java.io.StringWriter
 
@@ -20,34 +19,12 @@ class InitializingActivity : AppCompatActivity() {
         object : Thread() {
             override fun run() {
                 super.run()
-                EnderCore.instance.launcher.setGameInitializationListener(object : GameInitializationListener {
-                    override fun onStart() {}
-                    override fun onLoadGameFilesStart() {}
-                    override fun onLoadNativeLibrariesStart() {}
-                    override fun onLoadNativeLibrary(name: String) {}
-                    override fun onLoadNativeLibrariesFinish() {}
-                    override fun onLoadJavaLibrariesStart() {}
-                    override fun onLoadJavaLibrary(name: String) {}
-                    override fun onLoadJavaLibrariesFinish() {}
-                    override fun onLoadResourcesStart() {}
-                    override fun onLoadAppAsset(name: String) {}
-                    override fun onLoadAppResource(name: String) {}
-                    override fun onLoadResourcesFinish() {}
-                    override fun onLoadGameFilesFinish() {}
-                    override fun onLoadNModsStart() {}
-                    override fun onLoadNMod(nmod: NMod) {}
-                    override fun onLoadNModNativeLibrary(nmod: NMod, name: String) {}
-                    override fun onLoadNModJavaLibrary(nmod: NMod, name: String) {}
-                    override fun onLoadNModAsset(name: String) {}
-                    override fun onLoadNModsFinish() {}
-                    override fun onArrange() {}
+                EnderCore.instance.launcher.setGameInitializationListener(object : InitializationListener() {
                     override fun onFinish() {
                         val finishMessage = Message()
                         finishMessage.what = LAUNCH_FINISH
                         handler.sendMessage(finishMessage)
                     }
-
-                    override fun onSuspend() {}
                 })
                 try {
                     EnderCore.instance.launcher.initializeGame(this@InitializingActivity)

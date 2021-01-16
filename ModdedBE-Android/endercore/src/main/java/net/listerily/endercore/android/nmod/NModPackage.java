@@ -7,7 +7,7 @@ import com.google.gson.JsonSyntaxException;
 import net.listerily.endercore.android.EnderCore;
 import net.listerily.endercore.android.exception.NModException;
 import net.listerily.endercore.android.exception.NModWarning;
-import net.listerily.endercore.android.utils.NModData;
+import net.listerily.endercore.android.utils.NModJsonBean;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +21,8 @@ public class NModPackage {
 
     private final File packagePath;
     private final ArrayList<NModWarning> detectedWarnings;
-    private final NModData.NModInfoAndroid info;
-    private final NModData.NModManifest manifest;
+    private final NModJsonBean.NModInfoAndroid info;
+    private final NModJsonBean.NModManifest manifest;
 
     public NModPackage(File path) throws NModException
     {
@@ -40,7 +40,7 @@ public class NModPackage {
                 ZipEntry entry = zipFile.getEntry(NMod.MANIFEST_NAME);
                 if(entry == null)
                     throw new NModException("nmod_manifest.json opening failed.Please add a manifest file for this package");
-                manifest = new Gson().fromJson(new InputStreamReader(zipFile.getInputStream(entry)), NModData.NModManifest.class);
+                manifest = new Gson().fromJson(new InputStreamReader(zipFile.getInputStream(entry)), NModJsonBean.NModManifest.class);
                 if(manifest == null)
                     throw new NModException("Manifest: nmod_manifest.json read failed.Please check if there is any syntax error.");
                 info = manifest.android;
@@ -80,7 +80,7 @@ public class NModPackage {
                     detectedWarnings.add(new NModWarning("This nmod doesn't support language internationalization."));
                 for(int i = 0;i < info.game_supports.length;++i)
                 {
-                    NModData.GameSupportData gameSupportData = info.game_supports[i];
+                    NModJsonBean.GameSupportData gameSupportData = info.game_supports[i];
                     String ordinal = i % 10 == 1 ? "st" : (i % 10 == 2 ? "nd" : (i % 10 == 3 ? "rd" : "th"));
                     if(gameSupportData.name == null)
                         throw new NModException("The " + i + ordinal + " game support has no valid name");
@@ -97,7 +97,7 @@ public class NModPackage {
 
                     if(gameSupportData.native_libs != null)
                     {
-                        for(NModData.NativeLibData nativeLibData : gameSupportData.native_libs)
+                        for(NModJsonBean.NativeLibData nativeLibData : gameSupportData.native_libs)
                         {
                             if(nativeLibData.name == null)
                                 throw new NModException("The " + i + ordinal + " game support has a invalid native library name.");
@@ -106,7 +106,7 @@ public class NModPackage {
 
                     if(gameSupportData.dex_libs != null)
                     {
-                        for(NModData.DexLibData dexLibData : gameSupportData.dex_libs)
+                        for(NModJsonBean.DexLibData dexLibData : gameSupportData.dex_libs)
                         {
                             if(dexLibData.name == null)
                                 throw new NModException("The " + i + ordinal + " game support has a invalid dex library name.");
@@ -115,26 +115,26 @@ public class NModPackage {
 
                     if(gameSupportData.text_overrides != null)
                     {
-                        for(NModData.TextOverrideData textOverrideData : gameSupportData.text_overrides)
+                        for(NModJsonBean.TextOverrideData textOverrideData : gameSupportData.text_overrides)
                         {
                             if(textOverrideData.path == null)
                                 throw new NModException("The " + i + ordinal + " game support has a invalid text override path.");
                             if(zipFile.getEntry(NMod.NMOD_PLATFORM + "/" + gameSupportData.name + "/assets/" + textOverrideData.path) == null)
                                 throw new NModException("The " + i + ordinal + " game support has a invalid text override path.The file to the path [=" + textOverrideData.path + "] isn't found.");
-                            if(textOverrideData.mode == null || (!textOverrideData.mode.equals(NModData.TextOverrideData.MODE_APPEND) && !textOverrideData.mode.equals(NModData.TextOverrideData.MODE_PREPEND) && !textOverrideData.mode.equals(NModData.TextOverrideData.MODE_REPLACE)))
+                            if(textOverrideData.mode == null || (!textOverrideData.mode.equals(NModJsonBean.TextOverrideData.MODE_APPEND) && !textOverrideData.mode.equals(NModJsonBean.TextOverrideData.MODE_PREPEND) && !textOverrideData.mode.equals(NModJsonBean.TextOverrideData.MODE_REPLACE)))
                                 throw new NModException("The " + i + ordinal + " game support has a invalid text override mode.");
                         }
                     }
 
                     if(gameSupportData.json_overrides != null)
                     {
-                        for(NModData.JsonOverrideData jsonOverrideData : gameSupportData.json_overrides)
+                        for(NModJsonBean.JsonOverrideData jsonOverrideData : gameSupportData.json_overrides)
                         {
                             if(jsonOverrideData.path == null)
                                 throw new NModException("The " + i + ordinal + " game support has a invalid json override path.");
                             if(zipFile.getEntry(NMod.NMOD_PLATFORM + "/" + gameSupportData.name + "/assets/" + jsonOverrideData.path) == null)
                                 throw new NModException("The " + i + ordinal + " game support has a invalid json override path.The file to the path [=" + jsonOverrideData.path + "] isn't found.");
-                            if(jsonOverrideData.mode == null || (!jsonOverrideData.mode.equals(NModData.JsonOverrideData.MODE_MERGE) && !jsonOverrideData.mode.equals(NModData.JsonOverrideData.MODE_REPLACE)))
+                            if(jsonOverrideData.mode == null || (!jsonOverrideData.mode.equals(NModJsonBean.JsonOverrideData.MODE_MERGE) && !jsonOverrideData.mode.equals(NModJsonBean.JsonOverrideData.MODE_REPLACE)))
                                 throw new NModException("The " + i + ordinal + " game support has a invalid json override mode.");
                         }
                     }
@@ -187,12 +187,12 @@ public class NModPackage {
         return info.author_email;
     }
 
-    public NModData.NModInfoAndroid getNModInfo()
+    public NModJsonBean.NModInfoAndroid getNModInfo()
     {
         return info;
     }
 
-    public NModData.NModManifest getManifest() {
+    public NModJsonBean.NModManifest getManifest() {
         return manifest;
     }
 

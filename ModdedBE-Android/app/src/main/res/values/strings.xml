@@ -27,7 +27,7 @@
     <string name="app_fatal_os_sdk">OS SDK: %1$d</string>
     <string name="app_fatal_brand">Brand: %1$s</string>
     <string name="app_fatal_model">Model: %1$s</string>
-    <string name="app_fatal_safe_mode">Safe Mode: %1$d</string>
+    <string name="app_fatal_use_nmods">Use NMods: %1$d</string>
     <string name="app_fatal_abi">ABI: %1$s</string>
     <string name="app_options_title_launcher">Launcher</string>
     <string name="app_options_title_nmods">NMods</string>
