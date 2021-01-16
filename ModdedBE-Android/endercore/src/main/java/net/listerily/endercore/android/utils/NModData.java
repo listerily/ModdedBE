@@ -69,7 +69,7 @@ public class NModData {
         public String[] target_game_versions = null;
     }
 
-    public static class NModInfoAndroid
+    public static final class NModInfoAndroid
     {
         public GameSupportData[] game_supports = null;
         public int version_code = -1;
@@ -84,7 +84,7 @@ public class NModData {
         public I18nData[] i18n = null;
     }
 
-    public static class NModManifest
+    public static final  class NModManifest
     {
         public NModInfoAndroid android = null;
         public String uuid = null;
@@ -93,7 +93,7 @@ public class NModData {
         public int manifest_version = 0;
     }
 
-    public static class NModInstallationCertificate
+    public static final class NModInstallationCertificate
     {
         public String sha = null;
         public String md5 = null;
