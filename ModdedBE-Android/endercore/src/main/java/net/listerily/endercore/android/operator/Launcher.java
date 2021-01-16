@@ -240,13 +240,13 @@ public final class Launcher {
                     String dexLibName = "classes" + (i == 0?"":i) + ".dex";
                     File path = new File(fileManager.getDexLibsSavedPath(),dexLibName);
                     if(dexExists[i])
-                        Patcher.patchDexPath(context.getClassLoader(),path.getAbsolutePath(),FileManager.getDexOptimizeDir(path).getAbsolutePath());
+                        Patcher.patchDexFile(context.getClassLoader(),path.getAbsolutePath(),FileManager.getDexOptimizeDir(path).getAbsolutePath());
                 }
 
                 //Crack License Checker
                 File licenseCrackerDex = new File(fileManager.getDexLibsSavedPath(),FileManager.ASSETS_NAME_CRACKER_DEX);
                 FileUtils.copyFile(context.getAssets().open(FileManager.ASSETS_FILE_CRACKER_DEX),licenseCrackerDex);
-                Patcher.patchDexPath(context.getClassLoader(),licenseCrackerDex.getAbsolutePath(),FileManager.getDexOptimizeDir(licenseCrackerDex).getAbsolutePath());
+                Patcher.patchDexFile(context.getClassLoader(),licenseCrackerDex.getAbsolutePath(),FileManager.getDexOptimizeDir(licenseCrackerDex).getAbsolutePath());
             }
             catch (IllegalAccessException | IOException | NoSuchFieldException e) {
                 throw new LauncherException("Exception occurred while loading *.dex file.",e);
@@ -314,7 +314,7 @@ public final class Launcher {
             FileManager fileManager = new FileManager(context);
             File dir = fileManager.getDexLibsSavedPath();
             FileUtils.copyFile(context.getAssets().open(FileManager.ASSETS_FILE_AGENT_DEX),new File(dir,FileManager.ASSETS_NAME_AGENT_DEX));
-            Patcher.patchDexPath(context.getClassLoader(),new File(dir,FileManager.ASSETS_NAME_AGENT_DEX).getAbsolutePath(),dir.getAbsolutePath());
+            Patcher.patchDexFile(context.getClassLoader(),new File(dir,FileManager.ASSETS_NAME_AGENT_DEX).getAbsolutePath(),dir.getAbsolutePath());
             DexClassLoader dexClassLoader = new DexClassLoader(new File(dir,FileManager.ASSETS_NAME_AGENT_DEX).getAbsolutePath(),dir.getAbsolutePath(),null,context.getClass().getClassLoader());
             Class<?> activityClass = dexClassLoader.loadClass("com.mojang.minecraftpe.AgentMainActivity");
             Intent launchIntent = new Intent(context,activityClass);

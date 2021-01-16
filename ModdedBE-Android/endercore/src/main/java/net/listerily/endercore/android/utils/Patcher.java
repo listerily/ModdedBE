@@ -17,7 +17,7 @@ import dalvik.system.PathClassLoader;
 
 public class Patcher
 {
-    public static void patchDexPath(ClassLoader classLoader,String dexFilePath,String dexOptFilePath) throws NoSuchFieldException, IllegalAccessException {
+    public static void patchDexFile(ClassLoader classLoader, String dexFilePath, String dexOptFilePath) throws NoSuchFieldException, IllegalAccessException {
         Field field1 = BaseDexClassLoader.class.getDeclaredField("pathList");
         field1.setAccessible(true);
         Object dexPathList = field1.get(classLoader);
@@ -81,7 +81,7 @@ public class Patcher
             }
     }
 
-    public static void patchAssets(AssetManager assetManager,String filePath) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static void patchAssetsFile(AssetManager assetManager, String filePath) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method addAssetPath = AssetManager.class.getMethod("addAssetPath",String.class);
         addAssetPath.invoke(assetManager,filePath);
     }
@@ -90,11 +90,11 @@ public class Patcher
         return AssetManager.class.newInstance();
     }
 
-    public static void patchAssets(AssetManager assetManager,ArrayList<String> filePaths) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public static void patchAssetsFile(AssetManager assetManager, ArrayList<String> filePaths) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         int size = filePaths.size();
         for(int i = 0;i < size;++i)
         {
-            patchAssets(assetManager,filePaths.get(i));
+            patchAssetsFile(assetManager,filePaths.get(i));
         }
     }
 }
