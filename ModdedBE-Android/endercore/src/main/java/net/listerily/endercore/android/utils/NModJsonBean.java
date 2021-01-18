@@ -14,13 +14,6 @@ public class NModJsonBean {
     public static final class FileOverrideData
     {
         public String path = null;
-        public String mode = MODE_REPLACE;
-        public String code = null;
-
-        public static final String MODE_REPLACE = "replace";
-        public static final String MODE_SCRIPT = "script";
-        public static final String MODE_JAVA = "java";
-        public static final String MODE_NATIVE = "native";
     }
 
     public static final class JsonOverrideData
@@ -38,19 +31,6 @@ public class NModJsonBean {
         public String main = null;
     }
 
-    public static final class DependencyData
-    {
-        public String uuid = null;
-        public String url = null;
-        public String[] versions = null;
-    }
-
-    public static final class DexLibData
-    {
-        public String name = null;
-        public String main = null;
-    }
-
     public static final class I18nData
     {
         public String path = null;
@@ -63,8 +43,6 @@ public class NModJsonBean {
         public JsonOverrideData[] json_overrides = null;
         public FileOverrideData[] file_overrides = null;
         public NativeLibData[] native_libs = null;
-        public DexLibData[] dex_libs = null;
-        public DependencyData[] dependencies = null;
         public String name = null;
         public String[] target_game_versions = null;
     }
@@ -90,6 +68,6 @@ public class NModJsonBean {
         public String uuid = null;
         public int target_sdk_version = -1;
         public int min_sdk_version = -1;
-        public int manifest_version = 0;
+        public int manifest_version = -1;
     }
 }

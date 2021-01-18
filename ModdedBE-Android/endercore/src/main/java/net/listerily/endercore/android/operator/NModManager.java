@@ -43,8 +43,8 @@ public final class NModManager {
 
             //Open manifest
             ZipFile zipFile = new ZipFile(nmodPackage.getPackagePath());
-            ZipEntry entry = zipFile.getEntry(NMod.MANIFEST_NAME);
-            FileUtils.copy(zipFile.getInputStream(entry),new File(installationDir,NMod.MANIFEST_NAME));
+            ZipEntry entry = zipFile.getEntry(NMod.MANIFEST_PATH);
+            FileUtils.copy(zipFile.getInputStream(entry),new File(installationDir,NMod.MANIFEST_PATH));
             NModJsonBean.NModManifest manifest = nmodPackage.getManifest();
             NModJsonBean.NModInfoAndroid nmodInfo = nmodPackage.getNModInfo();
 

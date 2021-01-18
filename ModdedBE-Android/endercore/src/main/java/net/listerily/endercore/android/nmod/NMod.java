@@ -17,7 +17,13 @@ public class NMod
     private final NModJsonBean.NModInfoAndroid info;
     private final File installationPath;
 
-    public static final String MANIFEST_NAME = "nmod_manifest.json";
+    public static final String MANIFEST_PATH = "nmod_manifest.json";
+    public static final String ICON_PATH = "icon.png";
+    public static final String BANNER_PATH = "banner.png";
+    public static final String LIB_DIR_PATH = "lib";
+    public static final String ASSETS_DIR_PATH = "assets";
+    public static final String I18N_DIR_PATH = "i18n";
+
     public static final String NMOD_PLATFORM = "android";
 
     public NMod(EnderCore enderCore, String uuid) throws NModException
@@ -25,7 +31,7 @@ public class NMod
         try{
             IFileEnvironment fileEnvironment = enderCore.getFileEnvironment();
             installationPath = new File(fileEnvironment.getNModDirPathFor(uuid));
-            manifest = new Gson().fromJson(new FileReader(new File(installationPath,MANIFEST_NAME)), NModJsonBean.NModManifest.class);
+            manifest = new Gson().fromJson(new FileReader(new File(installationPath, MANIFEST_PATH)), NModJsonBean.NModManifest.class);
             info = manifest.android;
 
         } catch (IOException e) {

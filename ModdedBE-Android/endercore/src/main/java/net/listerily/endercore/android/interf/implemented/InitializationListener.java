@@ -16,6 +16,11 @@ public class InitializationListener implements IInitializationListener{
     }
 
     @Override
+    public void onCopyGameFile(String name) {
+
+    }
+
+    @Override
     public void onLoadNativeLibrariesStart() {
 
     }
@@ -51,16 +56,6 @@ public class InitializationListener implements IInitializationListener{
     }
 
     @Override
-    public void onLoadAppAsset(String name) {
-
-    }
-
-    @Override
-    public void onLoadAppResource(String name) {
-
-    }
-
-    @Override
     public void onLoadResourcesFinish() {
 
     }
@@ -82,11 +77,6 @@ public class InitializationListener implements IInitializationListener{
 
     @Override
     public void onLoadNModNativeLibrary(NMod nmod, String name) {
-
-    }
-
-    @Override
-    public void onLoadNModJavaLibrary(NMod nmod, String name) {
 
     }
 

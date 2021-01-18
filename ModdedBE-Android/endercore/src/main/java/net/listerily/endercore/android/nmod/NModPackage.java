@@ -37,7 +37,7 @@ public class NModPackage {
                 throw new NModException("This path is not a file.");
             try {
                 ZipFile zipFile = new ZipFile(path);
-                ZipEntry entry = zipFile.getEntry(NMod.MANIFEST_NAME);
+                ZipEntry entry = zipFile.getEntry(NMod.MANIFEST_PATH);
                 if(entry == null)
                     throw new NModException("nmod_manifest.json opening failed.Please add a manifest file for this package");
                 manifest = new Gson().fromJson(new InputStreamReader(zipFile.getInputStream(entry)), NModJsonBean.NModManifest.class);
@@ -92,9 +92,6 @@ public class NModPackage {
                             throw new NModException("The " + i + ordinal + " game support has a invalid supported game version name in manifest.");
                     }
 
-                    if(gameSupportData.dependencies != null)
-                        detectedWarnings.add(new NModWarning("Dependencies isn't supported on this EnderCore SDK"));
-
                     if(gameSupportData.native_libs != null)
                     {
                         for(NModJsonBean.NativeLibData nativeLibData : gameSupportData.native_libs)
@@ -104,14 +101,6 @@ public class NModPackage {
                         }
                     }
 
-                    if(gameSupportData.dex_libs != null)
-                    {
-                        for(NModJsonBean.DexLibData dexLibData : gameSupportData.dex_libs)
-                        {
-                            if(dexLibData.name == null)
-                                throw new NModException("The " + i + ordinal + " game support has a invalid dex library name.");
-                        }
-                    }
 
                     if(gameSupportData.text_overrides != null)
                     {

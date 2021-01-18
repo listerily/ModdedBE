@@ -52,12 +52,15 @@ public final class Launcher {
 
             // Set Variants
             IFileEnvironment fileEnvironment = core.getFileEnvironment();
+            NModManager nModManager = core.getNModManager();
+            OptionsManager optionsManager = core.getOptionsManager();
             boolean[] dexExists = new boolean[10];
             for(int i = 0;i < 9;++i)
                 dexExists[i] = false;
 
-            // Copy Game Files
             listener.onLoadGameFilesStart();
+
+            // Copy Game Files
             try {
                 File resPath = new File(core.getGamePackageManager().getPackageResourcePath());
                 File[] listApk = resPath.getParentFile().listFiles();
@@ -91,6 +94,7 @@ public final class Launcher {
 
                                 if(targetEntry != null)
                                 {
+                                    listener.onCopyGameFile(libName);
                                     FileUtils.copy(apkFile.getInputStream(targetEntry),new File(fileEnvironment.getCodeCacheDirPathForNativeLib(),libName));
                                     libsCopied[i] = true;
                                 }
@@ -119,6 +123,7 @@ public final class Launcher {
 
                         if(targetEntry != null)
                         {
+                            listener.onCopyGameFile(libName);
                             FileUtils.copy(apkFile.getInputStream(targetEntry),new File(fileEnvironment.getCodeCacheDirPathForDex(),libName));
                             dexExists[i] = true;
                         }
@@ -128,40 +133,46 @@ public final class Launcher {
             catch(IOException ioexception) {
                 throw new LauncherException("Extract game libraries failed.",ioexception);
             }
-
             Log.d("EnderCore-Launcher","Game Files Copied");
 
+            listener.onLoadJavaLibrariesStart();
             try {
                 for(int i = 9;i >= 0;--i)
                 {
                     String dexLibName = "classes" + (i == 0?"":i) + ".dex";
                     File path = new File(fileEnvironment.getCodeCacheDirPathForDex(),dexLibName);
                     if(dexExists[i])
+                    {
+                        listener.onLoadJavaLibrary(dexLibName);
                         Patcher.patchDexFile(context.getClassLoader(),path.getAbsolutePath(),path.getParent());
+                    }
                 }
 
-                //Crack License Checker
-                File licenseCrackerDex = new File(fileEnvironment.getCodeCacheDirPathForDex(),ASSETS_NAME_CRACKER_DEX);
-                FileUtils.copy(context.getAssets().open(ASSETS_FILE_CRACKER_DEX),licenseCrackerDex);
-                Patcher.patchDexFile(context.getClassLoader(),licenseCrackerDex.getAbsolutePath(),licenseCrackerDex.getParent());
+                if(optionsManager.getAutoLicense())
+                {
+                    //Crack License Checker
+                    File licenseCrackerDex = new File(fileEnvironment.getCodeCacheDirPathForDex(),ASSETS_NAME_CRACKER_DEX);
+                    FileUtils.copy(context.getAssets().open(ASSETS_FILE_CRACKER_DEX),licenseCrackerDex);
+                    listener.onLoadJavaLibrary(ASSETS_NAME_CRACKER_DEX);
+                    Patcher.patchDexFile(context.getClassLoader(),licenseCrackerDex.getAbsolutePath(),licenseCrackerDex.getParent());
+                }
             }
             catch (IllegalAccessException | IOException | NoSuchFieldException e) {
                 throw new LauncherException("Exception occurred while loading *.dex file.",e);
             }
-
+            listener.onLoadJavaLibrariesFinish();
             Log.d("EnderCore-Launcher","Dex File Loaded.");
 
             // Load Native Libs
+            listener.onLoadNativeLibrariesStart();
             try
             {
                 Patcher.patchNativeLibraryDir(context.getClassLoader(),fileEnvironment.getCodeCacheDirPathForNativeLib());
             } catch (IllegalAccessException | ClassNotFoundException | NoSuchFieldException | NoSuchMethodException | InvocationTargetException | InstantiationException e) {
                 throw new LauncherException("Exception occurred while loading *.so file.", e);
             }
-
             try
             {
-                listener.onLoadNativeLibrariesStart();
                 listener.onLoadNativeLibrary("libc++_shared.so");
                 System.loadLibrary("c++_shared");
                 listener.onLoadNativeLibrary("libfmod.so");
@@ -174,12 +185,12 @@ public final class Launcher {
                 System.loadLibrary("substrate");
                 listener.onLoadNativeLibrary("libendercore.so");
                 System.loadLibrary("endercore");
-                listener.onLoadNativeLibrariesFinish();
             }
             catch(Error error)
             {
                 throw new LauncherException("Load game libraries failed.",error);
             }
+            listener.onLoadNativeLibrariesFinish();
 
             Log.d("EnderCore-Launcher","Native Libs Loaded.");
 
@@ -190,6 +201,14 @@ public final class Launcher {
             listener.onLoadResourcesFinish();
 
             listener.onLoadGameFilesFinish();
+
+            // Load NMods
+            if(optionsManager.getUseNMods())
+            {
+                listener.onLoadNModsStart();
+
+                listener.onLoadNModsFinish();
+            }
 
             // Arrange
             listener.onArrange();

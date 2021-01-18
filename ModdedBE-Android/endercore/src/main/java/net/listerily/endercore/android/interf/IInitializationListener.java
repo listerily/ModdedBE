@@ -6,6 +6,7 @@ public interface IInitializationListener
 {
     void onStart();
     void onLoadGameFilesStart();
+    void onCopyGameFile(String name);
     void onLoadNativeLibrariesStart();
     void onLoadNativeLibrary(String name);
     void onLoadNativeLibrariesFinish();
@@ -13,14 +14,11 @@ public interface IInitializationListener
     void onLoadJavaLibrary(String name);
     void onLoadJavaLibrariesFinish();
     void onLoadResourcesStart();
-    void onLoadAppAsset(String name);
-    void onLoadAppResource(String name);
     void onLoadResourcesFinish();
     void onLoadGameFilesFinish();
     void onLoadNModsStart();
     void onLoadNMod(NMod nmod);
     void onLoadNModNativeLibrary(NMod nmod,String name);
-    void onLoadNModJavaLibrary(NMod nmod,String name);
     void onLoadNModAsset(String name);
     void onLoadNModsFinish();
     void onArrange();
