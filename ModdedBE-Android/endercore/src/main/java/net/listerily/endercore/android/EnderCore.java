@@ -82,7 +82,7 @@ public final class EnderCore {
         optionsManager = null;
     }
 
-    public void setEnvironment(IFileEnvironment environment){
+    public void setFileEnvironment(IFileEnvironment environment){
         if(initialized)
             throw new RuntimeException("Please assign IEnvironment before EnderCore initialization.");
         this.environment = environment;
