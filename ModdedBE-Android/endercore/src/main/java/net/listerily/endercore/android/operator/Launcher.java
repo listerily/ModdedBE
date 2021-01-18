@@ -183,6 +183,8 @@ public final class Launcher {
                 System.loadLibrary("yurai");
                 listener.onLoadNativeLibrary("libsubstrate.so");
                 System.loadLibrary("substrate");
+                listener.onLoadNativeLibrary("libxhook.so");
+                System.loadLibrary("xhook");
                 listener.onLoadNativeLibrary("libendercore.so");
                 System.loadLibrary("endercore");
             }
