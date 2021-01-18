@@ -24,7 +24,9 @@ class OptionsActivity : AppCompatActivity() {
         startActivity(Intent(this,ManageNModsActivity::class.java))
     }
     fun onInstallNModsClicked() {}
-    fun onInfoClicked() {}
+    fun onInfoClicked() {
+        startActivity(Intent(this,AboutUsActivity::class.java))
+    }
     class OptionsFragment : PreferenceFragmentCompat() {
         private lateinit var listener: SharedPreferences.OnSharedPreferenceChangeListener
 
