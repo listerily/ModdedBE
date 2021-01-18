@@ -16,15 +16,6 @@ public class OptionsManager {
         this.optionsJsonBean = new Gson().fromJson(optionsData.getJSONAsString(new Gson().toJson(new OptionsJsonBean())), OptionsJsonBean.class);
     }
 
-    public void setPackageName(String packageName) {
-        optionsJsonBean.game_package_name = packageName;
-    }
-    public String getPackageName() {
-        if(optionsJsonBean.game_package_name == null)
-            return optionsJsonBean.game_package_name = GamePackageManager.PACKAGE_NAME;
-        return optionsJsonBean.game_package_name;
-    }
-
     public void setUseNMods(boolean val) {
         optionsJsonBean.use_nmods = val;
     }
@@ -103,7 +94,6 @@ public class OptionsManager {
         private boolean use_nmods = false;
         private boolean auto_license = true;
         private boolean redirect_game_dir = true;
-        private String game_package_name = GamePackageManager.PACKAGE_NAME;
         private NModOptionsElement[] installed_nmods = new NModOptionsElement[0];
     }
 }

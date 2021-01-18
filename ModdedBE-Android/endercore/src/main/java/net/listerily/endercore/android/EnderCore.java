@@ -59,7 +59,7 @@ public final class EnderCore {
             if(optionsData == null)
                 optionsData = new OptionsData(environment);
             optionsManager = new OptionsManager(this);
-            gamePackageManager = new GamePackageManager(context,this);
+            gamePackageManager = new GamePackageManager(context);
             launcher = new Launcher(this);
         }
         catch(IOException ioException)

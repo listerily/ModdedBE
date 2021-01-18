@@ -26,9 +26,14 @@
         android:name="android.hardware.microphone"
         android:required="false" />
 
+    <queries>
+        <package android:name="com.mojang.minecraftpe" />
+    </queries>
+
     <application
         android:extractNativeLibs="false"
         android:isSplitRequired="true">
+
         <activity android:name="com.mojang.minecraftpe.AgentMainActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:label="@string/app_name"
