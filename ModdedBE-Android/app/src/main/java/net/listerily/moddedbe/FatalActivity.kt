@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import net.listerily.endercore.android.EnderCore
 import net.listerily.endercore.android.utils.CPUArch
 import net.listerily.endercore.android.utils.FileUtils
+import java.io.File
 
 class FatalActivity : AppCompatActivity() {
     private var message: String? = null
@@ -76,8 +77,8 @@ class FatalActivity : AppCompatActivity() {
     }
 
     fun onClearClicked() {
-        EnderCore.getInstance().destroy()
-        FileUtils.removeFiles(filesDir)
+        FileUtils.removeFiles(File(EnderCore.getInstance().fileEnvironment.codeCacheDirPath))
+        FileUtils.removeFiles(File(EnderCore.getInstance().fileEnvironment.enderCoreDirPath))
         Toast.makeText(this, R.string.app_app_data_cleared, Toast.LENGTH_LONG).show()
     }
 
