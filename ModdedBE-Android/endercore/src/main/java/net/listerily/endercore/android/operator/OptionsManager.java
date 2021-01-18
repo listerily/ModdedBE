@@ -19,6 +19,7 @@ public class OptionsManager {
     public void setUseNMods(boolean val) {
         optionsJsonBean.use_nmods = val;
     }
+
     public boolean getUseNMods() {
         return optionsJsonBean.use_nmods;
     }
@@ -26,6 +27,7 @@ public class OptionsManager {
     public void setAutoLicense(boolean val) {
         optionsJsonBean.auto_license = val;
     }
+
     public boolean getAutoLicense() {
         return optionsJsonBean.auto_license;
     }
@@ -33,40 +35,46 @@ public class OptionsManager {
     public void setRedirectGameDir(boolean val) {
         optionsJsonBean.redirect_game_dir = val;
     }
+
     public boolean getRedirectGameDir() {
         return optionsJsonBean.redirect_game_dir;
     }
 
-    public NModOptionsElement[] getInstalledNMods(){
+    public NModOptionsElement[] getInstalledNMods() {
         return optionsJsonBean.installed_nmods;
     }
-    public void removeNModElement(String uuid){
+
+    public void removeNModElement(String uuid) {
         NModOptionsElement[] newArray = new NModOptionsElement[optionsJsonBean.installed_nmods.length - 1];
-        for(int i = 0,j = 0;i < optionsJsonBean.installed_nmods.length;++i){
+        for (int i = 0, j = 0; i < optionsJsonBean.installed_nmods.length; ++i) {
             NModOptionsElement element = optionsJsonBean.installed_nmods[i];
-            if(!element.uuid.equals(uuid))
+            if (!element.uuid.equals(uuid))
                 newArray[j++] = element;
         }
         optionsJsonBean.installed_nmods = newArray;
     }
-    public void setNModElementEnabled(String uuid, boolean enabled){
-        for(int i = 0;i < optionsJsonBean.installed_nmods.length;++i)
+
+    public void setNModElementEnabled(String uuid, boolean enabled) {
+        for (int i = 0; i < optionsJsonBean.installed_nmods.length; ++i)
             if (optionsJsonBean.installed_nmods[i].uuid.equals(uuid))
                 optionsJsonBean.installed_nmods[i].enabled = enabled;
     }
+
     public boolean isNModEnabled(String uuid) {
-        for(int i = 0;i < optionsJsonBean.installed_nmods.length;++i)
+        for (int i = 0; i < optionsJsonBean.installed_nmods.length; ++i)
             if (optionsJsonBean.installed_nmods[i].uuid.equals(uuid))
                 return optionsJsonBean.installed_nmods[i].enabled;
         return false;
     }
-    public boolean isNModExists(String uuid){
-        for(int i = 0;i < optionsJsonBean.installed_nmods.length;++i)
+
+    public boolean isNModExists(String uuid) {
+        for (int i = 0; i < optionsJsonBean.installed_nmods.length; ++i)
             if (optionsJsonBean.installed_nmods[i].uuid.equals(uuid))
                 return true;
         return false;
     }
-    public void addNewNModElement(String uuid, boolean enabled){
+
+    public void addNewNModElement(String uuid, boolean enabled) {
         NModOptionsElement[] newArray = new NModOptionsElement[optionsJsonBean.installed_nmods.length + 1];
         System.arraycopy(optionsJsonBean.installed_nmods, 0, newArray, 0, optionsJsonBean.installed_nmods.length);
         newArray[optionsJsonBean.installed_nmods.length] = new NModOptionsElement();
@@ -75,22 +83,20 @@ public class OptionsManager {
         optionsJsonBean.installed_nmods = newArray;
     }
 
-    public void saveDataToFile() throws IOException{
+    public void saveDataToFile() throws IOException {
         optionsData.setJSONAsString(new Gson().toJson(optionsJsonBean));
     }
 
-    public void reset(){
+    public void reset() {
         optionsJsonBean = new OptionsJsonBean();
     }
 
-    public final static class NModOptionsElement
-    {
+    public final static class NModOptionsElement {
         public String uuid = null;
         public boolean enabled = true;
     }
 
-    private final static class OptionsJsonBean
-    {
+    private final static class OptionsJsonBean {
         private boolean use_nmods = false;
         private boolean auto_license = true;
         private boolean redirect_game_dir = true;

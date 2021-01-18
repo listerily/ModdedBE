@@ -11,8 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class NMod
-{
+public class NMod {
     private final NModJsonBean.NModManifest manifest;
     private final NModJsonBean.NModInfoAndroid info;
     private final File installationPath;
@@ -26,40 +25,35 @@ public class NMod
 
     public static final String NMOD_PLATFORM = "android";
 
-    public NMod(EnderCore enderCore, String uuid) throws NModException
-    {
-        try{
+    public NMod(EnderCore enderCore, String uuid) throws NModException {
+        try {
             IFileEnvironment fileEnvironment = enderCore.getFileEnvironment();
             installationPath = new File(fileEnvironment.getNModDirPathFor(uuid));
             manifest = new Gson().fromJson(new FileReader(new File(installationPath, MANIFEST_PATH)), NModJsonBean.NModManifest.class);
             info = manifest.android;
 
         } catch (IOException e) {
-            throw new NModException("IO failed while loading installed nmod, uuid = " + uuid + ".",e);
+            throw new NModException("IO failed while loading installed nmod, uuid = " + uuid + ".", e);
         }
     }
 
-    public final String getName()
-    {
+    public final String getName() {
         return info.name;
     }
 
-    public final String getDescription()
-    {
+    public final String getDescription() {
         return info.description;
     }
 
-    public final String getAuthor()
-    {
+    public final String getAuthor() {
         return info.author;
     }
 
-    public final String getVersionName()
-    {
+    public final String getVersionName() {
         return info.version_name;
     }
 
-    public final int getVersionCode(){
+    public final int getVersionCode() {
         return info.version_code;
     }
 
@@ -71,8 +65,7 @@ public class NMod
         return info;
     }
 
-    public String getChangeLog()
-    {
+    public String getChangeLog() {
         return info.change_log;
     }
 

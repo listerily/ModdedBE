@@ -19,7 +19,8 @@
     <color name="com_facebook_button_background_color_pressed">#ff2f477a</color>
     <color name="com_facebook_button_login_silver_background_color">#fff4f6f8</color>
     <color name="com_facebook_button_login_silver_background_color_pressed">#ffe9eaf0</color>
-    <color name="com_facebook_button_send_background_color">@color/com_facebook_messenger_blue</color>
+    <color name="com_facebook_button_send_background_color">@color/com_facebook_messenger_blue
+    </color>
     <color name="com_facebook_button_send_background_color_pressed">#ff006fff</color>
     <color name="com_facebook_button_border_color_focused">#ffdedee6</color>
     <color name="appBackground">#ffffffff</color>
@@ -42,7 +43,8 @@
     <color name="xbid_header_background">#ff121212</color>
     <color name="xbid_button_background">#ff349136</color>
     <color name="xbid_button_background_pressed">#ff44a146</color>
-    <color name="xbid_clickable_view_background_pressed">@color/xbid_button_background_pressed</color>
+    <color name="xbid_clickable_view_background_pressed">@color/xbid_button_background_pressed
+    </color>
     <color name="xbid_button_border">#ff54b156</color>
     <color name="xbid_clickable_view_border">@color/xbid_button_border</color>
     <color name="xbid_white_primary">#ffffffff</color>

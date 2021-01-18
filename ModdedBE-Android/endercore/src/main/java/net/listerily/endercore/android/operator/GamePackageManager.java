@@ -10,8 +10,7 @@ public final class GamePackageManager {
     private String packageResourcePath;
     private boolean gameInstalled;
 
-    public GamePackageManager(Context context)
-    {
+    public GamePackageManager(Context context) {
         gameInstalled = true;
         try {
             Context gameContext = context.createPackageContext(PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
@@ -32,8 +31,7 @@ public final class GamePackageManager {
         return gameInstalled;
     }
 
-    public String getPackageResourcePath()
-    {
+    public String getPackageResourcePath() {
         return packageResourcePath;
     }
 }

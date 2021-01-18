@@ -10,22 +10,23 @@ import java.io.IOException;
 
 public class OptionsData implements IOptionsData {
     private final IFileEnvironment environment;
-    public OptionsData(IFileEnvironment environment){
+
+    public OptionsData(IFileEnvironment environment) {
         this.environment = environment;
     }
 
     @Override
     public String getJSONAsString(String val) throws IOException {
         File jsonFile = new File(environment.getOptionsFilePath());
-        if(jsonFile.exists()) {
+        if (jsonFile.exists()) {
             return FileUtils.readFileAsString(jsonFile);
         }
         return val;
     }
 
     @Override
-    public void setJSONAsString(String val) throws IOException{
+    public void setJSONAsString(String val) throws IOException {
         File jsonFile = new File(environment.getOptionsFilePath());
-        FileUtils.copy(new ByteArrayInputStream(val.getBytes()),jsonFile);
+        FileUtils.copy(new ByteArrayInputStream(val.getBytes()), jsonFile);
     }
 }

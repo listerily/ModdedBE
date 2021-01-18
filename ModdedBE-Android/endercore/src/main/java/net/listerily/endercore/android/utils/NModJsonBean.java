@@ -1,8 +1,7 @@
 package net.listerily.endercore.android.utils;
 
 public class NModJsonBean {
-    public static final class TextOverrideData
-    {
+    public static final class TextOverrideData {
         public String path = null;
         public String mode = MODE_REPLACE;
 
@@ -11,13 +10,11 @@ public class NModJsonBean {
         public static final String MODE_PREPEND = "prepend";
     }
 
-    public static final class FileOverrideData
-    {
+    public static final class FileOverrideData {
         public String path = null;
     }
 
-    public static final class JsonOverrideData
-    {
+    public static final class JsonOverrideData {
         public String path = null;
         public String mode = MODE_REPLACE;
 
@@ -25,20 +22,17 @@ public class NModJsonBean {
         public static final String MODE_MERGE = "merge";
     }
 
-    public static final class NativeLibData
-    {
+    public static final class NativeLibData {
         public String name = null;
         public String main = null;
     }
 
-    public static final class I18nData
-    {
+    public static final class I18nData {
         public String path = null;
         public String locale = null;
     }
 
-    public static final class GameSupportData
-    {
+    public static final class GameSupportData {
         public TextOverrideData[] text_overrides = null;
         public JsonOverrideData[] json_overrides = null;
         public FileOverrideData[] file_overrides = null;
@@ -47,8 +41,7 @@ public class NModJsonBean {
         public String[] target_game_versions = null;
     }
 
-    public static final class NModInfoAndroid
-    {
+    public static final class NModInfoAndroid {
         public GameSupportData[] game_supports = null;
         public int version_code = -1;
         public String version_name = null;
@@ -62,8 +55,7 @@ public class NModJsonBean {
         public I18nData[] i18n = null;
     }
 
-    public static final  class NModManifest
-    {
+    public static final class NModManifest {
         public NModInfoAndroid android = null;
         public String uuid = null;
         public int target_sdk_version = -1;

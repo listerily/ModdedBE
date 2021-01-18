@@ -24,7 +24,7 @@ public class FileEnvironment implements IFileEnvironment {
 
     public FileEnvironment(Context context) {
         codeCacheDirPath = context.getCodeCacheDir().getPath();
-        enderCoreDirPath = context.getDir(DIR_DATA_ROOT,0).getPath();
+        enderCoreDirPath = context.getDir(DIR_DATA_ROOT, 0).getPath();
         gameDirPath = context.getDir(DIR_GAME_DATA, 0).getPath();
     }
 

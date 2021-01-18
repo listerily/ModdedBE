@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Theme.MSA" parent="@android:style/Theme.Holo.Light">
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/actionBar</item>
     </style>
+
     <style name="Theme.MSA.Dialog" parent="@android:style/Theme.Holo.Dialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -12,13 +14,16 @@
         <item name="android:actionBarStyle">@style/actionBar</item>
         <item name="android:windowActionModeOverlay">true</item>
     </style>
+
     <style name="Theme.MSA.DialogWhenLarge" parent="@android:style/Theme.Holo.DialogWhenLarge">
         <item name="android:actionBarStyle">@style/actionBar</item>
     </style>
+
     <style name="Theme.MSA.NoActionBar" parent="@android:style/Theme.Holo.Light">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
     </style>
+
     <style name="Theme.MSA.Transparent" parent="@style/Theme.MSA">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowFrame">@null</item>
@@ -28,17 +33,21 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
+
     <style name="actionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@color/appBackground</item>
         <item name="android:divider">@null</item>
         <item name="android:titleTextStyle">@style/textHeader</item>
     </style>
+
     <style name="textHeader" parent="@style/textLarge">
         <item name="android:textColor">#ff585858</item>
     </style>
+
     <style name="textLarge" parent="@style/textDefault">
         <item name="android:textSize">16.0sp</item>
     </style>
+
     <style name="textDefault">
         <item name="android:textSize">13.329987sp</item>
         <item name="android:textColor">#ff191919</item>
@@ -47,6 +56,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+
     <style name="OnlineidUiTheme" parent="@android:style/Theme.Holo.Light.NoActionBar">
         <item name="android:windowBackground">@color/xbid_activity_background</item>
     </style>

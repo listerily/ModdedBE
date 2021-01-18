@@ -3,7 +3,7 @@ package net.listerily.endercore.android.interf.implemented;
 import net.listerily.endercore.android.interf.IInitializationListener;
 import net.listerily.endercore.android.nmod.NMod;
 
-public class InitializationListener implements IInitializationListener{
+public class InitializationListener implements IInitializationListener {
 
     @Override
     public void onStart() {

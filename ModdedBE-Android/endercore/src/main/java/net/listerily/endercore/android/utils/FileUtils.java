@@ -10,18 +10,17 @@ import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 
 public class FileUtils {
-    public static void copy(File from, File to) throws IOException
-    {
-        if(!from.exists())
+    public static void copy(File from, File to) throws IOException {
+        if (!from.exists())
             throw new IOException("File " + from.getAbsolutePath() + " does not exists.");
-        if(!to.exists()){
-            if(to.getParentFile() != null && !to.getParentFile().exists()){
+        if (!to.exists()) {
+            if (to.getParentFile() != null && !to.getParentFile().exists()) {
                 boolean mkdirsResult = to.getParentFile().mkdirs();
-                if(!mkdirsResult)
+                if (!mkdirsResult)
                     throw new IOException("Failed to mkdirs: " + to.getParentFile().getAbsolutePath() + ".");
             }
             boolean createdNewFile = to.createNewFile();
-            if(!createdNewFile)
+            if (!createdNewFile)
                 throw new IOException("Failed to create new file at: " + to.getAbsolutePath() + ".");
         }
         FileChannel input = new FileInputStream(from).getChannel();
@@ -29,28 +28,25 @@ public class FileUtils {
         output.transferFrom(input, 0, input.size());
     }
 
-    public static void copy(InputStream from, File to) throws IOException
-    {
-        if(!to.exists()){
-            if(to.getParentFile() != null && !to.getParentFile().exists()){
+    public static void copy(InputStream from, File to) throws IOException {
+        if (!to.exists()) {
+            if (to.getParentFile() != null && !to.getParentFile().exists()) {
                 boolean mkdirsResult = to.getParentFile().mkdirs();
-                if(!mkdirsResult)
+                if (!mkdirsResult)
                     throw new IOException("Failed to mkdirs: " + to.getParentFile().getAbsolutePath() + ".");
             }
             boolean createdNewFile = to.createNewFile();
-            if(!createdNewFile)
+            if (!createdNewFile)
                 throw new IOException("Failed to create new file at: " + to.getAbsolutePath() + ".");
         }
-        copy(from,new FileOutputStream(to));
+        copy(from, new FileOutputStream(to));
     }
 
-    public static void copy(File from, OutputStream to) throws IOException
-    {
-        copy(new FileInputStream(from),to);
+    public static void copy(File from, OutputStream to) throws IOException {
+        copy(new FileInputStream(from), to);
     }
 
-    public static void copy(InputStream from, OutputStream to) throws IOException
-    {
+    public static void copy(InputStream from, OutputStream to) throws IOException {
         byte[] buffer = new byte[1 << 10];
         int len;
         while ((len = from.read(buffer)) > 0) {
@@ -62,7 +58,7 @@ public class FileUtils {
         if (!path.exists())
             return;
         File[] listFiles = path.listFiles();
-        if(listFiles != null){
+        if (listFiles != null) {
             for (File file : listFiles) {
                 if (file.isDirectory())
                     removeFiles(file);
@@ -73,15 +69,13 @@ public class FileUtils {
         path.delete();
     }
 
-    public static String readFileAsString(File file) throws IOException
-    {
-        if(!file.exists())
+    public static String readFileAsString(File file) throws IOException {
+        if (!file.exists())
             throw new IOException("File " + file.getAbsolutePath() + " dose not exists.");
         return readFileAsString(new FileReader(file));
     }
 
-    public static String readFileAsString(FileReader input) throws IOException
-    {
+    public static String readFileAsString(FileReader input) throws IOException {
         char[] buffer = new char[1024];
         int len;
         StringBuilder builder = new StringBuilder();

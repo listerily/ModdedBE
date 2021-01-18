@@ -2,43 +2,117 @@
 <splits>
     <module name="">
         <language>
-            <entry key="ar" split="config.ar" />
-            <entry key="bg" split="config.bg" />
-            <entry key="ca" split="config.ca" />
-            <entry key="cs" split="config.cs" />
-            <entry key="da" split="config.da" />
-            <entry key="de" split="config.de" />
-            <entry key="el" split="config.el" />
-            <entry key="en" split="config.en" />
-            <entry key="es" split="config.es" />
-            <entry key="fi" split="config.fi" />
-            <entry key="fr" split="config.fr" />
-            <entry key="hi" split="config.hi" />
-            <entry key="hr" split="config.hr" />
-            <entry key="hu" split="config.hu" />
-            <entry key="in" split="config.in" />
-            <entry key="it" split="config.it" />
-            <entry key="iw" split="config.iw" />
-            <entry key="ja" split="config.ja" />
-            <entry key="ko" split="config.ko" />
-            <entry key="lt" split="config.lt" />
-            <entry key="lv" split="config.lv" />
-            <entry key="nb" split="config.nb" />
-            <entry key="nl" split="config.nl" />
-            <entry key="pl" split="config.pl" />
-            <entry key="pt" split="config.pt" />
-            <entry key="ro" split="config.ro" />
-            <entry key="ru" split="config.ru" />
-            <entry key="sk" split="config.sk" />
-            <entry key="sl" split="config.sl" />
-            <entry key="sr" split="config.sr" />
-            <entry key="sv" split="config.sv" />
-            <entry key="th" split="config.th" />
-            <entry key="tl" split="config.tl" />
-            <entry key="tr" split="config.tr" />
-            <entry key="uk" split="config.uk" />
-            <entry key="vi" split="config.vi" />
-            <entry key="zh" split="config.zh" />
+            <entry
+                key="ar"
+                split="config.ar" />
+            <entry
+                key="bg"
+                split="config.bg" />
+            <entry
+                key="ca"
+                split="config.ca" />
+            <entry
+                key="cs"
+                split="config.cs" />
+            <entry
+                key="da"
+                split="config.da" />
+            <entry
+                key="de"
+                split="config.de" />
+            <entry
+                key="el"
+                split="config.el" />
+            <entry
+                key="en"
+                split="config.en" />
+            <entry
+                key="es"
+                split="config.es" />
+            <entry
+                key="fi"
+                split="config.fi" />
+            <entry
+                key="fr"
+                split="config.fr" />
+            <entry
+                key="hi"
+                split="config.hi" />
+            <entry
+                key="hr"
+                split="config.hr" />
+            <entry
+                key="hu"
+                split="config.hu" />
+            <entry
+                key="in"
+                split="config.in" />
+            <entry
+                key="it"
+                split="config.it" />
+            <entry
+                key="iw"
+                split="config.iw" />
+            <entry
+                key="ja"
+                split="config.ja" />
+            <entry
+                key="ko"
+                split="config.ko" />
+            <entry
+                key="lt"
+                split="config.lt" />
+            <entry
+                key="lv"
+                split="config.lv" />
+            <entry
+                key="nb"
+                split="config.nb" />
+            <entry
+                key="nl"
+                split="config.nl" />
+            <entry
+                key="pl"
+                split="config.pl" />
+            <entry
+                key="pt"
+                split="config.pt" />
+            <entry
+                key="ro"
+                split="config.ro" />
+            <entry
+                key="ru"
+                split="config.ru" />
+            <entry
+                key="sk"
+                split="config.sk" />
+            <entry
+                key="sl"
+                split="config.sl" />
+            <entry
+                key="sr"
+                split="config.sr" />
+            <entry
+                key="sv"
+                split="config.sv" />
+            <entry
+                key="th"
+                split="config.th" />
+            <entry
+                key="tl"
+                split="config.tl" />
+            <entry
+                key="tr"
+                split="config.tr" />
+            <entry
+                key="uk"
+                split="config.uk" />
+            <entry
+                key="vi"
+                split="config.vi" />
+            <entry
+                key="zh"
+                split="config.zh" />
         </language>
     </module>
 </splits>
