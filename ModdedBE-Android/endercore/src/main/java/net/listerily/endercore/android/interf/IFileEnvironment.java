@@ -8,5 +8,5 @@ public interface IFileEnvironment {
     String getNModDirPathFor(String uuid);
     String getCodeCacheDirPathForDex();
     String getCodeCacheDirPathForNativeLib();
-
+    String getRedirectedGameDir();
 }

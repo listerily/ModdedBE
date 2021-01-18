@@ -33,13 +33,6 @@
             android:title="@string/app_options_install_new_nmods" />
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/app_options_title_storage">
-        <Preference
-            android:key="extract"
-            android:title="@string/app_options_extract_storage" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory app:title="@string/app_options_title_info">
         <Preference
             android:key="info"

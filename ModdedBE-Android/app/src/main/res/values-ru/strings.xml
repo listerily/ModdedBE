@@ -36,8 +36,6 @@
     <string name="app_options_redirect_game_directory">Redirect game directory</string>
     <string name="app_options_manage_nmods">Manage NMods</string>
     <string name="app_options_install_new_nmods">Install NMods</string>
-    <string name="app_options_title_storage">Storage</string>
-    <string name="app_options_extract_storage">Extract internal storage</string>
     <string name="app_options_title_info">Info</string>
     <string name="app_options_about_us">About us</string>
 </resources>

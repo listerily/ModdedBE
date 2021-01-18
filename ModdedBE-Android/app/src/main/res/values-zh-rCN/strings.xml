@@ -36,8 +36,6 @@
     <string name="app_options_redirect_game_directory">重定向游戏内部文件夹</string>
     <string name="app_options_manage_nmods">管理NMod</string>
     <string name="app_options_install_new_nmods">安装NMod</string>
-    <string name="app_options_title_storage">存储</string>
-    <string name="app_options_extract_storage">导出内部存储</string>
     <string name="app_options_title_info">关于</string>
     <string name="app_options_about_us">关于我们</string>
 </resources>
