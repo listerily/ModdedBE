@@ -50,11 +50,11 @@ class FatalActivity : AppCompatActivity() {
         (findViewById<View>(R.id.textViewSupportedABIS) as TextView).text = getString(R.string.app_fatal_abi, abis)
     }
 
-    fun onExitClicked() {
+    fun onExitClicked(view: View) {
         finish()
     }
 
-    fun onCopyClicked() {
+    fun onCopyClicked(view: View) {
         val messageHead = """
                -----------------------
                A fatal error occurred in ModdedBE game initializing.
@@ -75,7 +75,7 @@ class FatalActivity : AppCompatActivity() {
         Toast.makeText(this, R.string.app_copied, Toast.LENGTH_LONG).show()
     }
 
-    fun onClearClicked() {
+    fun onClearClicked(view: View) {
         FileUtils.removeFiles(File(EnderCore.getInstance().fileEnvironment.codeCacheDirPath))
         FileUtils.removeFiles(File(EnderCore.getInstance().fileEnvironment.enderCoreDirPath))
         Toast.makeText(this, R.string.app_app_data_cleared, Toast.LENGTH_LONG).show()
