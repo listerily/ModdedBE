@@ -9,6 +9,7 @@
       <w>libfmod</w>
       <w>libminecraftpe</w>
       <w>libsubstrate</w>
+      <w>libxhook</w>
       <w>libyurai</w>
       <w>listerily</w>
       <w>minecraft</w>
@@ -17,6 +18,7 @@
       <w>mojang</w>
       <w>nmod</w>
       <w>nmods</w>
+      <w>xhook</w>
       <w>yurai</w>
     </words>
   </dictionary>
