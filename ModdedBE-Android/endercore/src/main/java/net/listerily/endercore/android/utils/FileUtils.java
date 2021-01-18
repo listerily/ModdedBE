@@ -67,10 +67,10 @@ public class FileUtils {
                 if (file.isDirectory())
                     removeFiles(file);
                 else
-                    file.deleteOnExit();
+                    file.delete();
             }
         }
-        path.deleteOnExit();
+        path.delete();
     }
 
     public static String readFileAsString(File file) throws IOException
