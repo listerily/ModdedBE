@@ -39,9 +39,9 @@
     <string name="app_options_title_info">关于</string>
     <string name="app_options_about_us">关于我们</string>
     <string name="app_copyright">Copyright (c) listerily</string>
-    <string name="app_contributors">Contributors: listerily, TimScriptov, TripleCamera</string>
+    <string name="app_contributors">贡献者： listerily, TimScriptov, TripleCamera</string>
     <string name="app_wiki">Wiki</string>
-    <string name="app_source">Sources</string>
-    <string name="app_issues">Issues</string>
-    <string name="app_updates">Updates</string>
+    <string name="app_source">源码</string>
+    <string name="app_issues">报告bug</string>
+    <string name="app_updates">更新</string>
 </resources>
