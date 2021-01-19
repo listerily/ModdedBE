@@ -1,4 +1,4 @@
 package net.listerily.endercore.android.nmod.operator;
 
-public class JsonOverrider {
+public final class JsonOverrider {
 }

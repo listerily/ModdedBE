@@ -68,4 +68,9 @@ public class FileEnvironment implements IFileEnvironment {
     public String getRedirectedGameDir() {
         return gameDirPath;
     }
+
+    @Override
+    public String getCodeCacheDirPathForDexOpt() {
+        return getCodeCacheDirPathForDex() + File.separator + "opt";
+    }
 }

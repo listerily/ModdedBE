@@ -7,13 +7,14 @@ import net.listerily.endercore.android.interf.IOptionsData;
 
 import java.io.IOException;
 
-public class OptionsManager {
+public final class OptionsManager {
     private OptionsJsonBean optionsJsonBean;
     private final IOptionsData optionsData;
 
     public OptionsManager(EnderCore core) throws IOException {
         this.optionsData = core.getOptionsData();
         this.optionsJsonBean = new Gson().fromJson(optionsData.getJSONAsString(new Gson().toJson(new OptionsJsonBean())), OptionsJsonBean.class);
+        saveDataToFile();
     }
 
     public void setUseNMods(boolean val) {

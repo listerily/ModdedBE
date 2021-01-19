@@ -30,10 +30,7 @@
         <package android:name="com.mojang.minecraftpe" />
     </queries>
 
-    <application
-        android:extractNativeLibs="false"
-        android:isSplitRequired="true">
-
+    <application>
         <activity
             android:name="com.mojang.minecraftpe.AgentMainActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
@@ -46,7 +43,7 @@
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="minecraftpe" />
+                android:value="endercore" />
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -164,16 +161,6 @@
             android:required="false" />
         <service android:name="com.mojang.minecraftpe.packagesource.googleplay.ApkXDownloaderService" />
         <receiver android:name="com.mojang.minecraftpe.packagesource.googleplay.ApkXDownloaderAlarmReceiver" />
-
-        <meta-data
-            android:name="com.android.vending.splits.required"
-            android:value="true" />
-        <meta-data
-            android:name="com.android.vending.splits"
-            android:resource="@xml/splits0" />
-        <meta-data
-            android:name="com.android.vending.derived.apk.id"
-            android:value="3" />
 
         <activity
             android:name="com.microsoft.xbox.idp.ui.AuthFlowActivity"

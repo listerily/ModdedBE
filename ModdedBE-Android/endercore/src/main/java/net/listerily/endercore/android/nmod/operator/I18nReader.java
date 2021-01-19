@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class I18nReader {
+public final class I18nReader {
     private File file;
     private String locale;
     private HashMap<String, String> map;

@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 
-public class FileUtils {
+public final class FileUtils {
     public static void copy(File from, File to) throws IOException {
         if (!from.exists())
             throw new IOException("File " + from.getAbsolutePath() + " does not exists.");

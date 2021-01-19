@@ -1,6 +1,6 @@
 package net.listerily.endercore.android.utils;
 
-public class NModJsonBean {
+public final class NModJsonBean {
     public static final class TextOverrideData {
         public String path = null;
         public String mode = MODE_REPLACE;

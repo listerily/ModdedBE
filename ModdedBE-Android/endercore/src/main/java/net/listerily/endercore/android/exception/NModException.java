@@ -1,6 +1,6 @@
 package net.listerily.endercore.android.exception;
 
-public final class NModException extends Exception {
+public class NModException extends Exception {
 
     public NModException(String message) {
         super(message);

@@ -32,7 +32,7 @@ class FatalActivity : AppCompatActivity() {
         val abis: String
         val builder = StringBuilder()
         val builderFull = StringBuilder()
-        for (abi in CPUArch.getSupportedAbis()) {
+        for (abi in CPUArch.getSystemSupportedAbis()) {
             val text: String = if (abi == "armeabi") "arm" else if (abi.startsWith("arm") && abi.endsWith("v7a")) "arm32" else if (abi.startsWith("arm") && abi.endsWith("v8a")) "arm64" else if (abi == "arm64") "arm64" else if (abi == "x86") "x86" else if (abi.startsWith("x86") && abi.endsWith("64")) "x64" else abi
             builder.append(text).append(" ")
             builderFull.append(abi).append(" ")

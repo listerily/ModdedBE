@@ -1,6 +1,6 @@
 package net.listerily.endercore.android.exception;
 
-public final class LauncherException extends Exception {
+public class LauncherException extends Exception {
     public LauncherException(String message) {
         super(message);
     }

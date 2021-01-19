@@ -16,4 +16,6 @@ public interface IFileEnvironment {
     String getCodeCacheDirPathForNativeLib();
 
     String getRedirectedGameDir();
+
+    String getCodeCacheDirPathForDexOpt();
 }
