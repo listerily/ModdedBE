@@ -9,7 +9,12 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import net.listerily.endercore.android.EnderCore
 
+
 class OptionsActivity : AppCompatActivity() {
+    companion object {
+        private const val CODE_PICK_NMOD = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_options)
@@ -21,11 +26,17 @@ class OptionsActivity : AppCompatActivity() {
     }
 
     fun onManageNModsClicked() {
-        startActivity(Intent(this,ManageNModsActivity::class.java))
+        startActivity(Intent(this, ManageNModsActivity::class.java))
     }
-    fun onInstallNModsClicked() {}
+    fun onInstallNModsClicked() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*"
+
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        startActivityForResult(Intent.createChooser(intent, ""), CODE_PICK_NMOD)
+    }
     fun onInfoClicked() {
-        startActivity(Intent(this,AboutUsActivity::class.java))
+        startActivity(Intent(this, AboutUsActivity::class.java))
     }
     class OptionsFragment : PreferenceFragmentCompat() {
         private lateinit var listener: SharedPreferences.OnSharedPreferenceChangeListener
@@ -73,6 +84,20 @@ class OptionsActivity : AppCompatActivity() {
         override fun onPause() {
             super.onPause()
             preferenceManager.sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
+        }
+    }
+
+    fun onNModPicked(){
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == CODE_PICK_NMOD && resultCode == RESULT_OK){
+            if (data != null) {
+
+            }
         }
     }
 

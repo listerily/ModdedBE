@@ -27,6 +27,8 @@ public final class Launcher {
     private final EnderCore core;
     private IInitializationListener listener;
     private final ArrayList<String> patchAssetPath;
+    private final ArrayList<String> patchDexPath;
+    private final ArrayList<String> patchLibPath;
     private boolean initializedGame;
 
     private final static String ASSETS_MAIN_DIR = "endercore" + File.separator + "android";
@@ -53,6 +55,8 @@ public final class Launcher {
     public Launcher(EnderCore core) {
         initializedGame = false;
         patchAssetPath = new ArrayList<>();
+        patchDexPath = new ArrayList<>();
+        patchLibPath = new ArrayList<>();
         this.core = core;
         listener = new InitializationListener();
     }
@@ -78,7 +82,11 @@ public final class Launcher {
             // Copy Game Files
             try {
                 File resPath = new File(core.getGamePackageManager().getPackageResourcePath());
+                if(resPath.getParentFile() == null)
+                    throw new IOException("Invalid file path.");
                 File[] listApk = resPath.getParentFile().listFiles();
+                if(listApk == null)
+                    throw new IOException("Failed to list all apk files.");
                 //Copy native libraries
                 String[] supportedAbis = CPUArch.getSystemSupportedAbis();
                 String[] requiredLibs = {NAME_FMOD, NAME_MINECRAFTPE};
@@ -184,6 +192,7 @@ public final class Launcher {
                     if (dexExists[i]) {
                         listener.onLoadJavaLibrary(dexLibName);
                         Patcher.patchDexFile(context.getClassLoader(), path.getAbsolutePath(), fileEnvironment.getCodeCacheDirPathForDexOpt());
+                        patchDexPath.add(path.getAbsolutePath());
                     }
                 }
 
@@ -193,6 +202,7 @@ public final class Launcher {
                     FileUtils.copy(context.getAssets().open(ASSETS_FILE_CRACKER_DEX), licenseCrackerDex);
                     listener.onLoadJavaLibrary(NAME_CRACKER_DEX);
                     Patcher.patchDexFile(context.getClassLoader(), licenseCrackerDex.getAbsolutePath(), fileEnvironment.getCodeCacheDirPathForDexOpt());
+                    patchDexPath.add(licenseCrackerDex.getAbsolutePath());
                 }
             } catch (IllegalAccessException | IOException | NoSuchFieldException e) {
                 throw new LauncherException("Exception occurred while loading *.dex file.", e);
@@ -204,6 +214,7 @@ public final class Launcher {
             listener.onLoadNativeLibrariesStart();
             try {
                 Patcher.patchNativeLibraryDir(context.getClassLoader(), fileEnvironment.getCodeCacheDirPathForNativeLib());
+                patchLibPath.add(fileEnvironment.getCodeCacheDirPathForNativeLib());
             } catch (IllegalAccessException | ClassNotFoundException | NoSuchFieldException | NoSuchMethodException | InvocationTargetException | InstantiationException e) {
                 throw new LauncherException("Exception occurred while loading *.so file.", e);
             }
@@ -263,10 +274,14 @@ public final class Launcher {
             File dir = new File(fileEnvironment.getCodeCacheDirPathForDex());
             FileUtils.copy(context.getAssets().open(ASSETS_FILE_AGENT_DEX), new File(dir, NAME_AGENT_DEX));
             Patcher.patchDexFile(context.getClassLoader(), new File(dir, NAME_AGENT_DEX).getAbsolutePath(), fileEnvironment.getCodeCacheDirPathForDexOpt());
+            patchDexPath.add(new File(dir, NAME_AGENT_DEX).getAbsolutePath());
             DexClassLoader dexClassLoader = new DexClassLoader(new File(dir, NAME_AGENT_DEX).getAbsolutePath(), dir.getAbsolutePath(), null, context.getClass().getClassLoader());
             Class<?> activityClass = dexClassLoader.loadClass("com.mojang.minecraftpe.AgentMainActivity");
             Intent launchIntent = new Intent(context, activityClass);
             launchIntent.putExtra("ENDERCORE-PATCH-ASSETS", patchAssetPath);
+            launchIntent.putExtra("ENDERCORE-PATCH-DEX", patchDexPath);
+            launchIntent.putExtra("ENDERCORE-PATCH-LIBS", patchLibPath);
+            launchIntent.putExtra("ENDERCORE-PATCH-OPT",fileEnvironment.getCodeCacheDirPathForDexOpt());
             context.startActivity(launchIntent);
         } catch (IOException | NoSuchFieldException | IllegalAccessException | ClassNotFoundException e) {
             throw new LauncherException("Start game failed.", e);
