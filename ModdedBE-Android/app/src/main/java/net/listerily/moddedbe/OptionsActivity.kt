@@ -2,12 +2,16 @@ package net.listerily.moddedbe
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import net.listerily.endercore.android.EnderCore
+import net.listerily.endercore.android.nmod.NModPackage
+import net.listerily.endercore.android.utils.FileUtils
+import java.io.File
 
 
 class OptionsActivity : AppCompatActivity() {
@@ -87,8 +91,11 @@ class OptionsActivity : AppCompatActivity() {
         }
     }
 
-    fun onNModPicked(){
-
+    private fun onNModPicked(uri : Uri){
+        val inputStream = contentResolver.openInputStream(uri)
+        val copiedFile = File(EnderCore.getInstance().fileEnvironment.codeCacheDirPathForNMods,"package.nmod")
+        FileUtils.copy(inputStream, copiedFile)
+        EnderCore.getInstance().nModManager.installNMod(NModPackage(copiedFile))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -96,7 +103,7 @@ class OptionsActivity : AppCompatActivity() {
 
         if(requestCode == CODE_PICK_NMOD && resultCode == RESULT_OK){
             if (data != null) {
-
+                data.data?.let { onNModPicked(it) }
             }
         }
     }

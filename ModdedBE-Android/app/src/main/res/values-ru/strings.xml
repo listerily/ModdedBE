@@ -25,7 +25,7 @@
     <string name="app_fatal_brand">Brand: %1$s</string>
     <string name="app_exit">Exit</string>
     <string name="app_permission_denied">Permisssion Denied</string>
-    <string name="app_message_permission_denied">OOps!ModdedBE couldn\'t gain the permission to read your storage.This is vital for launching app.Please go to the Settings to make sure that the permisssion isn\'t denied.</string>
+    <string name="app_message_permission_denied">Oops!ModdedBE couldn\'t gain the permission to read your storage.This is vital for launching app.Please go to the Settings to make sure that the permisssion isn\'t denied.</string>
     <string name="title_activity_settings">Settings</string>
     <string name="app_fatal_use_nmods">" Use NMods: %1$d"</string>
     <string name="app_fatal_abi">ABI: %1$s</string>
@@ -44,4 +44,14 @@
     <string name="app_source">Sources</string>
     <string name="app_issues">Issues</string>
     <string name="app_updates">Updates</string>
+    <string name="app_nmod_package_open_failed_title">Oops!</string>
+    <string name="app_nmod_package_open_failed_summary">Failed to open this NMod package. Please read these error messages and fix them.\\n %1$s</string>
+    <string name="app_nmod_install_message_new">Do you want to install %1%s as a new NMod?</string>
+    <string name="app_nmod_install_message_update">Do you want to update this NMod to version %1$s?</string>
+    <string name="app_nmod_install">Install</string>
+    <string name="app_nmod_cancel">Install</string>
+    <string name="app_nmod_install_succeed_title">Installling Succeed</string>
+    <string name="app_nmod_install_failed_message">Please read the exception message:\\n %1$s</string>
+    <string name="app_nmod_install_succeed_message">Enjoy your NMod!</string>
+    <string name="app_install_failed_title">Installing Failed</string>
 </resources>
