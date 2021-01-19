@@ -18,7 +18,7 @@ public class FileEnvironment implements IFileEnvironment {
 
     public final static String DIR_NATIVE_LIBS = "native_libs";
     public final static String DIR_DEX_LIBS = "dex_libs";
-
+    public final static String DIR_DEX_OPT = "opt";
 
     public final static String DATA_FILE_ENDERCORE_OPTIONS = "options.json";
 
@@ -71,6 +71,11 @@ public class FileEnvironment implements IFileEnvironment {
 
     @Override
     public String getCodeCacheDirPathForDexOpt() {
-        return getCodeCacheDirPathForDex() + File.separator + "opt";
+        return getCodeCacheDirPathForDex() + File.separator + DIR_DEX_OPT;
+    }
+
+    @Override
+    public String getCodeCacheDirPathForNMods() {
+        return getCodeCacheDirPath() + File.separator + DIR_NMODS;
     }
 }

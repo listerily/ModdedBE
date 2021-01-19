@@ -66,21 +66,20 @@ public class NModPackage {
                     throw new NModException("NMod version name is not found.Please assign it a version name.");
                 if (info.version_code == -1)
                     throw new NModException("NMod version code isn't assigned.Please assign it a version code for package updates.");
+
                 if (info.author == null)
                     detectedWarnings.add(new NModWarning("NMod author is not found in the manifest."));
                 if (info.author_email == null)
-                    detectedWarnings.add(new NModWarning("NMod author is not found in the manifest."));
+                    detectedWarnings.add(new NModWarning("NMod author email is not found in the manifest."));
                 if (info.icon == null)
                     detectedWarnings.add(new NModWarning("This nmod doesn't have any icon."));
                 if (info.banner == null)
                     detectedWarnings.add(new NModWarning("This nmod doesn't have any banner"));
-                if (info.i18n == null)
-                    detectedWarnings.add(new NModWarning("This nmod doesn't support language internationalization."));
                 for (int i = 0; i < info.game_supports.length; ++i) {
                     NModJsonBean.GameSupportData gameSupportData = info.game_supports[i];
                     String ordinal = i % 10 == 1 ? "st" : (i % 10 == 2 ? "nd" : (i % 10 == 3 ? "rd" : "th"));
                     if (gameSupportData.name == null)
-                        throw new NModException("The " + i + ordinal + " game support has no valid name");
+                        throw new NModException("The " + i + ordinal + " game support has no valid name.");
                     if (gameSupportData.target_game_versions == null)
                         throw new NModException("The " + i + ordinal + " game support has no valid supported game version names.");
                     for (String versionName : gameSupportData.target_game_versions) {
@@ -94,7 +93,6 @@ public class NModPackage {
                                 throw new NModException("The " + i + ordinal + " game support has a invalid native library name.");
                         }
                     }
-
 
                     if (gameSupportData.text_overrides != null) {
                         for (NModJsonBean.TextOverrideData textOverrideData : gameSupportData.text_overrides) {

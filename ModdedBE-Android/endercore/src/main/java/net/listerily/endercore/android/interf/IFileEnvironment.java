@@ -18,4 +18,6 @@ public interface IFileEnvironment {
     String getRedirectedGameDir();
 
     String getCodeCacheDirPathForDexOpt();
+
+    String getCodeCacheDirPathForNMods();
 }

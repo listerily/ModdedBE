@@ -27,11 +27,6 @@ public final class NModJsonBean {
         public String main = null;
     }
 
-    public static final class I18nData {
-        public String path = null;
-        public String locale = null;
-    }
-
     public static final class GameSupportData {
         public TextOverrideData[] text_overrides = null;
         public JsonOverrideData[] json_overrides = null;
@@ -52,7 +47,6 @@ public final class NModJsonBean {
         public String change_log = null;
         public String icon = null;
         public String banner = null;
-        public I18nData[] i18n = null;
     }
 
     public static final class NModManifest {
