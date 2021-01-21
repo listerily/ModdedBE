@@ -15,7 +15,7 @@ public final class OptionsManager {
     public OptionsManager(EnderCore core) throws IOException {
         this.optionsData = core.getOptionsData();
         this.optionsJsonBean = new Gson().fromJson(optionsData.getJSONAsString(new Gson().toJson(new OptionsJsonBean())), OptionsJsonBean.class);
-        if(optionsJsonBean == null)
+        if (optionsJsonBean == null)
             optionsJsonBean = new OptionsJsonBean();
         saveDataToFile();
     }
@@ -57,7 +57,7 @@ public final class OptionsManager {
         }
         NModOptionsElement[] newArray = new NModOptionsElement[newArrayList.size()];
         int j = 0;
-        for(NModOptionsElement element : newArrayList){
+        for (NModOptionsElement element : newArrayList) {
             newArray[j++] = element;
         }
         optionsJsonBean.installed_nmods = newArray;

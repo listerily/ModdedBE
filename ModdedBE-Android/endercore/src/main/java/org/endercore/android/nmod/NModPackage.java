@@ -23,6 +23,7 @@ public class NModPackage {
     private final ArrayList<NModWarning> detectedWarnings;
     private final NModJsonBean.PackageManifest manifest;
     private final ZipFile zipFile;
+
     public NModPackage(File path) throws NModException {
         try {
             packagePath = path;
@@ -42,10 +43,10 @@ public class NModPackage {
                     throw new NModException("Manifest: nmod_manifest.json read failed.Please check if there is any syntax error.");
                 if (manifest.uuid == null)
                     throw new NModException("UUID isn't allocated.Please allocate an UUID for this NMod in manifest.");
-                try{
+                try {
                     UUID uuid = UUID.fromString(manifest.uuid);
-                } catch (IllegalArgumentException illegalArgumentException){
-                    throw new NModException("Invalid uuid [=" + manifest.uuid + "].",illegalArgumentException);
+                } catch (IllegalArgumentException illegalArgumentException) {
+                    throw new NModException("Invalid uuid [=" + manifest.uuid + "].", illegalArgumentException);
                 }
                 if (manifest.min_sdk_version == -1)
                     throw new NModException("Min sdk version [tag=min_sdk_version] isn't assigned in manifest.");
@@ -75,9 +76,9 @@ public class NModPackage {
                 for (int i = 0; i < manifest.game_supports.length; ++i) {
                     NModJsonBean.GameSupportData gameSupportData = manifest.game_supports[i];
                     String ordinal = i % 10 == 1 ? "st" : (i % 10 == 2 ? "nd" : (i % 10 == 3 ? "rd" : "th"));
-                    if(gameSupportData.platform == null)
+                    if (gameSupportData.platform == null)
                         throw new NModException("The " + i + ordinal + " game support has no platform.");
-                    if(!gameSupportData.platform.equals(NMod.NMOD_PLATFORM))
+                    if (!gameSupportData.platform.equals(NMod.NMOD_PLATFORM))
                         continue;
                     if (gameSupportData.name == null)
                         throw new NModException("The " + i + ordinal + " game support has no valid name.");
@@ -123,13 +124,13 @@ public class NModPackage {
                     }
                 }
 
-                if(manifest.icon != null){
-                    if(zipFile.getEntry(manifest.icon) == null)
+                if (manifest.icon != null) {
+                    if (zipFile.getEntry(manifest.icon) == null)
                         throw new NModException("The icon of the nmod is not found.Path: " + manifest.icon + " .");
                 }
 
-                if(manifest.banner != null){
-                    if(zipFile.getEntry(manifest.banner) == null)
+                if (manifest.banner != null) {
+                    if (zipFile.getEntry(manifest.banner) == null)
                         throw new NModException("The banner of the nmod is not found.Path: " + manifest.banner + " .");
                 }
             } catch (IOException e) {

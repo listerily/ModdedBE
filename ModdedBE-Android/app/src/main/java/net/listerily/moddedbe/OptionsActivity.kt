@@ -46,6 +46,7 @@ class OptionsActivity : AppCompatActivity() {
     fun onManageNModsClicked() {
         startActivity(Intent(this, ManageNModsActivity::class.java))
     }
+
     fun onInstallNModsClicked() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "*/*"
@@ -53,9 +54,11 @@ class OptionsActivity : AppCompatActivity() {
         intent.addCategory(Intent.CATEGORY_OPENABLE)
         startActivityForResult(Intent.createChooser(intent, ""), CODE_PICK_NMOD)
     }
+
     fun onInfoClicked() {
         startActivity(Intent(this, AboutUsActivity::class.java))
     }
+
     class OptionsFragment : PreferenceFragmentCompat() {
         private lateinit var listener: SharedPreferences.OnSharedPreferenceChangeListener
 
@@ -105,17 +108,17 @@ class OptionsActivity : AppCompatActivity() {
         }
     }
 
-    private var nmodPackage : NModPackage? = null
-    private fun onNModPackagePicked(uri : Uri){
+    private var nmodPackage: NModPackage? = null
+    private fun onNModPackagePicked(uri: Uri) {
         object : Thread() {
             override fun run() {
                 super.run()
                 val inputStream = contentResolver.openInputStream(uri)
-                val copiedFile = File(EnderCore.getInstance().fileEnvironment.codeCacheDirPathForNMods,"package.nmod")
+                val copiedFile = File(EnderCore.getInstance().fileEnvironment.codeCacheDirPathForNMods, "package.nmod")
                 FileUtils.copy(inputStream, copiedFile)
-                try{
+                try {
                     nmodPackage = NModPackage(copiedFile)
-                } catch (nmodException: NModException){
+                } catch (nmodException: NModException) {
                     val msg = Message()
                     msg.what = MSG_READ_FAILED
                     msg.obj = nmodException
@@ -130,14 +133,14 @@ class OptionsActivity : AppCompatActivity() {
         }.start()
     }
 
-    private fun onDialogInstallClicked(){
+    private fun onDialogInstallClicked() {
         object : Thread() {
             override fun run() {
                 super.run()
-                val nmod : NMod?
-                try{
+                val nmod: NMod?
+                try {
                     nmod = EnderCore.instance.nModManager.installNMod(nmodPackage)
-                } catch (nmodException: NModException){
+                } catch (nmodException: NModException) {
                     val msg = Message()
                     msg.what = MSG_INSTALL_FAILED
                     msg.obj = nmodException
@@ -155,7 +158,7 @@ class OptionsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == CODE_PICK_NMOD && resultCode == RESULT_OK){
+        if (requestCode == CODE_PICK_NMOD && resultCode == RESULT_OK) {
             if (data != null) {
                 data.data?.let { onNModPackagePicked(it) }
             }
@@ -170,6 +173,7 @@ class OptionsActivity : AppCompatActivity() {
     }
 
     private val handler = MyHandler(this)
+
     private class MyHandler(private val context: OptionsActivity) : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
@@ -184,7 +188,7 @@ class OptionsActivity : AppCompatActivity() {
                         run {
                             dialogInterface.dismiss()
                         }
-                    }.setNegativeButton(android.R.string.copy){ _: DialogInterface, _: Int ->
+                    }.setNegativeButton(android.R.string.copy) { _: DialogInterface, _: Int ->
                         run {
                             val cm = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                             val mClipData = ClipData.newPlainText("NMod Package Read Failed Message", writer.toString())
@@ -196,13 +200,13 @@ class OptionsActivity : AppCompatActivity() {
                 MSG_READ_SUCCEED -> {
                     val nmodPackage = msg.obj as NModPackage
                     var icon: Drawable? = null
-                    if(nmodPackage.packageManifest.icon != null)
-                        try{
-                            icon = Drawable.createFromStream(nmodPackage.openInPackage(nmodPackage.packageManifest.icon),nmodPackage.packageManifest.icon)
-                        } catch (ignored : FileNotFoundException){
+                    if (nmodPackage.packageManifest.icon != null)
+                        try {
+                            icon = Drawable.createFromStream(nmodPackage.openInPackage(nmodPackage.packageManifest.icon), nmodPackage.packageManifest.icon)
+                        } catch (ignored: FileNotFoundException) {
                         }
-                    val dialogBuilder = AlertDialog.Builder(context).setCancelable(false).setTitle(nmodPackage.name).setMessage(context.getString(R.string.app_nmod_install_message,nmodPackage.name))
-                    if(icon != null)
+                    val dialogBuilder = AlertDialog.Builder(context).setCancelable(false).setTitle(nmodPackage.name).setMessage(context.getString(R.string.app_nmod_install_message, nmodPackage.name))
+                    if (icon != null)
                         dialogBuilder.setIcon(icon)
                     dialogBuilder.setPositiveButton(R.string.app_nmod_install) { dialogInterface: DialogInterface, _: Int ->
                         run {
@@ -220,13 +224,13 @@ class OptionsActivity : AppCompatActivity() {
                 MSG_INSTALL_SUCCEED -> {
                     val nmod = msg.obj as NMod
                     var icon: Drawable? = null
-                    if(nmod.packageManifest.icon != null)
-                        try{
-                            icon = Drawable.createFromStream(nmod.openInFiles(nmod.packageManifest.icon),nmod.packageManifest.icon)
-                        } catch (ignored : FileNotFoundException){
+                    if (nmod.packageManifest.icon != null)
+                        try {
+                            icon = Drawable.createFromStream(nmod.openInFiles(nmod.packageManifest.icon), nmod.packageManifest.icon)
+                        } catch (ignored: FileNotFoundException) {
                         }
                     val dialogBuilder = AlertDialog.Builder(context).setCancelable(false).setTitle(R.string.app_nmod_install_succeed_title).setMessage(R.string.app_nmod_install_succeed_message)
-                    if(icon != null)
+                    if (icon != null)
                         dialogBuilder.setIcon(icon)
                     dialogBuilder.setPositiveButton(android.R.string.ok) { dialogInterface: DialogInterface, _: Int ->
                         run {
@@ -245,7 +249,7 @@ class OptionsActivity : AppCompatActivity() {
                         run {
                             dialogInterface.dismiss()
                         }
-                    }.setNegativeButton(android.R.string.copy){ _: DialogInterface, _: Int ->
+                    }.setNegativeButton(android.R.string.copy) { _: DialogInterface, _: Int ->
                         run {
                             val cm = context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
                             val mClipData = ClipData.newPlainText("NMod Install Failed Message", writer.toString())

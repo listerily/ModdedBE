@@ -46,9 +46,8 @@ public final class Patcher {
     }
 
     public static void patchNativeLibraryDir(ClassLoader classLoader, String nativeLibraryPath) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
-        PathClassLoader pathClassLoader = (PathClassLoader)classLoader;
-        if(Build.VERSION.SDK_INT <= 22)
-        {
+        PathClassLoader pathClassLoader = (PathClassLoader) classLoader;
+        if (Build.VERSION.SDK_INT <= 22) {
             Field fieldPathList = Class.forName("dalvik.system.BaseDexClassLoader").getDeclaredField("pathList");
             fieldPathList.setAccessible(true);
             Object pathList = fieldPathList.get(pathClassLoader);
@@ -61,9 +60,7 @@ public final class Patcher {
                 Array.set(newFiles, i, files[i - 1]);
             }
             nativeLibraryDirectories.set(pathList, newFiles);
-        }
-        else if(Build.VERSION.SDK_INT <= 25)
-        {
+        } else if (Build.VERSION.SDK_INT <= 25) {
             Class<?> classBaseDexClassLoader = Class.forName("dalvik.system.BaseDexClassLoader");
             Field fieldPathList = classBaseDexClassLoader.getDeclaredField("pathList");
             fieldPathList.setAccessible(true);
@@ -71,7 +68,7 @@ public final class Patcher {
 
             Class<?> nativeLibraryElementClass = Class.forName("dalvik.system.DexPathList$Element");
             Constructor<?> element = null;
-            element = nativeLibraryElementClass.getConstructor(File.class,boolean.class,File.class, DexFile.class);
+            element = nativeLibraryElementClass.getConstructor(File.class, boolean.class, File.class, DexFile.class);
             Field systemNativeLibraryDirectories = pathList.getClass()
                     .getDeclaredField("systemNativeLibraryDirectories");
             Field nativeLibraryDirectories = pathList.getClass().getDeclaredField("nativeLibraryDirectories");
@@ -91,16 +88,14 @@ public final class Patcher {
             nativeLibraryDirectories.set(pathList, nativeFiles);
             if (element != null) {
                 element.setAccessible(true);
-                Object newInstance = element.newInstance(new File(nativeLibraryPath),true,null,null);
+                Object newInstance = element.newInstance(new File(nativeLibraryPath), true, null, null);
                 Array.set(newElementFiles, 0, newInstance);
                 for (int i = 1; i < elementFiles.length + 1; i++) {
                     Array.set(newElementFiles, i, elementFiles[i - 1]);
                 }
                 nativeLibraryPathElements.set(pathList, newElementFiles);
             }
-        }
-        else
-        {
+        } else {
             Class<?> classBaseDexClassLoader = Class.forName("dalvik.system.BaseDexClassLoader");
             Field fieldPathList = classBaseDexClassLoader.getDeclaredField("pathList");
             fieldPathList.setAccessible(true);

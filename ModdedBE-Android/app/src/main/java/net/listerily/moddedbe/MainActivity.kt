@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
-    fun onMenuClicked(view :View) {
+    fun onMenuClicked(view: View) {
         startActivity(Intent(this, OptionsActivity::class.java))
     }
 }

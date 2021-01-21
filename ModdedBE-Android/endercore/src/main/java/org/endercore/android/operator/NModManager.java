@@ -19,14 +19,14 @@ public final class NModManager {
     private final EnderCore core;
     private final ArrayList<NMod> allNMods;
 
-    public NModManager(EnderCore core){
+    public NModManager(EnderCore core) {
         this.core = core;
         allNMods = new ArrayList<>();
         final OptionsManager.NModOptionsElement[] installedNMods = core.getOptionsManager().getInstalledNMods();
-        for(OptionsManager.NModOptionsElement nmodElement : installedNMods){
-            try{
+        for (OptionsManager.NModOptionsElement nmodElement : installedNMods) {
+            try {
                 allNMods.add(loadNModFromInstalled(nmodElement.uuid));
-            } catch (NModException e){
+            } catch (NModException e) {
                 e.printStackTrace();
                 core.getOptionsManager().removeNModElement(nmodElement.uuid);
             }
@@ -35,7 +35,7 @@ public final class NModManager {
 
     public NMod installNMod(NModPackage nmodPackage) throws NModException {
         try {
-            if(nmodPackage == null)
+            if (nmodPackage == null)
                 throw new NullPointerException("nmodPackage");
 
             //Check installation availability
@@ -67,12 +67,11 @@ public final class NModManager {
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
             while (entries.hasMoreElements()) {
                 ZipEntry thisEntry = entries.nextElement();
-                if(thisEntry.isDirectory()){
-                    boolean mkdirsResult2 = new File(installationDir,thisEntry.getName()).mkdirs();
-                    if(!mkdirsResult2)
+                if (thisEntry.isDirectory()) {
+                    boolean mkdirsResult2 = new File(installationDir, thisEntry.getName()).mkdirs();
+                    if (!mkdirsResult2)
                         throw new NModException("Failed to mkdirs: " + installationDir.getAbsolutePath() + File.separator + thisEntry.getName());
-                }
-                else
+                } else
                     FileUtils.copy(zipFile.getInputStream(thisEntry), new File(installationDir, thisEntry.getName()));
             }
             NMod result = new NMod(core, nmodPackage.getUUID());
@@ -80,7 +79,7 @@ public final class NModManager {
             //Modify options
             core.getOptionsManager().addNewNModElement(nmodPackage.getUUID(), true);
             core.getOptionsManager().saveDataToFile();
-            if(!isUpdateInstall)
+            if (!isUpdateInstall)
                 allNMods.add(result);
             return result;
         } catch (IOException e) {
@@ -99,26 +98,25 @@ public final class NModManager {
         File installationPath = new File(fileEnvironment.getNModDirPathFor(uuid));
         FileUtils.removeFiles(installationPath);
         core.getOptionsManager().removeNModElement(uuid);
-        for(NMod nmod : allNMods)
-        {
-            if(nmod.getUUID().equals(uuid))
+        for (NMod nmod : allNMods) {
+            if (nmod.getUUID().equals(uuid))
                 allNMods.remove(nmod);
         }
     }
 
     public boolean hasNewerVersionInstalled(NModPackage newPackage) {
         NMod nmod;
-        try{
+        try {
             nmod = loadNModFromInstalled(newPackage.getUUID());
-        } catch (NModException ignored){
+        } catch (NModException ignored) {
             return false;
         }
         return nmod.getVersionCode() > newPackage.getVersionCode();
     }
 
-    public boolean isNModExists(String uuid){
-        for(NMod nmod : allNMods){
-            if(nmod.getUUID().equals(uuid))
+    public boolean isNModExists(String uuid) {
+        for (NMod nmod : allNMods) {
+            if (nmod.getUUID().equals(uuid))
                 return true;
         }
         return false;
@@ -132,24 +130,24 @@ public final class NModManager {
         return isSDKSupported(nmodPackage) && !hasNewerVersionInstalled(nmodPackage);
     }
 
-    public boolean isNModEnabled(NMod nmod){
+    public boolean isNModEnabled(NMod nmod) {
         return core.getOptionsManager().isNModElementEnabled(nmod.getUUID());
     }
 
-    public void setNModEnabled(NMod nmod, boolean enabled){
+    public void setNModEnabled(NMod nmod, boolean enabled) {
         core.getOptionsManager().setNModElementEnabled(nmod.getUUID(), enabled);
     }
 
-    public ArrayList<NMod> getEnabledNMods(){
+    public ArrayList<NMod> getEnabledNMods() {
         ArrayList<NMod> result = new ArrayList<>();
-        for(NMod nmod: allNMods){
-            if(isNModEnabled(nmod))
+        for (NMod nmod : allNMods) {
+            if (isNModEnabled(nmod))
                 result.add(nmod);
         }
         return result;
     }
 
-    public ArrayList<NMod> getAllNMods(){
+    public ArrayList<NMod> getAllNMods() {
         return allNMods;
     }
 }

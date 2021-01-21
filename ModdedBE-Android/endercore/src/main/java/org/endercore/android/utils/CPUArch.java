@@ -23,15 +23,15 @@ public final class CPUArch {
         FileInputStream fileInputStream = new FileInputStream(file);
         byte[] elfHeader = new byte[64];
         int bytesRead = fileInputStream.read(elfHeader);
-        if(bytesRead < 52){
+        if (bytesRead < 52) {
             throw new IOException("Could not read this elf file.");
         }
         int bitIdentifier = elfHeader[0x4];
         int machineIdentifier = 0x00;
-        machineIdentifier |= (int)elfHeader[0x12] << 8;
+        machineIdentifier |= (int) elfHeader[0x12] << 8;
         machineIdentifier |= elfHeader[0x13];
 
-        switch(machineIdentifier){
+        switch (machineIdentifier) {
             case 40:
                 return ARCH_ARM_32;
             case 183:
@@ -45,9 +45,8 @@ public final class CPUArch {
         }
     }
 
-    public static String getArchName(int archId)
-    {
-        switch(archId){
+    public static String getArchName(int archId) {
+        switch (archId) {
             case ARCH_ARM_32:
                 return ARCH_NAME_ARM_32;
             case ARCH_ARM_64:
@@ -64,11 +63,11 @@ public final class CPUArch {
         return Build.SUPPORTED_ABIS;
     }
 
-    public static boolean isEnderCoreSupportedAbi(String abiName){
+    public static boolean isEnderCoreSupportedAbi(String abiName) {
         return abiName.equals(ARCH_NAME_ARM_32) || abiName.equals(ARCH_NAME_ARM_64) || abiName.equals(ARCH_NAME_X86_32) || abiName.equals(ARCH_NAME_X86_64);
     }
 
-    public static boolean is64BitArch(String abiName){
+    public static boolean is64BitArch(String abiName) {
         return abiName.equals(ARCH_NAME_ARM_64) || abiName.equals(ARCH_NAME_X86_64);
     }
 }

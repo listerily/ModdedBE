@@ -61,7 +61,7 @@ public final class EnderCore {
             launcher = new Launcher(this);
         } catch (IOException ioException) {
             initialized = false;
-            throw new RuntimeException("Initialize failed.",ioException);
+            throw new RuntimeException("Initialize failed.", ioException);
         }
     }
 

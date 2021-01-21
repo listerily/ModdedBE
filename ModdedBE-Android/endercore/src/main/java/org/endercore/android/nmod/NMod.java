@@ -59,7 +59,7 @@ public class NMod {
     }
 
     public File getFileInFiles(String path) {
-        return new File(installationDir,path);
+        return new File(installationDir, path);
     }
 
     public InputStream openInPlatformDir(String path) throws FileNotFoundException {
@@ -67,18 +67,18 @@ public class NMod {
     }
 
     public File getFileInPlatformDir(String path) {
-        return new File(installationDir,NMod.NMOD_PLATFORM + File.separator + path);
+        return new File(installationDir, NMod.NMOD_PLATFORM + File.separator + path);
     }
 
     public InputStream openInGameSupportDir(String path, String gameSupportName) throws FileNotFoundException {
-        return new FileInputStream(getFileInGameSupportDir(path,gameSupportName));
+        return new FileInputStream(getFileInGameSupportDir(path, gameSupportName));
     }
 
     public File getFileInGameSupportDir(String path, String gameSupportName) {
-        return new File(installationDir,NMod.NMOD_PLATFORM + File.separator + gameSupportName + File.separator + path);
+        return new File(installationDir, NMod.NMOD_PLATFORM + File.separator + gameSupportName + File.separator + path);
     }
 
     public File getGameSupportDir(String gameSupportName) {
-        return new File(installationDir,NMod.NMOD_PLATFORM + File.separator + gameSupportName);
+        return new File(installationDir, NMod.NMOD_PLATFORM + File.separator + gameSupportName);
     }
 }

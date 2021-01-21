@@ -31,17 +31,16 @@ class ManageNModsActivity : AppCompatActivity() {
         recyclerView.adapter = NModsAdapter(EnderCore.instance.nModManager, this)
     }
 
-    private class NModViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-    {
+    private class NModViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var rootView = itemView
     }
 
-    private class NModsAdapter(mgr: NModManager, ctx : Context) : RecyclerView.Adapter<NModViewHolder>() {
-        private val allNMods : ArrayList<NMod> = mgr.allNMods
+    private class NModsAdapter(mgr: NModManager, ctx: Context) : RecyclerView.Adapter<NModViewHolder>() {
+        private val allNMods: ArrayList<NMod> = mgr.allNMods
         private val context = ctx
         private val manager = mgr
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NModViewHolder {
-            val viewItem = LayoutInflater.from(context).inflate( R.layout.recycler_nmod_item, parent, false)
+            val viewItem = LayoutInflater.from(context).inflate(R.layout.recycler_nmod_item, parent, false)
             return NModViewHolder(viewItem)
         }
 
@@ -58,30 +57,30 @@ class ManageNModsActivity : AppCompatActivity() {
 
             val imageViewIcon = view.findViewById<ImageView>(R.id.imageViewNModIcon)
             var icon: Drawable? = null
-            if(nmod.packageManifest.icon != null)
-                try{
-                    icon = Drawable.createFromStream(nmod.openInFiles(nmod.packageManifest.icon),nmod.packageManifest.icon)
-                } catch (ignored : FileNotFoundException){
+            if (nmod.packageManifest.icon != null)
+                try {
+                    icon = Drawable.createFromStream(nmod.openInFiles(nmod.packageManifest.icon), nmod.packageManifest.icon)
+                } catch (ignored: FileNotFoundException) {
                 }
-            if(icon == null)
+            if (icon == null)
                 imageViewIcon.visibility = View.INVISIBLE
-            else
-            {
+            else {
                 imageViewIcon.visibility = View.VISIBLE
                 imageViewIcon.setImageDrawable(icon)
             }
 
             val buttonRemove = view.findViewById<Button>(R.id.buttonRemoveNMod)
-            buttonRemove.setOnClickListener{
-                run{
+            buttonRemove.setOnClickListener {
+                run {
                     manager.uninstallNMod(nmod.uuid)
                     notifyItemRemoved(position)
-            }}
+                }
+            }
 
             val switchEnabled = view.findViewById<SwitchCompat>(R.id.switchNModEnabled)
             switchEnabled.isChecked = manager.isNModEnabled(nmod)
-            switchEnabled.setOnCheckedChangeListener{ _: CompoundButton, checked: Boolean ->
-                run{
+            switchEnabled.setOnCheckedChangeListener { _: CompoundButton, checked: Boolean ->
+                run {
                     manager.setNModEnabled(nmod, checked)
                 }
             }

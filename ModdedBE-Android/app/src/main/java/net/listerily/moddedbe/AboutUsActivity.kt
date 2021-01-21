@@ -16,25 +16,25 @@ class AboutUsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    fun onSourcesClicked(view: View){
+    fun onSourcesClicked(view: View) {
         val uri: Uri = Uri.parse("https://github.com/listerily/ModdedBE")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
     }
 
-    fun onIssuesClicked(view: View){
+    fun onIssuesClicked(view: View) {
         val uri: Uri = Uri.parse("https://github.com/listerily/ModdedBE/issues")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
     }
 
-    fun onUpdatesClicked(view: View){
+    fun onUpdatesClicked(view: View) {
         val uri: Uri = Uri.parse("https://github.com/listerily/ModdedBE/releases")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
     }
 
-    fun onWikiClicked(view: View){
+    fun onWikiClicked(view: View) {
         val uri: Uri = Uri.parse("https://github.com/listerily/ModdedBE/wiki")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)

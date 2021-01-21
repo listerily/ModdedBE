@@ -5,20 +5,19 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public final class TextOverrider extends BaseOverrider{
+public final class TextOverrider extends BaseOverrider {
 
     public static final int MODE_REPLACE = 1;
     public static final int MODE_APPEND = 2;
     public static final int MODE_PREPEND = 3;
 
-    public TextOverrider(File overridePath)
-    {
+    public TextOverrider(File overridePath) {
         super(overridePath);
     }
 
     @Override
     public void performOverride(File root, String name, String mode) throws IOException {
-        File sourceFile = new File(root,name);
+        File sourceFile = new File(root, name);
         FileInputStream inputStream = new FileInputStream(sourceFile);
         byte[] bufferAll = new byte[inputStream.available()];
         int sizeRead = inputStream.read(bufferAll);
