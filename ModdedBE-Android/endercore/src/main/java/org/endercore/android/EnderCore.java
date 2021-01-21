@@ -1,15 +1,15 @@
-package org.endercore.android.exception;
+package org.endercore.android;
 
 import android.content.Context;
 
-import org.endercore.android.exception.interf.IFileEnvironment;
-import org.endercore.android.exception.interf.IOptionsData;
-import org.endercore.android.exception.interf.implemented.FileEnvironment;
-import org.endercore.android.exception.interf.implemented.OptionsData;
-import org.endercore.android.exception.operator.GamePackageManager;
-import org.endercore.android.exception.operator.Launcher;
-import org.endercore.android.exception.operator.NModManager;
-import org.endercore.android.exception.operator.OptionsManager;
+import org.endercore.android.interf.IFileEnvironment;
+import org.endercore.android.interf.IOptionsData;
+import org.endercore.android.interf.implemented.FileEnvironment;
+import org.endercore.android.interf.implemented.OptionsData;
+import org.endercore.android.operator.GamePackageManager;
+import org.endercore.android.operator.Launcher;
+import org.endercore.android.operator.NModManager;
+import org.endercore.android.operator.OptionsManager;
 
 import java.io.IOException;
 

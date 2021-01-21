@@ -1,6 +1,6 @@
-package org.endercore.android.exception.nmod.overrider;
+package org.endercore.android.nmod.overrider;
 
-import org.endercore.android.exception.utils.FileUtils;
+import org.endercore.android.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

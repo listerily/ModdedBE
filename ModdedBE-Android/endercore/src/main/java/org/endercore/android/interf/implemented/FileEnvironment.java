@@ -1,8 +1,8 @@
-package org.endercore.android.exception.interf.implemented;
+package org.endercore.android.interf.implemented;
 
 import android.content.Context;
 
-import org.endercore.android.exception.interf.IFileEnvironment;
+import org.endercore.android.interf.IFileEnvironment;
 
 import java.io.File;
 

@@ -1,8 +1,8 @@
-package org.endercore.android.exception.interf.implemented;
+package org.endercore.android.interf.implemented;
 
-import org.endercore.android.exception.interf.IFileEnvironment;
-import org.endercore.android.exception.interf.IOptionsData;
-import org.endercore.android.exception.utils.FileUtils;
+import org.endercore.android.interf.IFileEnvironment;
+import org.endercore.android.interf.IOptionsData;
+import org.endercore.android.utils.FileUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

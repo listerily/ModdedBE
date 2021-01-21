@@ -1,11 +1,12 @@
-package org.endercore.android.exception.operator;
+package org.endercore.android.operator;
 
 import com.google.gson.Gson;
 
-import org.endercore.android.exception.EnderCore;
-import org.endercore.android.exception.interf.IOptionsData;
+import org.endercore.android.EnderCore;
+import org.endercore.android.interf.IOptionsData;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public final class OptionsManager {
     private OptionsJsonBean optionsJsonBean;
@@ -48,11 +49,16 @@ public final class OptionsManager {
     }
 
     public void removeNModElement(String uuid) {
-        NModOptionsElement[] newArray = new NModOptionsElement[optionsJsonBean.installed_nmods.length - 1];
-        for (int i = 0, j = 0; i < optionsJsonBean.installed_nmods.length; ++i) {
+        ArrayList<NModOptionsElement> newArrayList = new ArrayList<>();
+        for (int i = 0; i < optionsJsonBean.installed_nmods.length; ++i) {
             NModOptionsElement element = optionsJsonBean.installed_nmods[i];
             if (!element.uuid.equals(uuid))
-                newArray[j++] = element;
+                newArrayList.add(element);
+        }
+        NModOptionsElement[] newArray = new NModOptionsElement[newArrayList.size()];
+        int j = 0;
+        for(NModOptionsElement element : newArrayList){
+            newArray[j++] = element;
         }
         optionsJsonBean.installed_nmods = newArray;
     }
@@ -63,14 +69,14 @@ public final class OptionsManager {
                 optionsJsonBean.installed_nmods[i].enabled = enabled;
     }
 
-    public boolean isNModEnabled(String uuid) {
+    public boolean isNModElementEnabled(String uuid) {
         for (int i = 0; i < optionsJsonBean.installed_nmods.length; ++i)
             if (optionsJsonBean.installed_nmods[i].uuid.equals(uuid))
                 return optionsJsonBean.installed_nmods[i].enabled;
         return false;
     }
 
-    public boolean isNModExists(String uuid) {
+    public boolean isNModElementExists(String uuid) {
         for (int i = 0; i < optionsJsonBean.installed_nmods.length; ++i)
             if (optionsJsonBean.installed_nmods[i].uuid.equals(uuid))
                 return true;

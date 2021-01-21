@@ -1,4 +1,4 @@
-package org.endercore.android.exception.operator;
+package org.endercore.android.operator;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

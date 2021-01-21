@@ -1,4 +1,4 @@
-package org.endercore.android.exception.utils;
+package org.endercore.android.utils;
 
 import android.content.res.AssetManager;
 import android.os.Build;

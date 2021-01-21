@@ -52,4 +52,6 @@
     <string name="app_nmod_install_failed_message">Please read the exception message:\n</string>
     <string name="app_nmod_install_succeed_message">Enjoy your NMod!</string>
     <string name="app_nmod_install_failed_title">Installing Failed</string>
+    <string name="app_nmod_icon">The Icon of the NMod.</string>
+    <string name="app_nmod_remove">Remove</string>
 </resources>

@@ -1,6 +1,6 @@
-package org.endercore.android.exception.interf;
+package org.endercore.android.interf;
 
-import org.endercore.android.exception.nmod.NMod;
+import org.endercore.android.nmod.NMod;
 
 public interface IInitializationListener {
     void onStart();

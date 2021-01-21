@@ -12,11 +12,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import org.endercore.android.exception.EnderCore
+import org.endercore.android.EnderCore
 import org.endercore.android.exception.NModException
-import org.endercore.android.exception.nmod.NMod
-import org.endercore.android.exception.nmod.NModPackage
-import org.endercore.android.exception.utils.FileUtils
+import org.endercore.android.nmod.NMod
+import org.endercore.android.nmod.NModPackage
+import org.endercore.android.utils.FileUtils
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.PrintWriter

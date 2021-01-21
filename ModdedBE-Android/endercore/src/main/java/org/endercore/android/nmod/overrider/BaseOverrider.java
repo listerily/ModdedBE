@@ -1,4 +1,4 @@
-package org.endercore.android.exception.nmod.overrider;
+package org.endercore.android.nmod.overrider;
 
 import java.io.File;
 

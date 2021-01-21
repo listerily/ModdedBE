@@ -1,7 +1,7 @@
-package org.endercore.android.exception.interf.implemented;
+package org.endercore.android.interf.implemented;
 
-import org.endercore.android.exception.interf.IInitializationListener;
-import org.endercore.android.exception.nmod.NMod;
+import org.endercore.android.interf.IInitializationListener;
+import org.endercore.android.nmod.NMod;
 
 public class InitializationListener implements IInitializationListener {
 

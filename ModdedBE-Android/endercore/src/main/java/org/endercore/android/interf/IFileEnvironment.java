@@ -1,4 +1,4 @@
-package org.endercore.android.exception.interf;
+package org.endercore.android.interf;
 
 public interface IFileEnvironment {
     String getCodeCacheDirPath();

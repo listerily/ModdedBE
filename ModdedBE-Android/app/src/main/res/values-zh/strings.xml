@@ -52,4 +52,6 @@
     <string name="app_nmod_install_failed_message">请阅读错误信息：\n</string>
     <string name="app_nmod_install_succeed_message">现在可以开始使用了！</string>
     <string name="app_nmod_install_failed_title">安装失败。</string>
+    <string name="app_nmod_remove">移除</string>
+    <string name="app_nmod_icon">NMod的图标</string>
 </resources>

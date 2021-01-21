@@ -1,12 +1,12 @@
-package org.endercore.android.exception.operator;
+package org.endercore.android.operator;
 
-import org.endercore.android.exception.EnderCore;
+import org.endercore.android.EnderCore;
 import org.endercore.android.exception.NModException;
-import org.endercore.android.exception.interf.IFileEnvironment;
-import org.endercore.android.exception.nmod.NMod;
-import org.endercore.android.exception.nmod.NModPackage;
-import org.endercore.android.exception.utils.FileUtils;
-import org.endercore.android.exception.utils.NModJsonBean;
+import org.endercore.android.interf.IFileEnvironment;
+import org.endercore.android.nmod.NMod;
+import org.endercore.android.nmod.NModPackage;
+import org.endercore.android.utils.FileUtils;
+import org.endercore.android.utils.NModJsonBean;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,16 +94,19 @@ public final class NModManager {
         return new NMod(core, uuid);
     }
 
-    public void uninstallNMod(String uuid) throws NModException {
-        if (core.getOptionsManager().isNModEnabled(uuid))
-            throw new NModException("This nmod does not exists, uuid = " + uuid + ".");
+    public void uninstallNMod(String uuid) {
         IFileEnvironment fileEnvironment = core.getFileEnvironment();
         File installationPath = new File(fileEnvironment.getNModDirPathFor(uuid));
         FileUtils.removeFiles(installationPath);
         core.getOptionsManager().removeNModElement(uuid);
+        for(NMod nmod : allNMods)
+        {
+            if(nmod.getUUID().equals(uuid))
+                allNMods.remove(nmod);
+        }
     }
 
-    public boolean hasNewerVersionInstalled(NModPackage newPackage) throws NModException {
+    public boolean hasNewerVersionInstalled(NModPackage newPackage) {
         NMod nmod;
         try{
             nmod = loadNModFromInstalled(newPackage.getUUID());
@@ -126,16 +129,15 @@ public final class NModManager {
     }
 
     public boolean isValidPackage(NModPackage nmodPackage) {
-        try {
-            return isSDKSupported(nmodPackage) && !hasNewerVersionInstalled(nmodPackage);
-        } catch (NModException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return isSDKSupported(nmodPackage) && !hasNewerVersionInstalled(nmodPackage);
     }
 
     public boolean isNModEnabled(NMod nmod){
-        return core.getOptionsManager().isNModEnabled(nmod.getUUID());
+        return core.getOptionsManager().isNModElementEnabled(nmod.getUUID());
+    }
+
+    public void setNModEnabled(NMod nmod, boolean enabled){
+        core.getOptionsManager().setNModElementEnabled(nmod.getUUID(), enabled);
     }
 
     public ArrayList<NMod> getEnabledNMods(){
@@ -145,5 +147,9 @@ public final class NModManager {
                 result.add(nmod);
         }
         return result;
+    }
+
+    public ArrayList<NMod> getAllNMods(){
+        return allNMods;
     }
 }

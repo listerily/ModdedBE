@@ -1,13 +1,13 @@
-package org.endercore.android.exception.nmod;
+package org.endercore.android.nmod;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
-import org.endercore.android.exception.EnderCore;
+import org.endercore.android.EnderCore;
 import org.endercore.android.exception.NModException;
 import org.endercore.android.exception.NModWarning;
-import org.endercore.android.exception.utils.NModJsonBean;
+import org.endercore.android.utils.NModJsonBean;
 
 import java.io.File;
 import java.io.IOException;

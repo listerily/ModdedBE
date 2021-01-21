@@ -1,18 +1,18 @@
-package org.endercore.android.exception.operator;
+package org.endercore.android.operator;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import org.endercore.android.exception.EnderCore;
+import org.endercore.android.EnderCore;
 import org.endercore.android.exception.LauncherException;
-import org.endercore.android.exception.interf.IFileEnvironment;
-import org.endercore.android.exception.interf.IInitializationListener;
-import org.endercore.android.exception.interf.implemented.InitializationListener;
-import org.endercore.android.exception.nmod.NMod;
-import org.endercore.android.exception.utils.CPUArch;
-import org.endercore.android.exception.utils.FileUtils;
-import org.endercore.android.exception.utils.Patcher;
+import org.endercore.android.interf.IFileEnvironment;
+import org.endercore.android.interf.IInitializationListener;
+import org.endercore.android.interf.implemented.InitializationListener;
+import org.endercore.android.nmod.NMod;
+import org.endercore.android.utils.CPUArch;
+import org.endercore.android.utils.FileUtils;
+import org.endercore.android.utils.Patcher;
 
 import java.io.File;
 import java.io.IOException;
