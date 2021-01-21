@@ -1,7 +1,7 @@
 package net.listerily.moddedbe
 
 import android.app.Application
-import net.listerily.endercore.android.EnderCore
+import org.endercore.android.exception.EnderCore
 
 class MyApplication : Application() {
     override fun onCreate() {

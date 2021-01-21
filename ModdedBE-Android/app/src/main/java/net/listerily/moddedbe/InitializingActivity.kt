@@ -6,9 +6,9 @@ import android.os.Handler
 import android.os.Message
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import net.listerily.endercore.android.EnderCore
-import net.listerily.endercore.android.exception.LauncherException
-import net.listerily.endercore.android.interf.implemented.InitializationListener
+import org.endercore.android.exception.EnderCore
+import org.endercore.android.exception.LauncherException
+import org.endercore.android.exception.interf.implemented.InitializationListener
 import java.io.PrintWriter
 import java.io.StringWriter
 

@@ -38,20 +38,18 @@
     <string name="app_options_install_new_nmods">安装NMod</string>
     <string name="app_options_title_info">关于</string>
     <string name="app_options_about_us">关于我们</string>
-    <string name="app_copyright">Copyright © listerily</string>
     <string name="app_contributors">贡献者： listerily, TimScriptov, TripleCamera</string>
     <string name="app_wiki">Wiki</string>
     <string name="app_source">源码</string>
     <string name="app_issues">报告bug</string>
     <string name="app_updates">更新</string>
     <string name="app_nmod_package_open_failed_title">出错了！</string>
-    <string name="app_nmod_package_open_failed_summary">无法读取这个NMod安装包。请阅读错误信息并尝试纠正相关错误。\\n %1$s</string>
-    <string name="app_nmod_install_message_new">你想安装NMod %1$s 吗？</string>
-    <string name="app_nmod_install_message_update">你想把这个NMod更新到%1$s吗？</string>
+    <string name="app_nmod_package_open_failed_summary">无法读取这个NMod安装包。请阅读错误信息并尝试纠正相关错误。\n</string>
+    <string name="app_nmod_install_message">你想安装NMod %1$s 吗？</string>
     <string name="app_nmod_install">安装</string>
     <string name="app_nmod_cancel">取消</string>
     <string name="app_nmod_install_succeed_title">安装成功</string>
-    <string name="app_nmod_install_failed_message">请阅读错误信息：\\n%1$s</string>
+    <string name="app_nmod_install_failed_message">请阅读错误信息：\n</string>
     <string name="app_nmod_install_succeed_message">现在可以开始使用了！</string>
-    <string name="app_install_failed_title">安装失败。</string>
+    <string name="app_nmod_install_failed_title">安装失败。</string>
 </resources>

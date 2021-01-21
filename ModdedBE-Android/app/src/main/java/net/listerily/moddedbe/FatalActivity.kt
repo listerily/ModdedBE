@@ -8,9 +8,9 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import net.listerily.endercore.android.EnderCore
-import net.listerily.endercore.android.utils.CPUArch
-import net.listerily.endercore.android.utils.FileUtils
+import org.endercore.android.exception.EnderCore
+import org.endercore.android.exception.utils.CPUArch
+import org.endercore.android.exception.utils.FileUtils
 import java.io.File
 
 class FatalActivity : AppCompatActivity() {

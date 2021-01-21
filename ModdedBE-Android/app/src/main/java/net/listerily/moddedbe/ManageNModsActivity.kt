@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import net.listerily.endercore.android.nmod.NMod
+import org.endercore.android.exception.nmod.NMod
 
 class ManageNModsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
