@@ -8,5 +8,5 @@ public abstract class BaseOverrider {
         this.overridePath = overridePath;
     }
 
-    public abstract void performOverride(File root,String name,int mode) throws Exception;
+    public abstract void performOverride(File root,String name,String mode) throws Exception;
 }

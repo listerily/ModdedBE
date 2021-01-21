@@ -17,29 +17,34 @@ public final class TextOverrider extends BaseOverrider{
     }
 
     @Override
-    public void performOverride(File root, String name, int mode) throws IOException {
+    public void performOverride(File root, String name, String mode) throws IOException {
         File sourceFile = new File(root,name);
         FileInputStream inputStream = new FileInputStream(sourceFile);
         byte[] bufferAll = new byte[inputStream.available()];
         int sizeRead = inputStream.read(bufferAll);
 
-        if(mode == MODE_REPLACE){
-            FileOutputStream outputStream = new FileOutputStream(new File(overridePath,name),false);
-            outputStream.write(bufferAll);
-        }
-        else if(mode == MODE_APPEND){
-            FileOutputStream outputStream = new FileOutputStream(new File(overridePath,name), true);
-            outputStream.write(bufferAll);
-        }
-        else if(mode == MODE_PREPEND) {
-            FileInputStream inputOri = new FileInputStream(new File(overridePath,name));
+        switch (mode) {
+            case "replace": {
+                FileOutputStream outputStream = new FileOutputStream(new File(overridePath, name), false);
+                outputStream.write(bufferAll);
+                break;
+            }
+            case "append": {
+                FileOutputStream outputStream = new FileOutputStream(new File(overridePath, name), true);
+                outputStream.write(bufferAll);
+                break;
+            }
+            case "prepend": {
+                FileInputStream inputOri = new FileInputStream(new File(overridePath, name));
 
-            byte[] bufferOri = new byte[inputOri.available()];
-            int bytesReadOri = inputOri.read(bufferOri);
-            inputOri.close();
-            FileOutputStream outputStream = new FileOutputStream(new File(overridePath,name));
-            outputStream.write(bufferAll);
-            outputStream.write(bufferOri);
+                byte[] bufferOri = new byte[inputOri.available()];
+                int bytesReadOri = inputOri.read(bufferOri);
+                inputOri.close();
+                FileOutputStream outputStream = new FileOutputStream(new File(overridePath, name));
+                outputStream.write(bufferAll);
+                outputStream.write(bufferOri);
+                break;
+            }
         }
     }
 }

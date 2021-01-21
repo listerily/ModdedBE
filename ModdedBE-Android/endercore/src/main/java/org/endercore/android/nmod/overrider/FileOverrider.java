@@ -13,7 +13,7 @@ public final class FileOverrider extends BaseOverrider{
     }
 
     @Override
-    public void performOverride(File root, String name, int mode) throws IOException {
+    public void performOverride(File root, String name, String mode) throws IOException {
         File sourceFile = new File(root,name);
         FileInputStream inputStream = new FileInputStream(sourceFile);
         FileOutputStream outputStream = new FileOutputStream(new File(overridePath,name));

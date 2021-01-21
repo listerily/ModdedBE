@@ -6,12 +6,17 @@ import android.util.Log;
 
 import org.endercore.android.EnderCore;
 import org.endercore.android.exception.LauncherException;
+import org.endercore.android.exception.NModException;
 import org.endercore.android.interf.IFileEnvironment;
 import org.endercore.android.interf.IInitializationListener;
 import org.endercore.android.interf.implemented.InitializationListener;
 import org.endercore.android.nmod.NMod;
+import org.endercore.android.nmod.overrider.FileOverrider;
+import org.endercore.android.nmod.overrider.JsonOverrider;
+import org.endercore.android.nmod.overrider.TextOverrider;
 import org.endercore.android.utils.CPUArch;
 import org.endercore.android.utils.FileUtils;
+import org.endercore.android.utils.NModJsonBean;
 import org.endercore.android.utils.Patcher;
 
 import java.io.File;
@@ -19,6 +24,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -62,8 +68,9 @@ public final class Launcher {
         listener = new InitializationListener();
     }
 
-    public void initializeGame(Context context) throws LauncherException {
+    public ArrayList<NModException> initializeGame(Context context) throws LauncherException {
         listener.onStart();
+        ArrayList<NModException> nModExceptions = null;
         try {
             // Check Availability
             if (!core.getGamePackageManager().isGameInstalled())
@@ -252,6 +259,7 @@ public final class Launcher {
             // Load NMods
             if (optionsManager.getUseNMods()) {
                 listener.onLoadNModsStart();
+                nModExceptions = new ArrayList<>();
 
                 // Extract all assets from game apk
                 File assetsDir = new File(fileEnvironment.getCodeCacheDirPathForAssets());
@@ -282,19 +290,73 @@ public final class Launcher {
                 }
 
                 ArrayList<NMod> enabledNMods = nModManager.getEnabledNMods();
+                for(NMod nmod : enabledNMods){
+                    listener.onLoadNMod(nmod);
+                    try{
+                        NModJsonBean.GameSupportData gameSupport = null;
+                        // Find a proper game support
+                        for(NModJsonBean.GameSupportData gameSupportData : nmod.getPackageManifest().game_supports){
+                            for(String version : gameSupportData.target_game_versions){
+                                if(Pattern.matches(version,core.getGamePackageManager().getVersionName())){
+                                    gameSupport = gameSupportData;
+                                }
+                            }
+                        }
 
+                        if(gameSupport == null){
+                            throw new NModException("Cannot find a proper game version support for NMod " + nmod.getUUID() + ".");
+                        }
+
+                        // Patch assets for NMods
+                        for(NModJsonBean.FileOverrideData fileOverrideData : gameSupport.file_overrides){
+                            listener.onLoadNModAsset(fileOverrideData.path);
+                            FileOverrider overrider = new FileOverrider(new File(assetsDir,"assets"));
+                            overrider.performOverride(new File(nmod.getGameSupportDir(gameSupport.name),"assets"),fileOverrideData.path,null);
+                        }
+                        for(NModJsonBean.JsonOverrideData jsonOverrideData : gameSupport.json_overrides){
+                            listener.onLoadNModAsset(jsonOverrideData.path);
+                            JsonOverrider overrider = new JsonOverrider(new File(assetsDir,"assets"));
+                            overrider.performOverride(new File(nmod.getGameSupportDir(gameSupport.name),"assets"),jsonOverrideData.path,jsonOverrideData.mode);
+                        }
+                        for(NModJsonBean.TextOverrideData textOverrideData : gameSupport.text_overrides){
+                            listener.onLoadNModAsset(textOverrideData.path);
+                            TextOverrider overrider = new TextOverrider(new File(assetsDir,"assets"));
+                            overrider.performOverride(new File(nmod.getGameSupportDir(gameSupport.name),"assets"),textOverrideData.path,textOverrideData.mode);
+                        }
+
+                        // Patch Libs
+                        if(gameSupport.native_libs != null){
+                            if(nmod.getFileInGameSupportDir(targetArch,gameSupport.name).exists()){
+                                Patcher.patchNativeLibraryDir(context.getClassLoader(),nmod.getFileInGameSupportDir(targetArch,gameSupport.name).getAbsolutePath());
+                                for(NModJsonBean.NativeLibData nativeLibData : gameSupport.native_libs){
+                                    listener.onLoadNModNativeLibrary(nmod,nativeLibData.name);
+                                    System.loadLibrary(nativeLibData.name);
+                                }
+                            }
+                            else
+                                throw new NModException("No target arch found.");
+                        }
+
+                    } catch (NModException exception) {
+                        nModExceptions.add(exception);
+                    } catch (Throwable throwable) {
+                        nModExceptions.add(new NModException("Failed to load this NMod.",throwable));
+                    }
+                }
                 listener.onLoadNModsFinish();
             }
 
             // Arrange
             listener.onArrange();
-            //todo arrange
+            patchAssetPath.add(fileEnvironment.getCodeCacheDirPathForAssets());
+
         } catch (Throwable e) {
             listener.onSuspend();
             throw new LauncherException("Unexpected fatal error caused in game initialization.", e);
         }
         initializedGame = true;
         listener.onFinish();
+        return nModExceptions;
     }
 
     public void startGame(Context context) throws LauncherException {
