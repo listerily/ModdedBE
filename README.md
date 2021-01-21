@@ -1,6 +1,7 @@
 # ModdedBE
 A professional but **FREE** NMod Launcher for Minecraft Bedrock Editions (Android ONLY).  
-**ModdedBE is under development temporarily.**  
+**ModdedBE is mostly completed now. If you found bugs, please report to us (in the issues page), then we will fix them.**  
+**Pull requests will be much more welcomed than issues. The developers could not manage to fix every issues in time, and they may not want to do it.**
 
 This ModdedBE project is a completely new NMod launcher compared to the last one "ModdedPE".It is designed to support multi-versions of Minecraft, and there're possibilities for it to become a cross-platform Minecraft Launcher.  
 **ATTENTION:** Former NMods for ModdedPE could not be loaded with ModdedBE.
@@ -20,11 +21,11 @@ This ModdedBE project is a completely new NMod launcher compared to the last one
  + Launch the game (Succeed with Minecraft 1.16.201.01, Xiaomi Mi10, Android 10).
  + Auto license the game.
  + Multi-version supports for Minecraft.
-
-## TODO
  + Install NMods.
  + Patch NMods.
  + Manage NMods.
+ 
+## TODO
  + Support for lower Android versions.
  + Support for lower Minecraft versions.
  + Create documents and development tools for NMods.
