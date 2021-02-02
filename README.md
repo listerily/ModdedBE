@@ -16,6 +16,8 @@ This ModdedBE project is a completely new NMod launcher compared to the last one
  Source code for ModdedBE app.
  + *AgentMainActivity*  
  Source code for AgentMainActivity.dex.
+ + *Keystore*  
+ Keystore file to sign the release package.
 
 ## What's Available
  + Launch the game (Succeed with Minecraft 1.16.201.01, Xiaomi Mi10, Android 10).
