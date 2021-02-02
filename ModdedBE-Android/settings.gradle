@@ -1,3 +1,2 @@
-include ':agent_main'
-include ':app', ':endercore'
+include ':agent_main', ':app', ':endercore'
 rootProject.name = "ModdedBE"
