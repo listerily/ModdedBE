@@ -34,3 +34,8 @@ This ModdedBE project is a completely new NMod launcher compared to the last one
  + Read our code and helps us to improve it.
  + Join us as a contributor.
  + Help us solve the issues.
+ 
+## Make Contributions
+ + Send us pull requests.
+ + Sign your name in the project files /app/src/res/values/strings.xml: tag "app_contributors".
+ 
