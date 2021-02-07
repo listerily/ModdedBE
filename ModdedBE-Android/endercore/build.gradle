@@ -42,7 +42,9 @@ android {
 }
 
 dependencies {
+    // Compile agent_main, but don't integrate
     compileOnly project(':agent_main')
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'com.google.code.gson:gson:2.8.6'
 }

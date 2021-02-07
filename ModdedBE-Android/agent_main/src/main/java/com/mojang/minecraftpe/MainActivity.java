@@ -5,7 +5,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 
-public abstract class MainActivity extends NativeActivity {
+public class MainActivity extends NativeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         throw new RuntimeException("Stub!");
     }

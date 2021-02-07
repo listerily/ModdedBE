@@ -84,7 +84,9 @@ android {
  * required to build only the module itself.
  */
 dependencies {
+    // Compile endercore, and integrate with app
     api project(':endercore')
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
