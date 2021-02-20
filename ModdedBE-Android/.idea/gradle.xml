@@ -11,9 +11,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/agent_main" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/endercore" />
+            <option value="$PROJECT_DIR$/endercore_ext" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
