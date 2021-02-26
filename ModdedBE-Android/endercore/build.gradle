@@ -42,8 +42,8 @@ android {
 }
 
 dependencies {
-    // Compile endercore_ext, but don't integrate
-    compileOnly project(':endercore_ext')
+    // Compile agent_main, but don't integrate
+    compileOnly project(':agent_main')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'com.google.code.gson:gson:2.8.6'
