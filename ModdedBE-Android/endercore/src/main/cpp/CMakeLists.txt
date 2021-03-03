@@ -1,20 +1,20 @@
-# For more information about using CMake with Android Studio, read the
-# documentation: https://d.android.com/studio/projects/add-native-code.html
+# Require a minimum version of cmake.
+cmake_minimum_required( VERSION
+                        3.4.1 )             # min
 
-# Sets the minimum version of CMake required to build the native library.
+# Add a library to the project using the specified source files.
+add_library( endercore                      # name
+             SHARED                         # STATIC | SHARED | MODULE
+             endercore.cpp )                # source...
 
-cmake_minimum_required(VERSION 3.4.1)
+add_library( mjscript
+             SHARED
+             mjscript.cpp )
 
-# Creates and names a library, sets it as either STATIC
-# or SHARED, and provides the relative paths to its source code.
-# You can define multiple libraries, and CMake builds them for you.
-# Gradle automatically packages shared libraries with your APK.
+# Find a library.
+find_library( log-lib-path                  # VAR
+              log )                         # NAMES
 
-add_library( # Sets the name of the library.
-        endercore
-
-        # Sets the library as a shared library.
-        SHARED
-
-        # Provides a relative path to your source file(s).
-        ../../../../src/main/cpp/endercore.cpp)
+# Specify libraries or flags to use when linking a given target and/or its dependents.
+target_link_libraries( mjscript             # target...
+                       ${log-lib-path} )    # item...
