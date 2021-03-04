@@ -34,6 +34,7 @@
     <string name="app_options_use_nmods">Use NMods</string>
     <string name="app_options_auto_license">License the game automatically</string>
     <string name="app_options_redirect_game_directory">Redirect game directory</string>
+    <string name="app_options_unlock_mjscript">Unlock Mojang scripting</string>
     <string name="app_options_manage_nmods">Manage NMods</string>
     <string name="app_options_install_new_nmods">Install NMods</string>
     <string name="app_options_title_info">Info</string>
