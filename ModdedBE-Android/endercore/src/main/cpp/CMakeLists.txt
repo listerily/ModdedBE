@@ -2,6 +2,9 @@
 cmake_minimum_required( VERSION
                         3.4.1 )             # min
 
+message( "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}" )
+message( "ANDROID_ABI: ${ANDROID_ABI}" )
+
 # Add a library to the project using the specified source files.
 add_library( endercore                      # name
              SHARED                         # STATIC | SHARED | MODULE
@@ -17,4 +20,6 @@ find_library( log-lib-path                  # VAR
 
 # Specify libraries or flags to use when linking a given target and/or its dependents.
 target_link_libraries( mjscript             # target...
-                       ${log-lib-path} )    # item...
+                       ${log-lib-path}      # item...
+                       ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libxhook.so
+                       ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libyurai.so )
