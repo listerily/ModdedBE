@@ -1,11 +1,30 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+/**
+ * Some comments are taken from https://developer.android.google.cn/studio/build , so that everyone
+ * could understand these scripts.  :D
+ */
+
+/**
+ * The buildscript block is where you configure the repositories and dependencies for Gradle
+ * itself--meaning, you should not include dependencies for your modules here.
+ */
 buildscript {
     ext.kotlin_version = '1.4.30-M1'
+
+    /**
+     * The repositories block configures the repositories Gradle uses to search or download the
+     * dependencies. Gradle pre-configures support for remote repositories such as JCenter, Maven
+     * Central, and Ivy. You can also use local repositories or define your own remote repositories.
+     */
     repositories {
         google()
         jcenter()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     }
+
+    /**
+     * The dependencies block configures the dependencies Gradle needs to use to build your project.
+     */
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -15,6 +34,11 @@ buildscript {
     }
 }
 
+/**
+ * The allprojects block is where you configure the repositories and dependencies used by all
+ * modules in your project, such as third-party plugins or libraries. However, you should configure
+ * module-specific dependencies in each module-level build.gradle file.
+ */
 allprojects {
     repositories {
         google()

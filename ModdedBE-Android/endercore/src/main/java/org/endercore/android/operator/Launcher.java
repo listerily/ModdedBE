@@ -50,6 +50,7 @@ public final class Launcher {
     private final static String NAME_FMOD = "libfmod.so";
     private final static String NAME_MINECRAFTPE = "libminecraftpe.so";
     private final static String NAME_ENDERCORE = "libendercore.so";
+    private final static String NAME_MJSCRIPT = "libmjscript.so";
     private final static String LIB_CPP_SHARED = "c++_shared";
     private final static String LIB_YURAI = "yurai";
     private final static String LIB_SUBSTRATE = "substrate";
@@ -57,6 +58,7 @@ public final class Launcher {
     private final static String LIB_FMOD = "fmod";
     private final static String LIB_MINECRAFTPE = "minecraftpe";
     private final static String LIB_ENDERCORE = "endercore";
+    private final static String LIB_MJSCRIPT = "mjscript";
     private final static String DIR_LIB = "lib";
 
     public Launcher(EnderCore core) {
@@ -241,6 +243,11 @@ public final class Launcher {
                 System.loadLibrary(LIB_XHOOK);
                 listener.onLoadNativeLibrary(NAME_ENDERCORE);
                 System.loadLibrary(LIB_ENDERCORE);
+
+                if (optionsManager.getUnlockMjscript()) {
+                    listener.onLoadNativeLibrary(NAME_MJSCRIPT);
+                    System.loadLibrary(LIB_MJSCRIPT);
+                }
             } catch (Error error) {
                 throw new LauncherException("Load game libraries failed.", error);
             }

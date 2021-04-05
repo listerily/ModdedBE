@@ -13,6 +13,11 @@
             app:title="@string/app_options_redirect_game_directory"
             app:defaultValue="true"/>
 
+        <SwitchPreferenceCompat
+            app:key="unlock_mjscript"
+            app:title="@string/app_options_unlock_mjscript"
+            app:defaultValue="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/app_options_title_nmods">

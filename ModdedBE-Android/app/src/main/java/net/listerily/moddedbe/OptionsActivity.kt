@@ -87,6 +87,9 @@ class OptionsActivity : AppCompatActivity() {
                                 "redirect_directory" -> {
                                     EnderCore.getInstance().optionsManager.redirectGameDir = sharedPreferences.getBoolean(key, EnderCore.getInstance().optionsManager.redirectGameDir)
                                 }
+                                "unlock_mjscript" -> {
+                                    EnderCore.getInstance().optionsManager.unlockMjscript = sharedPreferences.getBoolean(key, EnderCore.getInstance().optionsManager.unlockMjscript)
+                                }
                                 "use_nmods" -> {
                                     EnderCore.getInstance().optionsManager.useNMods = sharedPreferences.getBoolean(key, EnderCore.getInstance().optionsManager.useNMods)
                                 }
