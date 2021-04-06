@@ -21,5 +21,5 @@ find_library( log-lib-path                  # VAR
 # Specify libraries or flags to use when linking a given target and/or its dependents.
 target_link_libraries( mjscript             # target...
                        ${log-lib-path}      # item...
-                       ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libxhook.so
-                       ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libyurai.so )
+                       ${CMAKE_SOURCE_DIR}/../cmakeLibs/${ANDROID_ABI}/libxhook.so
+                       ${CMAKE_SOURCE_DIR}/../cmakeLibs/${ANDROID_ABI}/libyurai.so )
