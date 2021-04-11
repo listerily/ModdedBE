@@ -1,26 +1,49 @@
-# Require a minimum version of cmake.
-cmake_minimum_required( VERSION
-                        3.4.1 )             # min
+# Preparation
+cmake_minimum_required( VERSION 3.4.1 )
 
+message( "CMAKE_VERSION: ${CMAKE_VERSION}" )
 message( "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}" )
 message( "ANDROID_ABI: ${ANDROID_ABI}" )
 
-# Add a library to the project using the specified source files.
-add_library( endercore                      # name
-             SHARED                         # STATIC | SHARED | MODULE
-             endercore.cpp )                # source...
+# System libraries
+find_library( log-lib-path #
+              log )
 
+message( "Path of liblog.so: ${log-lib-path}" )
+
+# Import libraries
+add_library( xhook
+             SHARED IMPORTED )
+
+set_target_properties( xhook
+                       PROPERTIES
+                       IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/${ANDROID_ABI}/libxhook.so )
+
+add_library( yurai
+             SHARED IMPORTED )
+
+set_target_properties( yurai
+                       PROPERTIES
+                       IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/${ANDROID_ABI}/libyurai.so )
+
+add_library( substrate
+             SHARED IMPORTED )
+
+set_target_properties( substrate
+                       PROPERTIES
+                       IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/${ANDROID_ABI}/libsubstrate.so )
+
+
+# endercore
+add_library( endercore
+             SHARED
+             endercore.cpp )
+
+# mjscript
 add_library( mjscript
              SHARED
              mjscript.cpp )
 
-# Find a library.
-find_library( log-lib-path                  # VAR
-              log )                         # NAMES
-
-# Specify libraries or flags to use when linking a given target and/or its dependents.
-target_link_libraries( mjscript             # target...
-                       ${log-lib-path}      # item...
-                       ${CMAKE_SOURCE_DIR}/../cmakeLibs/${ANDROID_ABI}/libxhook.so
-                       ${CMAKE_SOURCE_DIR}/../cmakeLibs/${ANDROID_ABI}/libyurai.so
-                       ${CMAKE_SOURCE_DIR}/../cmakeLibs/${ANDROID_ABI}/libsubstrate.so)
+target_link_libraries( mjscript
+                       ${log-lib-path}
+                       xhook yurai substrate )
