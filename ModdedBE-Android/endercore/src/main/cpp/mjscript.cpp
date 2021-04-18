@@ -72,7 +72,7 @@ TStaticHook( std::string, _ZN4I18n3getERKNSt6__ndk112basic_stringIcNS0_11char_tr
 
 JNIEXPORT jint JNI_OnLoad( JavaVM *vm, void *reserved )
 {
-
+    xhook_enable_debug( 1 );
                     // Match WHOLE LINE that ends with "libminecraftpe.so"
     xhook_register( ".*libminecraftpe\\.so$",
                     "_ZNK11AppPlatform17supportsScriptingEv",

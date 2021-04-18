@@ -1,6 +1,9 @@
 package org.endercore.android.utils;
 
 import android.os.Build;
+import android.util.Log;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +21,28 @@ public final class CPUArch {
     public static final String ARCH_NAME_X86_32 = "x86";
     public static final String ARCH_NAME_X86_64 = "x86_64";
     public static final String ARCH_NAME_OTHERS = "others";
+
+    public static int getBitForABI(@NotNull String str) {
+        switch (str) {
+            case "armeabi":
+                return 1 << 0;
+            case "armeabi-v7a":
+                return 1 << 1;
+            case "arm64-v8a":
+                return 1 << 2;
+            case "x86":
+                return 1 << 3;
+            case "x86_64":
+                return 1 << 4;
+            case "mips":
+                return 1 << 5;
+            case "mips64":
+                return 1 << 6;
+            default:
+                Log.w("EnderCore", "Unknown ABI: " + str);
+                return 0;
+        }
+    }
 
     public static int getELFArch(File file) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(file);
