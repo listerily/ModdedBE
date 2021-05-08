@@ -6,7 +6,7 @@ message( "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}" )
 message( "ANDROID_ABI: ${ANDROID_ABI}" )
 
 # System libraries
-find_library( log-lib-path #
+find_library( log-lib-path
               log )
 
 message( "Path of liblog.so: ${log-lib-path}" )
