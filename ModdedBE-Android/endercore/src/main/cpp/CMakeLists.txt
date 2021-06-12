@@ -11,29 +11,6 @@ find_library( log-lib-path
 
 message( "Path of liblog.so: ${log-lib-path}" )
 
-# Import libraries
-add_library( xhook
-             SHARED IMPORTED )
-
-set_target_properties( xhook
-                       PROPERTIES
-                       IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/${ANDROID_ABI}/libxhook.so )
-
-add_library( yurai
-             SHARED IMPORTED )
-
-set_target_properties( yurai
-                       PROPERTIES
-                       IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/${ANDROID_ABI}/libyurai.so )
-
-add_library( substrate
-             SHARED IMPORTED )
-
-set_target_properties( substrate
-                       PROPERTIES
-                       IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/${ANDROID_ABI}/libsubstrate.so )
-
-
 # endercore
 add_library( endercore
              SHARED
@@ -44,6 +21,9 @@ add_library( mjscript
              SHARED
              mjscript.cpp )
 
-target_link_libraries( mjscript
-                       ${log-lib-path}
-                       xhook yurai substrate )
+target_link_libraries(
+        mjscript
+        ${log-lib-path}
+        ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libxhook.so
+        ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libsubstrate.so
+)
