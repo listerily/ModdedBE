@@ -1,10 +1,5 @@
 package com.mojang.minecraftpe.store;
 
-/**
- * @author Тимашков Иван
- * @author https://github.com/TimScriptov
- */
-
 public interface Store {
     void acknowledgePurchase(String str, String str2);
 
