@@ -1,10 +1,5 @@
 package com.mojang.minecraftpe.store;
 
-/**
- * @author Тимашков Иван
- * @author https://github.com/TimScriptov
- */
-
 public class Purchase {
     public String mProductId;
     public boolean mPurchaseActive;
