@@ -5,10 +5,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 
-import com.google.firebase.FirebaseApp;
-
 public abstract class MainActivity extends NativeActivity {
-    public native void nativeInitializeXboxLive(long xalInitArgs, long xblInitArgs);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +22,6 @@ public abstract class MainActivity extends NativeActivity {
     }
 
     public void initializeXboxLive(long xalInitArgs, long xblInitArgs) {
-        FirebaseApp.initializeApp(MainActivity.this.getApplicationContext());
-        nativeInitializeXboxLive(xalInitArgs, xblInitArgs);
+        throw new RuntimeException("Stub!");
     }
 }
