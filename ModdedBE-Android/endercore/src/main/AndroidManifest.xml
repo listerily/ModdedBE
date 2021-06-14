@@ -62,23 +62,28 @@
         </activity>
 
         <!-- UNNECESSARY FIELDS AS FOLLOWS. IF THERE IS COMPILE ERRORS,PLEASE REMOVE THEM. -->
-        <activity
-            android:configChanges="orientation"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:name="com.microsoft.xal.browser.IntentHandler"
+        <activity android:name="com.microsoft.xal.browser.IntentHandler"
+            android:exported="true" android:launchMode="singleTask"
             android:screenOrientation="sensorLandscape"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            android:configChanges="orientation">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <data
-                    android:host="auth"
-                    android:scheme="ms-xal-0000000048183522" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW"/>
+                <data android:scheme="ms-xal-0000000048183522" android:host="auth"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.microsoft.xal.browser.BrowserLaunchActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation"/>
+        <activity
+            android:name="com.microsoft.xal.browser.WebKitWebViewController"
+            android:exported="false"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation"/>
         <activity
             android:configChanges="orientation"
             android:exported="false"
@@ -91,7 +96,6 @@
             android:exported="false"
             android:name="com.microsoft.xal.browser.WebKitWebViewController"
             android:screenOrientation="sensorLandscape" />
-
         <meta-data
             android:name="xperiaplayoptimized_content"
             android:resource="@string/xperiaplayoptimized_content" />
