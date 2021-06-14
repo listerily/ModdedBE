@@ -13,7 +13,7 @@ android {
      * compileSdkVersion specifies the Android API level Gradle should use to compile your app. This
      * means your app can use the API features included in this API level and lower.
      */
-    compileSdkVersion 30
+    compileSdkVersion 'android-S'
 
     /**
      * buildToolsVersion specifies the version of the SDK build tools, command-line utilities, and
@@ -94,16 +94,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0'
-    implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'com.google.code.gson:gson:2.8.7'
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
     implementation 'com.google.android.gms:play-services-iid:17.0.0'
-    implementation 'org.zeroturnaround:zt-zip:1.14'
-    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
     implementation 'org.jetbrains:annotations:21.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.core:core-ktx:1.5.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
