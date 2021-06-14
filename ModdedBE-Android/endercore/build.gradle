@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 'android-S'
     buildToolsVersion "30.0.3"
 
     defaultConfig {
@@ -47,9 +47,5 @@ dependencies {
     compileOnly project(':agent_main')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'com.google.code.gson:gson:2.8.6'
-}
-repositories {
-    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-    mavenCentral()
+    implementation 'com.google.code.gson:gson:2.8.7'
 }

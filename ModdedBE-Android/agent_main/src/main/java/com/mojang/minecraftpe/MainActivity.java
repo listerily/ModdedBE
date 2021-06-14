@@ -5,8 +5,11 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 
-public class MainActivity extends NativeActivity {
+public abstract class MainActivity extends NativeActivity {
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         throw new RuntimeException("Stub!");
     }
 
@@ -15,6 +18,10 @@ public class MainActivity extends NativeActivity {
     }
 
     public Resources getResources() {
+        throw new RuntimeException("Stub!");
+    }
+
+    public void initializeXboxLive(long xalInitArgs, long xblInitArgs) {
         throw new RuntimeException("Stub!");
     }
 }
