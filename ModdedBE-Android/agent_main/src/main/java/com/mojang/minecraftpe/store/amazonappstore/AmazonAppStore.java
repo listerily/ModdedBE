@@ -2,72 +2,78 @@ package com.mojang.minecraftpe.store.amazonappstore;
 
 import android.content.Context;
 
-import com.mojang.minecraftpe.MainActivity;
 import com.mojang.minecraftpe.store.ExtraLicenseResponseData;
 import com.mojang.minecraftpe.store.Store;
 import com.mojang.minecraftpe.store.StoreListener;
 
 public class AmazonAppStore implements Store {
-    static final String IAB_BROADCAST_ACTION = "com.android.vending.billing.PURCHASES_UPDATED";
-    MainActivity mActivity;
     StoreListener mListener;
-    int mPurchaseRequestCode;
     private boolean mForFireTV;
 
     public AmazonAppStore(Context context, StoreListener listener) {
-        System.out.println("AmazonAppStore:" + context + ":" + listener);
         mListener = listener;
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public AmazonAppStore(Context context, StoreListener listener, boolean forFireTV) {
-        System.out.println("AmazonAppStore:" + context + ":" + listener + ":" + forFireTV);
         mListener = listener;
         mForFireTV = forFireTV;
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public String getStoreId() {
         return "android.amazonappstore";
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public boolean hasVerifiedLicense() {
         return true;
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public boolean receivedLicenseResponse() {
         return true;
-    }
-
-    public ExtraLicenseResponseData getExtraLicenseData() {
-        long[] data = new long[]{60000, 0, 0};
-        return new ExtraLicenseResponseData(data[0], data[1], data[2]);
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public void queryProducts(String[] productIds) {
-        System.out.println("AmazonAppStore: Query products");
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public void acknowledgePurchase(String receipt, String productType) {
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public void queryPurchases() {
-        System.out.println("AmazonAppStore: Query purchases");
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public String getProductSkuPrefix() {
         return mForFireTV ? "firetv." : "";
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public String getRealmsSkuPrefix() {
         return mForFireTV ? "firetv." : "";
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public void destructor() {
-        System.out.println("AmazonAppStore: Destructor");
+        // TODO: THIS FUNCTION IS MODIFIED
+    }
+
+    @Override
+    public ExtraLicenseResponseData getExtraLicenseData() {
+        long[] data = new long[]{60000, 0, 0};
+        return new ExtraLicenseResponseData(data[0], data[1], data[2]);
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public void purchase(String productId, boolean isSubscription, String payload) {
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 
     public void purchaseGame() {
+        // TODO: THIS FUNCTION IS MODIFIED
     }
 }
