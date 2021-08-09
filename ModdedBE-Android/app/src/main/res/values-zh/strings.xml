@@ -34,10 +34,12 @@
     <string name="app_options_use_nmods">使用NMods</string>
     <string name="app_options_auto_license">自动授权购买许可</string>
     <string name="app_options_redirect_game_directory">重定向游戏内部文件夹</string>
+    <string name="app_options_unlock_mjscript">解锁脚本引擎（尚未实现）</string>
     <string name="app_options_manage_nmods">管理NMod</string>
     <string name="app_options_install_new_nmods">安装NMod</string>
     <string name="app_options_title_info">关于</string>
     <string name="app_options_about_us">关于我们</string>
+    <string name="app_translators">翻译者：listerily</string>
     <string name="app_wiki">Wiki</string>
     <string name="app_source">源码</string>
     <string name="app_issues">报告bug</string>
