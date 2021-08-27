@@ -29,9 +29,54 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+String getSdkPath() {
+    File localPropertiesFile = new File(project.rootDir, "local.properties")
+    Properties localProperties = new Properties()
+    localProperties.load(new FileReader(localPropertiesFile))
+    return localProperties.getProperty("sdk.dir")
+}
+
+/*  Generate dex files for project endercore.
+ *  Notice: Project endercore must exist!
+ *  Reference: https://github.com/gelldur/msc-thesis/blob/master/project/SecureMe/app/build.gradle
+ */
+task buildDexDebug() {
+    doLast {
+        String sdkPath = getSdkPath()
+        // Use File.separator instead of '/' whenever possible. It can avoid POTENTIAL problems and
+        // reduce the time used for debugging.
+        String s = File.separator
+        String mWorkingDir = "${projectDir}${s}build${s}intermediates${s}javac${s}debug${s}classes"
+        // Use "dx.bat" instead of "dx" because the latter one may cause build failure on Windows.
+        String dxPath = "${sdkPath}${s}build-tools${s}30.0.3${s}dx.bat"
+
+        println "Project Path: ${projectDir}"
+        println "Android SDK Path: ${sdkPath}"
+        println "File.separator: ${s}"
+
+        exec {
+            workingDir mWorkingDir
+            commandLine dxPath,
+                    "--dex",
+                    "--output=..${s}..${s}..${s}..${s}..${s}..${s}endercore${s}src${s}main${s}assets${s}endercore${s}android${s}AgentMainActivity.dex",
+                    "com${s}mojang${s}minecraftpe${s}AgentMainActivity.class"
+        }
+        exec {
+            workingDir mWorkingDir
+            commandLine dxPath,
+                    "--dex",
+                    "--output=..${s}..${s}..${s}..${s}..${s}..${s}endercore${s}src${s}main${s}assets${s}endercore${s}android${s}CrackedLicense.dex",
+                    "com${s}mojang${s}minecraftpe${s}store${s}amazonappstore${s}AmazonAppStore.class",
+                    "com${s}mojang${s}minecraftpe${s}store${s}googleplay${s}GooglePlayStore.class"
+        }
+    }
+}
+
+//tasks.getByName("compileDebugJavaWithJavac").finalizedBy(buildDexDebug)
+
+afterEvaluate {
+    // Sometimes it gets stuck, and you have to kill Android Studio to stop building. I have no idea.
+    //tasks.getByName("compileDebugJavaWithJavac").finalizedBy(buildDexDebug)
 }
