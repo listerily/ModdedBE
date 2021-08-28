@@ -15,13 +15,6 @@ android {
      */
     compileSdkVersion 'android-S'
 
-    /**
-     * buildToolsVersion specifies the version of the SDK build tools, command-line utilities, and
-     * compiler that Gradle should use to build your app. You need to download the build tools using
-     * the SDK Manager.
-     * This property is optional because the plugin uses a recommended version of the build tools by
-     * default.
-     */
     buildToolsVersion "30.0.3"
 
     /**
@@ -40,13 +33,13 @@ android {
         minSdkVersion 21
 
         // Specifies the API level used to test the app.
-        targetSdkVersion 28
+        targetSdkVersion 29
 
         // Defines the version number of your app.
-        versionCode 1
+        versionCode 2
 
         // Defines a user-friendly version name for your app.
-        versionName "1.0"
+        versionName "1.1"
 
         multiDexEnabled true
 
