@@ -34,9 +34,9 @@
             android:text="@string/app_title" />
 
         <TextView
+            android:id="@+id/version_name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_version_name"
             android:layout_marginStart="10dp" />
         </LinearLayout>
 
