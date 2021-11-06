@@ -258,7 +258,17 @@ public final class Launcher {
             // Load Resources
             listener.onLoadResourcesStart();
             patchAssetPath.add(context.getPackageResourcePath());
-            patchAssetPath.add(core.getGamePackageManager().getPackageResourcePath());
+            String basePath = core.getGamePackageManager().getPackageResourcePath();
+            patchAssetPath.add(basePath);
+            /* In `1.17.30`(beta version unknown), almost all assets files were moved to
+             * `split_install_pack.apk`, including `bootstrap.json`, a file that is crucial to
+             * launching the game.
+             */
+            String splitPath = basePath.replace("base.apk", "split_install_pack.apk");
+            File splitFile = new File(splitPath);
+            if (splitFile.exists()) {
+                patchAssetPath.add(splitPath);
+            }
             listener.onLoadResourcesFinish();
 
             listener.onLoadGameFilesFinish();
