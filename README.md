@@ -29,6 +29,7 @@ This ModdedBE project is a completely new NMod launcher compared to the last one
  + Support for lower Android versions.
  + Support for lower Minecraft versions.
  + Create documents and development tools for NMods.
+ + Expanding the description on [Minecraft Bedrock Edition Development Wiki](https://wiki.bedev.cn/page/ModdedBE).
 
 ## Support us
  + Read our code and helps us to improve it.
