@@ -33,3 +33,15 @@ ModdedBE 是调用 EnderCore 的应用程序。
  - 启动：`Loader` 会一股脑加载所有文件，所以我们不需要多管，交给它就好了。
 
 目前 ModdedBE 仅支持 zip 格式的 NMod。我希望这一点能恢复到当初的 apk/zip 的形式，因为 apk 便于调试。  
+
+## kokic 的构想
+虽然我写了这么多，但是这个想法不一定十全十美。下面附上 @kokic 的构想：
+
+https://tieba.baidu.com/p/5840838731  
+从这篇贴子中我们可以看到 kokic 对 ModdedPE 的构思（包括一个终究未能实现的库 Gridge），还有一些其他启动器的原理概述。
+
+<img src="https://user-images.githubusercontent.com/66164427/164977409-1604f4c5-d333-4585-a552-677901dac8ad.PNG" width="25%" alt="20200721_090106_IMG_0552" />  
+<!-- ![20200721_090106_IMG_0552](https://user-images.githubusercontent.com/66164427/164977409-1604f4c5-d333-4585-a552-677901dac8ad.PNG) -->
+从这张图片中我们可以看到 kokic 对未来新启动器的构想。
+
+资料暂时先码这么多，日后开工会有用的。
